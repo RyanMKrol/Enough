@@ -1,0 +1,76 @@
+name: CI
+# ▲ The loop gates on a workflow whose `name:` matches CI_WORKFLOW (default "CI").
+#   If you rename this, set CI_WORKFLOW to match in .harness/config/harness.env.
+
+# Run on every push (so the loop's per-task branches get a run to watch) and on PRs
+# to main. The loop merges a branch into `main` ONLY when this workflow goes green.
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same ref to save CI minutes.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Definition of Done
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Format check
+        run: |
+          brew install swift-format
+          swift-format lint --recursive --strict Sources Tests
+
+      # Errors fail the merge gate; warnings are advisory only. See .swiftlint.yml
+      # (added by T001, which also excludes .harness/ from the lint sweep).
+      - name: Lint
+        run: |
+          brew install swiftlint
+          swiftlint lint --strict
+
+      - name: Resolve an available iPhone simulator
+        id: sim
+        run: |
+          available=$(xcrun simctl list devices available)
+          name=""
+          for p in "iPhone 17 Pro" "iPhone 17" "iPhone 16 Pro" "iPhone 16"; do
+            if echo "$available" | grep -qF "$p ("; then name="$p"; break; fi
+          done
+          if [ -z "$name" ]; then
+            name=$(echo "$available" \
+              | awk -F'[()]' '/iPhone/{print $1; exit}' \
+              | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')
+          fi
+          if [ -z "$name" ]; then
+            echo "No available iPhone simulator found on this runner." >&2
+            echo "$available" >&2
+            exit 1
+          fi
+          echo "Resolved simulator: $name"
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
+      - name: Test
+        run: |
+          xcodebuild test \
+            -project Enough.xcodeproj -scheme Enough \
+            -destination "platform=iOS Simulator,name=${{ steps.sim.outputs.name }}" \
+            -resultBundlePath TestResults.xcresult
+
+      - name: Upload result bundle on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults.xcresult
+          retention-days: 14
