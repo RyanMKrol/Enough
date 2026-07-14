@@ -1,0 +1,48 @@
+name: Enough
+options:
+  bundleIdPrefix: com.ryankrol
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    SUPPORTED_PLATFORMS: "iphoneos iphonesimulator"
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  Enough:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: Enough
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ryankrol.enough
+  EnoughTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: Enough
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ryankrol.enough.tests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  Enough:
+    build:
+      targets:
+        Enough: all
+        EnoughTests: [test]
+    test:
+      targets:
+        - EnoughTests

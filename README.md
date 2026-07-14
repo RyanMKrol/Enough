@@ -32,8 +32,17 @@ how it works, and [`CLAUDE.md`](./CLAUDE.md) for project conventions.
 
 | Task | Description | Status |
 |------|-------------|--------|
-| T001 | Project scaffold + CI green on an empty build | ⬜ needs-human |
+| T001 | Project scaffold + CI green on an empty build | ✅ done |
 
 ## Status
 
-Early brainstorming / naming stage. No code yet.
+Bare app skeleton: an XcodeGen-generated iOS app (`Enough`) with a placeholder screen, a unit
+test target, SwiftLint + swift-format wired into CI, and `build_run.sh` for local
+build/install/launch/screenshot on the simulator. No product features yet.
+
+## Development
+
+- Generate the Xcode project: `xcodegen generate` (regenerates `Enough.xcodeproj` from
+  `project.yml` — the `.xcodeproj` itself is git-ignored).
+- Build + launch on a simulator with a screenshot: `./build_run.sh`.
+- Run the full local Definition of Done: see `.harness/config/harness.env`'s `LOCAL_DOD`.

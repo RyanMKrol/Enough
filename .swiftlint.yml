@@ -1,0 +1,10 @@
+excluded:
+  - Enough.xcodeproj
+  - build
+  - .harness
+
+line_length:
+  warning: 130
+
+identifier_name:
+  min_length: 1
