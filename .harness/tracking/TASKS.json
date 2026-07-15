@@ -504,7 +504,7 @@
     {
       "id": "T021",
       "title": "SRS queue builder: review ordering, learn chunking, miss re-queueing",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T019",
         "T020"
