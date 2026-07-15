@@ -19,7 +19,7 @@
     {
       "id": "T002",
       "title": "Design tokens: colors, typography, layout & motion constants + accent theming",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
