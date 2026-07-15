@@ -220,7 +220,7 @@
     {
       "id": "T010",
       "title": "SRS grade button row (Again/Hard/Good/Easy with interval sublabels)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],
