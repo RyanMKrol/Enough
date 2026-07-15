@@ -479,7 +479,7 @@
     {
       "id": "T020",
       "title": "SRS queries: dueness, mastery, interval previews & next-due formatting",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T019"
       ],
