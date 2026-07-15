@@ -1,1 +1,2 @@
 {"id":"T002","ts":"2026-07-15T20:35:01Z","kind":"audit-fail","rung":0,"attempt":0,"model":"claude-haiku-4-5","effort":"","facets":{"layer":"views","workType":"feature","risk":["touches-core"]},"detail":""}
+{"id":"T019","ts":"2026-07-15T23:04:48Z","kind":"audit-fail","rung":0,"attempt":0,"model":"claude-sonnet-5","effort":"low","facets":{"layer":"learning","workType":"feature","risk":["touches-core"]},"detail":""}

@@ -454,7 +454,7 @@
     {
       "id": "T019",
       "title": "SRS core: card scheduling state + SM-2 grading function",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
