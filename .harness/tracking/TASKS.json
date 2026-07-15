@@ -95,7 +95,7 @@
     {
       "id": "T005",
       "title": "Progress indicators: animated progress bar + progress ring",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],
