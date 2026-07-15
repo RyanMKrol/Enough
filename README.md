@@ -15,7 +15,8 @@ spirit of Anki) to drive learning efficiently in a short window of time.
 
 ## How it works (rough shape)
 
-- Users browse and purchase language decks, roughly £3 each.
+- Users browse and purchase scenario-sized language packs (£1 each) or discounted trip
+  bundles (Weekend / The whole week) — one-time purchases, no subscription.
 - Each deck is scoped to "enough for a trip" rather than a whole language —
   curated, practical vocabulary and phrases rather than exhaustive courses.
 - Spaced repetition drives review scheduling so a small deck can be learned
@@ -33,12 +34,21 @@ how it works, and [`CLAUDE.md`](./CLAUDE.md) for project conventions.
 | Task | Description | Status |
 |------|-------------|--------|
 | T001 | Project scaffold + CI green on an empty build | ✅ done |
+| T002–T064 | Full v1 backlog (design system → content/persistence/SRS → screens → polish), authored 2026-07-15 | 📋 pending |
+
+The live backlog + statuses are in `.harness/tracking/TASKS.json`; each task's spec is in
+`.harness/tasks/`. The design source of truth is
+[`.harness/docs/designs/design-spec.md`](./.harness/docs/designs/design-spec.md) and the shared
+type/name contract is
+[`.harness/docs/designs/architecture.md`](./.harness/docs/designs/architecture.md).
 
 ## Status
 
-Bare app skeleton: an XcodeGen-generated iOS app (`Enough`) with a placeholder screen, a unit
-test target, SwiftLint + swift-format wired into CI, and `build_run.sh` for local
-build/install/launch/screenshot on the simulator. No product features yet.
+Bare app skeleton plus planning collateral: an XcodeGen-generated iOS app (`Enough`) with a
+placeholder screen, a unit test target, SwiftLint + swift-format wired into CI, `build_run.sh`
+for local build/install/launch/screenshot on the simulator, and a bundled sample content fixture
+(`Content/` — 4 Japanese decks, 114 cards + audio, generated from the anki-builder project; see
+design-spec §8.1 for the schema). No product features yet — the backlog builds them.
 
 ## Development
 

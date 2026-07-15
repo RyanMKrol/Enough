@@ -1,0 +1,261 @@
+{
+  "deckId": "jp-greetings",
+  "cards": [
+    {
+      "id": "ohayou-gozaimasu",
+      "english": "Good morning.",
+      "target": "おはようございます。",
+      "pronunciation": "ohayō gozai masu .",
+      "audio": "bc4e77e6407e004b.mp3",
+      "notes": "Possibly premature — explicitly taught later in Lesson 6: Going Places (1): Where Are You Going? (explicitly re-taught as a dedicated VOCABULARY entry)",
+      "category": "Greetings"
+    },
+    {
+      "id": "konnichiwa",
+      "english": "Hello. / Good afternoon.",
+      "target": "こんにちは。",
+      "pronunciation": "konnichiwa .",
+      "audio": "439e44a82b28f76c.mp3",
+      "notes": "A rather informal greeting used from about 10:00 A.M. until sundown",
+      "category": "Greetings"
+    },
+    {
+      "id": "konbanwa",
+      "english": "Good evening.",
+      "target": "こんばんは。",
+      "pronunciation": "kombanwa .",
+      "audio": "2c23036eba8a5d80.mp3",
+      "notes": "Possibly incorrect romanization — romanization reads 'kombanwa' but should be 'konbanwa' — the second ん should be 'n', not 'm'",
+      "category": "Greetings"
+    },
+    {
+      "id": "ja-mata",
+      "english": "See you.",
+      "target": "じゃ、また。",
+      "pronunciation": "ja , mata .",
+      "audio": "39ed0299ddcbb2d1.mp3",
+      "category": "Greetings"
+    },
+    {
+      "id": "sayounara",
+      "english": "Good-bye.",
+      "target": "さようなら。",
+      "pronunciation": "sayōnara .",
+      "audio": "2bbc54a687b891ce.mp3",
+      "category": "Greetings"
+    },
+    {
+      "id": "shitsurei-shimasu-entering",
+      "english": "Excuse me. (said when entering another person's room)",
+      "target": "しつれいします。",
+      "pronunciation": "shi tsu rei shi masu .",
+      "audio": "f91de4d0a3535933.mp3",
+      "notes": "Said when entering another person's room | Possibly premature — explicitly taught later in Lesson 7: Going Places (2): I’m Going by Shinkansen (explicitly re-taught as a dedicated VOCABULARY entry (\"Excuse me.\"))",
+      "category": "Greetings"
+    },
+    {
+      "id": "shitsurei-shimasu-leaving",
+      "english": "Good-bye. (said on formal occasions)",
+      "target": "しつれいします。",
+      "pronunciation": "shi tsu rei shi masu .",
+      "audio": "f91de4d0a3535933.mp3",
+      "notes": "Said on formal occasions, e.g. leaving a meeting | Possibly premature — explicitly taught later in Lesson 6: Going Places (1): Where Are You Going? (explicitly re-taught as a dedicated VOCABULARY entry (\"Good bye.\"))",
+      "category": "Greetings"
+    },
+    {
+      "id": "osaki-ni-shitsurei-shimasu",
+      "english": "Good-bye. (said when leaving the office before other people)",
+      "target": "おさきに しつれいします。",
+      "pronunciation": "osakini shi tsu rei shi masu .",
+      "audio": "473ef608723f59bc.mp3",
+      "category": "Greetings"
+    },
+    {
+      "id": "otsukaresama-deshita",
+      "english": "Good-bye. (said when your colleague leaves the office before you)",
+      "target": "おつかれさま（でした）。",
+      "pronunciation": "o tsukare sama ( deshi ta ) .",
+      "audio": "24ab766d3a84794d.mp3",
+      "category": "Greetings"
+    },
+    {
+      "id": "douzo",
+      "english": "Please. (offering something to someone)",
+      "target": "どうぞ。",
+      "pronunciation": "dōzo .",
+      "audio": "ae7e8f34fe71d3ae.mp3",
+      "notes": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (explicitly re-taught as a dedicated VOCABULARY entry (\"Please (have one).\"))",
+      "category": "Greetings"
+    },
+    {
+      "id": "arigatou-gozaimasu",
+      "english": "Thank you.",
+      "target": "ありがとうございます。",
+      "pronunciation": "arigatō gozai masu .",
+      "audio": "1749b2e403ed4869.mp3",
+      "notes": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (explicitly re-taught as a dedicated VOCABULARY entry (\"Thank you.\")) | Possibly incorrect romanization — incorrectly splits 'gozaimasu' into 'gozai masu' — should be one word with no space",
+      "category": "Greetings"
+    },
+    {
+      "id": "iie-not-at-all",
+      "english": "Not at all.",
+      "target": "いいえ。",
+      "pronunciation": "īe .",
+      "audio": "56eb4b75f3ab28fa.mp3",
+      "notes": "Polite response when thanked or when declining an offer of help/politeness | Possibly premature — explicitly taught later in Lesson 1: Meeting: Nice to Meet You (explicitly re-taught as a dedicated VOCABULARY entry (\"no.\"))",
+      "category": "Greetings"
+    },
+    {
+      "id": "sumimasen-excuse-me",
+      "english": "Excuse me.",
+      "target": "すみません。",
+      "pronunciation": "sumimasen .",
+      "audio": "ad69bc14be090d15.mp3",
+      "notes": "Used to get someone's attention, e.g. calling a waiter | Possibly premature — explicitly taught later in Lesson 1: Meeting: Nice to Meet You (explicitly re-taught as a dedicated VOCABULARY entry (\"Excuse me.\"))",
+      "category": "Greetings"
+    },
+    {
+      "id": "sumimasen-sorry",
+      "english": "I'm sorry.",
+      "target": "すみません。",
+      "pronunciation": "sumimasen .",
+      "audio": "ad69bc14be090d15.mp3",
+      "notes": "Same phrase as excuse me, used here to apologize | Possibly premature — explicitly taught later in Lesson 14: Giving and Receiving: I Received It from My Friend (the closely related form すみませんでした gets its own dedicated VOCABULARY entry glossed \"I'm sorry (for what I did a while ago)\" — a near-exact re-teaching of this item's sense, worth the reviewer's judgment even though the surface string differs slightly)",
+      "category": "Greetings"
+    },
+    {
+      "id": "san-suffix-ch14",
+      "english": "Mr., Mrs., Ms., Miss",
+      "target": "さん",
+      "pronunciation": "san",
+      "audio": "93663a351728650f.mp3",
+      "notes": "Suffix — attaches after a person's name; cannot be used after one's own name (written 〜さん in the source)",
+      "category": "Family & People"
+    },
+    {
+      "id": "hajimemashite",
+      "english": "Nice to meet you.",
+      "target": "はじめまして。",
+      "pronunciation": "hajimemashite .",
+      "audio": "842fbbbd1e493250.mp3",
+      "category": "Greetings"
+    },
+    {
+      "id": "yoroshiku-onegaishimasu",
+      "english": "I look forward to working with you.",
+      "target": "よろしく おねがいします。",
+      "pronunciation": "yoroshiku onegai shi masu .",
+      "audio": "03b563bf5a9e557d.mp3",
+      "notes": "Usually combined with はじめまして when being introduced | Possibly incorrect romanization — onegaishimasu is incorrectly split with spaces between morphemes",
+      "category": "Greetings"
+    },
+    {
+      "id": "kochirakoso",
+      "english": "same here",
+      "target": "こちらこそ",
+      "pronunciation": "kochira koso",
+      "audio": "b258aaad3a528360.mp3",
+      "notes": "Possibly incorrect romanization — should be one continuous word without internal space",
+      "category": "Greetings"
+    },
+    {
+      "id": "ks4-i-am-smith",
+      "english": "[I am] Smith.",
+      "target": "(わたしは) スミスです。",
+      "pronunciation": "( watashi wa ) sumisu desu .",
+      "audio": "7e49d171839ff768.mp3",
+      "category": "Greetings"
+    },
+    {
+      "id": "pen",
+      "english": "pen",
+      "target": "ペン",
+      "pronunciation": "pen",
+      "audio": "f97642d4309f103c.mp3",
+      "category": "Other"
+    },
+    {
+      "id": "wakarimasen",
+      "english": "I don't know",
+      "target": "わかりません",
+      "pronunciation": "wakari mase n",
+      "audio": "c8533c0af774a785.mp3",
+      "notes": "From さあ、わかりません — さあ expresses hesitation before answering",
+      "category": "Other"
+    },
+    {
+      "id": "ks1-tokei",
+      "english": "This is a watch.",
+      "target": "これは とけいです。",
+      "pronunciation": "kore wa tokei desu .",
+      "audio": "8164a2afe1dcc45f.mp3",
+      "category": "Other"
+    },
+    {
+      "id": "ks2-tokei-nai",
+      "english": "This is not a watch.",
+      "target": "これは とけいじゃありません。",
+      "pronunciation": "kore wa tokei ja ari mase n .",
+      "audio": "73913689f4a7a216.mp3",
+      "category": "Other"
+    },
+    {
+      "id": "ks3-smith-tokei",
+      "english": "This is Smith-san's watch.",
+      "target": "これは スミスさんの とけいです。",
+      "pronunciation": "kore wa sumisu san no tokei desu .",
+      "audio": "03ab68792117374e.mp3",
+      "category": "Other"
+    },
+    {
+      "id": "kore-watashi-pen",
+      "english": "This is my pen.",
+      "target": "これは わたしの ペンです。",
+      "pronunciation": "kore wa watashi no pen desu .",
+      "audio": "4a0741d4ee0e4614.mp3",
+      "category": "Other"
+    },
+    {
+      "id": "kore-watashino",
+      "english": "This is mine.",
+      "target": "これは わたしのです。",
+      "pronunciation": "kore wa watashi no desu .",
+      "audio": "2688d349304d531a.mp3",
+      "category": "Other"
+    },
+    {
+      "id": "tokei",
+      "english": "watch, clock",
+      "target": "とけい",
+      "pronunciation": "tokei",
+      "audio": "e50d7153389eec5d.mp3",
+      "category": "Other"
+    },
+    {
+      "id": "namae",
+      "english": "name",
+      "target": "なまえ",
+      "pronunciation": "na ma e",
+      "audio": "d8d3e6f210e2a9ce.mp3",
+      "notes": "Possibly incorrect romanization — The word should be romanized as 'namae', not split into individual syllables as 'na ma e'",
+      "category": "Other"
+    },
+    {
+      "id": "kaban",
+      "english": "bag",
+      "target": "かばん",
+      "pronunciation": "kaban",
+      "audio": "e3aa2d654d752618.mp3",
+      "category": "Other"
+    },
+    {
+      "id": "onegaishimasu",
+      "english": "please (lit. \"I request you\")",
+      "target": "おねがいします",
+      "pronunciation": "onegai shi masu",
+      "audio": "cb7f690950307f82.mp3",
+      "notes": "Possibly incorrect romanization — spacing breaks the auxiliary verb ます into separate syllables; should be 'onegai shimasu'",
+      "category": "Greetings"
+    }
+  ]
+}

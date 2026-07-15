@@ -1,0 +1,291 @@
+{
+  "deckId": "jp-getting-around",
+  "cards": [
+    {
+      "id": "ks1-smith-american",
+      "english": "Smith-san is an American.",
+      "target": "スミスさんは アメリカじんです。",
+      "pronunciation": "sumisu san wa amerika jin desu .",
+      "audio": "61f18169a2234ccd.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "ks2-smith-american-q",
+      "english": "Is Smith-san an American?",
+      "target": "スミスさんは アメリカじんですか。",
+      "pronunciation": "sumisu san wa amerika jin desu ka .",
+      "audio": "51ce6038482aa745.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "ks3-tanaka-nozomi",
+      "english": "This is Tanaka-san of the Nozomi Department Store.",
+      "target": "こちらは のぞみデパートの たなかさんです。",
+      "pronunciation": "kochira wa nozomi depāto no ta naka san desu .",
+      "audio": "8d3b789b993903d7.mp3",
+      "notes": "Possibly incorrect romanization — tanaka is split as 'ta naka' rather than written as one word, breaking standard romanization conventions",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "eg-yes-american",
+      "english": "Yes, (he is) American.",
+      "target": "はい、アメリカじんです。",
+      "pronunciation": "hai , amerika jin desu .",
+      "audio": "0c813a003aedd545.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "eg-no-british",
+      "english": "No, (he is) British.",
+      "target": "いいえ、イギリスじんです。",
+      "pronunciation": "īe , igirisu jin desu .",
+      "audio": "34a5fe188e6c15bd.mp3",
+      "notes": "Possibly incorrect romanization — īe incorrectly uses a macron; いいえ should be 'iie' (two separate i sounds), not a single long vowel",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "wa-particle-example",
+      "english": "Tanaka-san is Japanese.",
+      "target": "たなかさんは にほんじんです。",
+      "pronunciation": "ta naka san wa ni hon jin desu .",
+      "audio": "902402b29d43f756.mp3",
+      "notes": "Added as a dedicated example of the topic-marker は — mirrors this chapter's own Key Sentence 1 pattern (Name + は + nationality + です), using different vocabulary already in this lesson. | Possibly incorrect romanization — tanaka is split as 'ta naka' and nihon is split as 'ni hon'; both should be single words without internal breaks",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "amerikajin",
+      "english": "American (person)",
+      "target": "アメリカじん",
+      "pronunciation": "amerika jin",
+      "audio": "23dc83b82fc31f1d.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "nihon",
+      "english": "Japan",
+      "target": "にほん",
+      "pronunciation": "ni hon",
+      "audio": "f22e589664a7450c.mp3",
+      "notes": "Possibly incorrect romanization — word is incorrectly split with spaces; should be 'nihon' as a single unit",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "chuugoku",
+      "english": "China",
+      "target": "ちゅうごく",
+      "pronunciation": "chi yuugoku",
+      "audio": "3528cf6be40c5ff5.mp3",
+      "notes": "Possibly incorrect romanization — syllable segmentation is wrong; 'chi yuugoku' misrepresents ちゅうごく, should be 'chuugoku'",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "doitsu",
+      "english": "Germany",
+      "target": "ドイツ",
+      "pronunciation": "doitsu",
+      "audio": "e8900cb0689eae74.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "igirisu",
+      "english": "United Kingdom",
+      "target": "イギリス",
+      "pronunciation": "igirisu",
+      "audio": "b1573b12262e9f61.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "amerika",
+      "english": "United States",
+      "target": "アメリカ",
+      "pronunciation": "amerika",
+      "audio": "f7f181033c4da3c4.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "oosutoraria",
+      "english": "Australia",
+      "target": "オーストラリア",
+      "pronunciation": "ōsutoraria",
+      "audio": "23d678706afded83.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "indo",
+      "english": "India",
+      "target": "インド",
+      "pronunciation": "indo",
+      "audio": "b1a306283590ceb3.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "nihonjin",
+      "english": "Japanese (person)",
+      "target": "にほんじん",
+      "pronunciation": "ni hon jin",
+      "audio": "db8cdc4b1ee6e908.mp3",
+      "notes": "Translation inferred by combining にほん + じん; not separately glossed in the source | Possibly incorrect romanization — word is incorrectly split with spaces; should be 'nihonjin' as a single unit",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "chuugokujin",
+      "english": "Chinese (person)",
+      "target": "ちゅうごくじん",
+      "pronunciation": "chi yuugokujin",
+      "audio": "dbf217c7489e54d2.mp3",
+      "notes": "Translation inferred by combining ちゅうごく + じん; not separately glossed in the source | Possibly incorrect romanization — syllable segmentation is wrong; 'chi yuugokujin' misrepresents ちゅうごくじん, should be 'chuugokujin'",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "doitsujin",
+      "english": "German (person)",
+      "target": "ドイツじん",
+      "pronunciation": "doitsu jin",
+      "audio": "9e93005912b4eeac.mp3",
+      "notes": "Translation inferred by combining ドイツ + じん; not separately glossed in the source",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "igirisujin",
+      "english": "British (person)",
+      "target": "イギリスじん",
+      "pronunciation": "igirisu jin",
+      "audio": "819a9d8368df1db1.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "oosutorariajin",
+      "english": "Australian (person)",
+      "target": "オーストラリアじん",
+      "pronunciation": "ōsutoraria jin",
+      "audio": "5bda43f68fdbe7bd.mp3",
+      "notes": "Translation inferred by combining オーストラリア + じん; not separately glossed in the source",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "indojin",
+      "english": "Indian (person)",
+      "target": "インドじん",
+      "pronunciation": "indo jin",
+      "audio": "bcdbb244734e9611.mp3",
+      "notes": "Translation inferred by combining インド + じん; not separately glossed in the source",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "ginkou",
+      "english": "bank",
+      "target": "ぎんこう",
+      "pronunciation": "gin kō",
+      "audio": "39ed935cdd7e31cb.mp3",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "daigaku",
+      "english": "university, college",
+      "target": "だいがく",
+      "pronunciation": "dai gaku",
+      "audio": "2148b00750d7ff63.mp3",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "taishikan",
+      "english": "embassy",
+      "target": "たいしかん",
+      "pronunciation": "tai shikan",
+      "audio": "775302f636af4899.mp3",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "berurin",
+      "english": "Berlin",
+      "target": "ベルリン",
+      "pronunciation": "berurin",
+      "audio": "c53c7d85b16b3e7f.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "rondon",
+      "english": "London",
+      "target": "ロンドン",
+      "pronunciation": "rondon",
+      "audio": "c1137ca799ca1bf4.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "toukyou",
+      "english": "Tokyo",
+      "target": "とうきょう",
+      "pronunciation": "tou kyō",
+      "audio": "6e17098f0c62c756.mp3",
+      "notes": "Possibly incorrect romanization — inconsistent romanization of long vowels within the same word (tou vs kyō should both use macron or both use digraph)",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "okuni",
+      "english": "your country",
+      "target": "おくに",
+      "pronunciation": "o kuni",
+      "audio": "c5f938da44ec7db6.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "o-prefix-example",
+      "english": "Smith-san, what country are you from?",
+      "target": "スミスさん、おくには どちらですか。",
+      "pronunciation": "sumisu san , o kuni wa dochira desu ka .",
+      "audio": "375629c9293917cb.mp3",
+      "notes": "Drawn directly from this chapter's own Target Dialogue — demonstrates the honorific お attaching to くに ('country') to form おくに ('your country').",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "kuni",
+      "english": "country",
+      "target": "くに",
+      "pronunciation": "kuni",
+      "audio": "8ca1e01f70bcb805.mp3",
+      "category": "Nationalities & Countries"
+    },
+    {
+      "id": "uketsuke",
+      "english": "reception desk, receptionist",
+      "target": "うけつけ",
+      "pronunciation": "uketsuke",
+      "audio": "89ff6eda0da0618a.mp3",
+      "notes": "Possibly premature — explicitly taught later in Lesson 12: Asking about Places: What Is at Nikko? (explicitly re-taught in the ch.32 WORD POWER 'Parts of a building' numbered vocabulary list (item ①))",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "meishi",
+      "english": "business card",
+      "target": "めいし",
+      "pronunciation": "meishi",
+      "audio": "fecc1f6fc95b4c84.mp3",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "kaisha-no-namae",
+      "english": "company name",
+      "target": "かいしゃの なまえ",
+      "pronunciation": "kaisha no na ma e",
+      "audio": "3deeb8704d6a6b01.mp3",
+      "notes": "Possibly incorrect romanization — The word なまえ should be romanized as 'namae', not split into individual syllables as 'na ma e'",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "kaisha",
+      "english": "company",
+      "target": "かいしゃ",
+      "pronunciation": "kaisha",
+      "audio": "c186052d0f7347f1.mp3",
+      "category": "Work & Occupations"
+    },
+    {
+      "id": "file",
+      "english": "file",
+      "target": "ファイル",
+      "pronunciation": "fairu",
+      "audio": "2b39ec3da17eef39.mp3",
+      "category": "Work & Occupations"
+    }
+  ]
+}

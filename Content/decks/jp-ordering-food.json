@@ -1,0 +1,157 @@
+{
+  "deckId": "jp-ordering-food",
+  "cards": [
+    {
+      "id": "itadakimasu",
+      "english": "(said before eating a meal)",
+      "target": "いただきます。",
+      "pronunciation": "itadaki masu .",
+      "audio": "4dd20a48e5a4b2ed.mp3",
+      "notes": "Set phrase spoken before starting a meal | Possibly premature — explicitly taught later in Lesson 10: Describing Things: It’s Delicious (explicitly re-taught as a dedicated VOCABULARY entry) | Possibly incorrect romanization — incorrectly splits 'itadakimasu' into 'itadaki masu' — target has no space",
+      "category": "Food"
+    },
+    {
+      "id": "gochisousama-deshita",
+      "english": "(said after eating a meal)",
+      "target": "ごちそうさま（でした）。",
+      "pronunciation": "gochisōsama ( deshi ta ) .",
+      "audio": "5f2cc6b34147d114.mp3",
+      "notes": "Set phrase spoken after finishing a meal, thanking the preparer/host | Possibly incorrect romanization — incorrectly splits 'deshita' into 'deshi ta' — should be one word; also adds unnecessary spaces around parentheses",
+      "category": "Food"
+    },
+    {
+      "id": "depaato",
+      "english": "department store",
+      "target": "デパート",
+      "pronunciation": "depāto",
+      "audio": "8c4b881e3a8afcb7.mp3",
+      "category": "Shopping"
+    },
+    {
+      "id": "num-0",
+      "english": "0",
+      "target": "ゼロ",
+      "pronunciation": "zero",
+      "audio": "32778b29fea58065.mp3",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-1",
+      "english": "1",
+      "target": "いち",
+      "pronunciation": "ichi",
+      "audio": "6f649784b6e2de37.mp3",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-2",
+      "english": "2",
+      "target": "に",
+      "pronunciation": "ni",
+      "audio": "5f945f18ef589732.mp3",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-3",
+      "english": "3",
+      "target": "さん",
+      "pronunciation": "san",
+      "audio": "93663a351728650f.mp3",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-4",
+      "english": "4",
+      "target": "よん",
+      "pronunciation": "yon",
+      "audio": "308465d1f0ee014a.mp3",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-5",
+      "english": "5",
+      "target": "ご",
+      "pronunciation": "go",
+      "audio": "a01669e6ccf908c0.mp3",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-6",
+      "english": "6",
+      "target": "ろく",
+      "pronunciation": "ro ku",
+      "audio": "d0918ba51ee84a85.mp3",
+      "notes": "Possibly incorrect romanization — Romanization splits the word with an unnecessary space; standard form is 'roku'",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-7",
+      "english": "7",
+      "target": "なな",
+      "pronunciation": "na na",
+      "audio": "daff72dcd96b7501.mp3",
+      "notes": "Possibly incorrect romanization — Romanization splits the word with an unnecessary space; standard form is 'nana'",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-8",
+      "english": "8",
+      "target": "はち",
+      "pronunciation": "wa chi",
+      "audio": "a6986525311afc11.mp3",
+      "notes": "Possibly incorrect romanization — The character は should romanize to 'ha', not 'wa', in this context; correct form is 'hachi'",
+      "category": "Numbers"
+    },
+    {
+      "id": "num-9",
+      "english": "9",
+      "target": "きゅう",
+      "pronunciation": "kyū",
+      "audio": "af4c0bc14f5f5fac.mp3",
+      "category": "Numbers"
+    },
+    {
+      "id": "bangou",
+      "english": "number",
+      "target": "ばんごう",
+      "pronunciation": "ban go u",
+      "audio": "27bc530b2c6e95b0.mp3",
+      "notes": "Possibly incorrect romanization — Spacing breaks the word incorrectly; should be 'bangou' not 'ban go u'",
+      "category": "Numbers"
+    },
+    {
+      "id": "megane",
+      "english": "glasses",
+      "target": "めがね",
+      "pronunciation": "megane",
+      "audio": "07e0469513c256ea.mp3",
+      "category": "Clothing"
+    },
+    {
+      "id": "saifu",
+      "english": "wallet",
+      "target": "さいふ",
+      "pronunciation": "saifu",
+      "audio": "84fd36f9a663fa6d.mp3",
+      "category": "Money"
+    },
+    {
+      "id": "nihon-no-okashi",
+      "english": "Japanese sweets",
+      "target": "にほんの おかし",
+      "pronunciation": "ni honno okashi",
+      "audio": "e03b9162d10f8f81.mp3",
+      "notes": "Possibly incorrect romanization — spacing after 'ni' incorrectly separates にほん (nihon) into 'ni' and 'honno'",
+      "category": "Food"
+    },
+    {
+      "id": "okashi",
+      "english": "sweets",
+      "target": "おかし",
+      "pronunciation": "okashi",
+      "audio": "7afcb6192187b6d7.mp3",
+      "notes": "The everyday form of \"sweets\" — has the honorific お prefix attached (お + かし = おかし). This is the word you'll actually hear and say in conversation; see \"kashi\" for the bare root it's built from.",
+      "category": "Food"
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "id": "eating-out",
+      "title": "Eating out"
+    },
+    {
+      "id": "getting-around",
+      "title": "Getting around"
+    },
+    {
+      "id": "greetings",
+      "title": "Greetings"
+    },
+    {
+      "id": "nightlife",
+      "title": "Nightlife"
+    },
+    {
+      "id": "shopping",
+      "title": "Shopping"
+    },
+    {
+      "id": "emergencies",
+      "title": "Emergencies"
+    }
+  ],
+  "countries": [
+    {
+      "id": "japan",
+      "name": "Japan",
+      "languageName": "Japanese",
+      "nativeLanguageName": "日本語",
+      "accent": "japan",
+      "flagEmoji": "🇯🇵",
+      "decks": [
+        {
+          "id": "jp-greetings",
+          "title": "Greetings & basics",
+          "subtitle": "First words that open doors",
+          "scenario": "greetings",
+          "icon": "hand.wave.fill",
+          "cardsFile": "decks/jp-greetings.json",
+          "cardCount": 30,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "jp-ordering-food",
+          "title": "Ordering food",
+          "subtitle": "Restaurant essentials",
+          "scenario": "eating-out",
+          "icon": "fork.knife",
+          "cardsFile": "decks/jp-ordering-food.json",
+          "cardCount": 18,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "jp-at-the-bar",
+          "title": "At the bar",
+          "subtitle": "Rounds, requests & small talk",
+          "scenario": "nightlife",
+          "icon": "wineglass.fill",
+          "cardsFile": "decks/jp-at-the-bar.json",
+          "cardCount": 32,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "jp-getting-around",
+          "title": "Getting around",
+          "subtitle": "People, places & directions",
+          "scenario": "getting-around",
+          "icon": "tram.fill",
+          "cardsFile": "decks/jp-getting-around.json",
+          "cardCount": 34,
+          "priceGBP": 1.0
+        }
+      ],
+      "bundles": [
+        {
+          "id": "jp-weekend",
+          "title": "Weekend",
+          "subtitle": "3 essential packs",
+          "deckIds": [
+            "jp-greetings",
+            "jp-ordering-food",
+            "jp-at-the-bar"
+          ],
+          "priceGBP": 2.49,
+          "popular": true
+        },
+        {
+          "id": "jp-week",
+          "title": "The whole week",
+          "subtitle": "Every pack",
+          "deckIds": [
+            "jp-greetings",
+            "jp-ordering-food",
+            "jp-at-the-bar",
+            "jp-getting-around"
+          ],
+          "priceGBP": 3.49,
+          "popular": false
+        }
+      ]
+    },
+    {
+      "id": "france",
+      "name": "France",
+      "languageName": "French",
+      "nativeLanguageName": "Français",
+      "accent": "france",
+      "flagEmoji": "🇫🇷",
+      "decks": [
+        {
+          "id": "fr-greetings",
+          "title": "Greetings & basics",
+          "subtitle": "First words that open doors",
+          "scenario": "greetings",
+          "icon": "hand.wave.fill",
+          "cardsFile": "decks/jp-greetings.json",
+          "cardCount": 30,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "fr-ordering-food",
+          "title": "Ordering food",
+          "subtitle": "Restaurant essentials",
+          "scenario": "eating-out",
+          "icon": "fork.knife",
+          "cardsFile": "decks/jp-ordering-food.json",
+          "cardCount": 18,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "fr-at-the-bar",
+          "title": "At the bar",
+          "subtitle": "Rounds, requests & small talk",
+          "scenario": "nightlife",
+          "icon": "wineglass.fill",
+          "cardsFile": "decks/jp-at-the-bar.json",
+          "cardCount": 32,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "fr-getting-around",
+          "title": "Getting around",
+          "subtitle": "People, places & directions",
+          "scenario": "getting-around",
+          "icon": "tram.fill",
+          "cardsFile": "decks/jp-getting-around.json",
+          "cardCount": 34,
+          "priceGBP": 1.0
+        }
+      ],
+      "bundles": [
+        {
+          "id": "fr-weekend",
+          "title": "Weekend",
+          "subtitle": "3 essential packs",
+          "deckIds": [
+            "fr-greetings",
+            "fr-ordering-food",
+            "fr-at-the-bar"
+          ],
+          "priceGBP": 2.49,
+          "popular": true
+        },
+        {
+          "id": "fr-week",
+          "title": "The whole week",
+          "subtitle": "Every pack",
+          "deckIds": [
+            "fr-greetings",
+            "fr-ordering-food",
+            "fr-at-the-bar",
+            "fr-getting-around"
+          ],
+          "priceGBP": 3.49,
+          "popular": false
+        }
+      ]
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "languageName": "German",
+      "nativeLanguageName": "Deutsch",
+      "accent": "germany",
+      "flagEmoji": "🇩🇪",
+      "decks": [
+        {
+          "id": "de-greetings",
+          "title": "Greetings & basics",
+          "subtitle": "First words that open doors",
+          "scenario": "greetings",
+          "icon": "hand.wave.fill",
+          "cardsFile": "decks/jp-greetings.json",
+          "cardCount": 30,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "de-ordering-food",
+          "title": "Ordering food",
+          "subtitle": "Restaurant essentials",
+          "scenario": "eating-out",
+          "icon": "fork.knife",
+          "cardsFile": "decks/jp-ordering-food.json",
+          "cardCount": 18,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "de-at-the-bar",
+          "title": "At the bar",
+          "subtitle": "Rounds, requests & small talk",
+          "scenario": "nightlife",
+          "icon": "wineglass.fill",
+          "cardsFile": "decks/jp-at-the-bar.json",
+          "cardCount": 32,
+          "priceGBP": 1.0
+        },
+        {
+          "id": "de-getting-around",
+          "title": "Getting around",
+          "subtitle": "People, places & directions",
+          "scenario": "getting-around",
+          "icon": "tram.fill",
+          "cardsFile": "decks/jp-getting-around.json",
+          "cardCount": 34,
+          "priceGBP": 1.0
+        }
+      ],
+      "bundles": [
+        {
+          "id": "de-weekend",
+          "title": "Weekend",
+          "subtitle": "3 essential packs",
+          "deckIds": [
+            "de-greetings",
+            "de-ordering-food",
+            "de-at-the-bar"
+          ],
+          "priceGBP": 2.49,
+          "popular": true
+        },
+        {
+          "id": "de-week",
+          "title": "The whole week",
+          "subtitle": "Every pack",
+          "deckIds": [
+            "de-greetings",
+            "de-ordering-food",
+            "de-at-the-bar",
+            "de-getting-around"
+          ],
+          "priceGBP": 3.49,
+          "popular": false
+        }
+      ]
+    }
+  ],
+  "comingSoon": [
+    "Italy",
+    "Spain",
+    "Thailand"
+  ]
+}
