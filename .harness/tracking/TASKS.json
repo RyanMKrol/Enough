@@ -70,7 +70,7 @@
     {
       "id": "T004",
       "title": "Chips & labels: scenario chip, meta chip, eyebrow label",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],
