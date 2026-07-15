@@ -372,7 +372,7 @@
     {
       "id": "T016",
       "title": "Entitlements record + store (owned packs & bundles)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T014"
       ],
