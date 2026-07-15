@@ -45,7 +45,7 @@
     {
       "id": "T003",
       "title": "Button styles: primary (graphite/accent), tinted secondary, text link",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],
