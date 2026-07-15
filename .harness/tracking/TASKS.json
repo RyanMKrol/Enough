@@ -195,7 +195,7 @@
     {
       "id": "T009",
       "title": "Welcome card-stack hero (premium panel)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],
