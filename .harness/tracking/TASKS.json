@@ -145,7 +145,7 @@
     {
       "id": "T007",
       "title": "Feedback motion: check pop, shake modifier, bottom result sheet",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],
