@@ -17,6 +17,9 @@ targets:
     platform: iOS
     sources:
       - Sources
+      - path: Content
+        type: folder
+        buildPhase: resources
     info:
       path: Sources/Info.plist
       properties:

@@ -1,4 +1,4 @@
-nonisolated struct ContentCatalog: Codable {
+nonisolated struct ContentCatalog: Codable, Equatable {
   let version: Int
   let scenarios: [ScenarioInfo]
   let countries: [CountryInfo]
