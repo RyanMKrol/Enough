@@ -1,6 +1,6 @@
 import Foundation
 
-extension SRSEngine {
+nonisolated extension SRSEngine {
   static func previewInterval(_ grade: SRSGrade, for state: SRSState) -> TimeInterval {
     let fixedDate = Date(timeIntervalSince1970: 0)
     let nextState = apply(grade, to: state, now: fixedDate)
