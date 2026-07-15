@@ -319,7 +319,7 @@
     {
       "id": "T014",
       "title": "SwiftData stack: model container factory with in-memory test support",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
