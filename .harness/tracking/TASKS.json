@@ -170,7 +170,7 @@
     {
       "id": "T008",
       "title": "Streak pill with flickering flame",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],
