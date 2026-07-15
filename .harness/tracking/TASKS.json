@@ -120,7 +120,7 @@
     {
       "id": "T006",
       "title": "Pulsing audio button with ripple-once replay",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002"
       ],
