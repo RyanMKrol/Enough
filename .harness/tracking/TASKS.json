@@ -399,7 +399,7 @@
     {
       "id": "T017",
       "title": "Card SRS record + store (per-card scheduling rows)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T014"
       ],
