@@ -35,6 +35,7 @@ how it works, and [`CLAUDE.md`](./CLAUDE.md) for project conventions.
 |------|-------------|--------|
 | T001 | Project scaffold + CI green on an empty build | ✅ done |
 | T002–T064 | Full v1 backlog (design system → content/persistence/SRS → screens → polish), authored 2026-07-15 | 📋 pending |
+| T065–T088 | Axiom-derived wave: accessibility, privacy manifest/policy, schema guardrails, price localization, and 14 audit-and-fix sweeps | 📋 pending |
 
 The live backlog + statuses are in `.harness/tracking/TASKS.json`; each task's spec is in
 `.harness/tasks/`. The design source of truth is

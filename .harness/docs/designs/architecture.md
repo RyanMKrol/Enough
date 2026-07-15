@@ -23,11 +23,79 @@ Tests/                     XCTest unit tests (single EnoughTests target)
 Content/                   bundled catalog fixture (catalog.json, decks/, audio/) — data, not code
 ```
 
-Conventions: Swift 5 mode, iOS 18, 2-space indent, SwiftLint strict (line ≤ 130) +
-swift-format strict. Tests use **XCTest** (not Swift Testing). UI state uses the `@Observable`
-macro (not ObservableObject) unless a spec says otherwise. Persistence tests always use the
-in-memory container. No singletons except where pinned below; dependencies flow through
-`AppServices`.
+Conventions: **Swift 6 language mode with MainActor default isolation** (build settings:
+`SWIFT_VERSION 6.0`, `SWIFT_APPROACHABLE_CONCURRENCY YES`, app target
+`SWIFT_DEFAULT_ACTOR_ISOLATION MainActor`, test target `nonisolated`) — write straightforward
+synchronous code; do NOT hand-annotate `@MainActor` on types (it's the default). iOS 18,
+2-space indent, SwiftLint strict (line ≤ 130) + swift-format strict. Tests use **XCTest** (not
+Swift Testing). UI state uses the `@Observable` macro (not ObservableObject) unless a spec says
+otherwise. Persistence tests always use the in-memory container. No singletons except where
+pinned below; dependencies flow through `AppServices`.
+
+## House rules (Axiom-derived — every builder follows these)
+
+**SwiftUI**
+- View bodies are pure: no formatter creation, no filtering/sorting over stores, no throwing
+  service calls in `body` — logic lives in the `@Observable` view model.
+- View models are `@State`, created ONCE (init or `.onAppear`), never constructed in `body`;
+  passed-in data is `let` (or `@Bindable` when `$` is needed) — never `@State var model` for
+  parent-owned data.
+- One `NavigationStack` per tab, owned by the tab's root view; never nested;
+  `.navigationDestination` attaches to the ScrollView/stack root — NEVER inside `ForEach`/lazy
+  content (it silently fails there).
+- Anything tappable is a `Button` with a ButtonStyle — never bare `.onTapGesture`; every
+  tappable element gets a ≥44×44pt hit area (`.frame(minWidth: 44, minHeight: 44)` +
+  `.contentShape(Rectangle())`) even when drawn smaller.
+- Animations are always value-bound (`withAnimation` or `.animation(_:value:)`; the value-less
+  form is banned). Infinite loops start from an `.onAppear` state flip, respect
+  `@Environment(\.accessibilityReduceMotion)` (static fallback), AND pause when their tab is
+  hidden. Never `await` inside `withAnimation`.
+- Fonts only via `EnoughFont` (semantic-style-backed); inline `.font(.system(size:))` is
+  banned. Text-bearing frames use `minHeight`/`minWidth`, never fixed `height` — Dynamic Type
+  must be able to grow controls (`Layout.buttonHeight` etc. are minimums).
+- Formatters (`NumberFormatter`, `DateFormatter`) are `static let`, created once.
+- Every `fullScreenCover` shows a visible close/X (it has no system dismiss gesture).
+
+**Concurrency**
+- No `actor` declarations anywhere — the app is one isolation domain (MainActor). No
+  `Task.detached` (single pinned exception: the StoreKit `Transaction.updates` listener in
+  T062), no `DispatchQueue`/GCD, no `Task {}` in view bodies — async work lives behind a
+  synchronous model/service method that spawns `Task {}` internally only for genuinely async
+  APIs.
+- Never silence an isolation error with `@unchecked Sendable`, `nonisolated(unsafe)`, or
+  `@preconcurrency` — restructure to stay on MainActor.
+- Every `Task {}` handles thrown errors with `do/catch`.
+- `Date()`/`Date.now` is banned outside `SystemDateProvider` — time flows through
+  `DateProvider`/injected `now`.
+- Never use `hashValue` for anything that must be stable across launches (it is per-process
+  seeded) — use a stable byte-level hash (e.g. FNV-1a) instead.
+
+**Persistence**
+- Exactly ONE `ModelContainer`, built by `PersistenceStack` inside `AppServices`; `@Query` and
+  the `.modelContainer(for:)` view modifier are banned (each silently creates a second stack).
+- One shared main-thread `ModelContext` owned by `AppServices`; stores, contexts, and fetched
+  records never enter `Task`/actors/background queues — convert to value types (`SRSState`,
+  `DeckProgress`) at the service seam.
+- Every store mutation ends with explicit `try context.save()` (hand-created contexts have
+  autosave OFF — never rely on it).
+- `@Model` = `final class` with explicit memberwise `init`; no `@Relationship` anywhere in this
+  app; no `@Attribute(.unique)` (its upsert-on-save semantics mask bugs and it's
+  CloudKit-incompatible) — uniqueness is enforced by fetch-before-insert upserts in stores.
+- `#Predicate` bodies contain only stored-property comparisons against pre-hoisted `let`
+  values — no function calls, no `Set.contains`, no force-unwraps.
+
+**Testing**
+- `@MainActor` goes on individual test METHODS that touch app types — never on the XCTestCase
+  class (collides with XCTest's nonisolated overrides under default isolation).
+- Banned in tests: `sleep`/`Task.sleep`, timed `XCTestExpectation` waits, real clocks
+  (`Date()`), `UserDefaults.standard` (use `UserDefaults(suiteName:)` + teardown), `try!`/`as!`
+  on SUT values (use `XCTUnwrap`), shared/static containers.
+- Fresh in-memory container per test method via `PersistenceStack.container(inMemory: true)`;
+  the `ModelContainer(for:)` convenience initializer is banned in tests (it hits disk).
+
+**Money**
+- Every user-facing price string flows through `PurchaseProviding.displayPrice` /
+  `PricingCalculator` — a `grep for "£" in Sources/Features/` must return nothing.
 
 ## CoreKit
 
@@ -50,8 +118,13 @@ enum AccentTheme: String, CaseIterable   // case japan, france, germany
                            // var accent: Color; var tint: Color; var deep: Color
                            // init?(rawValue:) matches catalog "accent" strings
 // EnvironmentValues.accentTheme (default .japan) via extension + @Entry
-enum EnoughFont            // static funcs: largeTitle(), wordmark(), screenTitle(), headline(_ size:),
-                           // body(), subhead(), footnote(), eyebrow() -> Font
+enum EnoughFont            // static funcs: largeTitle(), wordmark(), screenTitle(), headline(),
+                           // subEmphasis(), body(), subhead(), footnote(), eyebrow() -> Font
+                           // Backed by SEMANTIC text styles (+ weight) so Dynamic Type scales:
+                           // largeTitle→.largeTitle bold, screenTitle→.title bold, 22→.title2,
+                           // 20→.title3, body→.body, subhead→.subheadline, footnote→.footnote,
+                           // eyebrow→.caption semibold. Only wordmark() is truly fixed (44pt).
+                           // Odd display sizes (34/36 card phrases) via @ScaledMetric at call site.
 enum Layout                // static let buttonRadius: CGFloat = 16, cardRadius = 20, heroRadius = 26,
                            // buttonHeight = 54, screenHPad = 22, sectionGap = 18 ... (see spec)
 enum Motion                // static let bobDuration = 4.0, ringFill = 1.2, barGrow = 1.0,
@@ -123,7 +196,8 @@ enum PersistenceStack {
                                        // secondsStudied
 final class TripStore        { init(context: ModelContext) }   // activeTrip(), save/replace, dayNumber(now:)
 final class EntitlementStore { init(context: ModelContext) }   // ownedDeckIds(catalog:) resolves bundles→decks,
-                                                               // grant(productId:kind:), isOwned(deckId:catalog:), reset()
+                                                               // grant(productId:kind:), revoke(productId:) (no-op
+                                                               // if absent — refunds/revocations), isOwned(deckId:catalog:), reset()
 final class CardSRSStore     { init(context: ModelContext) }   // record(deckId:cardId:), upsert(_:),
                                                                // records(forDeck:), dueRecords(now:ownedDeckIds:), reset()
 final class ActivityStore    { init(context: ModelContext) }   // record(for day:), addActivity(...), all(), reset()
@@ -184,18 +258,32 @@ enum PricingCalculator {           // pure; £ formatting via NumberFormatter (e
   static func planTotal(selectedBundle: BundleInfo?, extraDeckIds: Set<String>, country: CountryInfo) -> Double
   static func summaryLine(...) -> String                     // "Weekend · 3 packs"
 }
+enum PurchaseOutcome { case success, cancelled, pending }   // StoreKit 2's real result shape:
+                                    // user-cancel is a NORMAL return (never an error path);
+                                    // .pending (Ask to Buy) grants nothing — the entitlement
+                                    // arrives later via the updates listener.
 protocol PurchaseProviding: AnyObject {   // shaped like StoreKit 2
   var ownedProductIds: Set<String> { get }
-  func purchase(productId: String, kind: EntitlementKind) async throws
+  func purchase(productId: String, kind: EntitlementKind) async throws -> PurchaseOutcome
   func restorePurchases() async throws
-  var onChange: (() -> Void)? { get set }
+  func displayPrice(productId: String) -> String?   // localized store price; stub falls back
+                                                    // to PricingCalculator's catalog price
+  func addObserver(_ handler: @escaping () -> Void) // MULTICAST — never a single settable
+                                                    // closure (a second subscriber must not
+                                                    // silently replace the first)
 }
 enum EntitlementKind: String { case deck, bundle }
-final class StubPurchaseService: PurchaseProviding   // grants instantly via EntitlementStore
+final class StubPurchaseService: PurchaseProviding   // grants instantly via EntitlementStore;
+                                                     // always returns .success
 final class AudioService {          // init(content: ContentStore); AVAudioSession .playback
+                                    // + [.duckOthers]; session activated at session start
+                                    // (resetAutoPlay), deactivated by sessionEnded();
+                                    // interruption observer stops playback; NO
+                                    // AVAudioPlayerDelegate (off-main callbacks)
   func play(fileName: String)      // stops any current clip, plays this one
   func autoPlayOnce(cardId: String, fileName: String)   // once per cardId per session-screen
-  func resetAutoPlay()             // called when a session starts
+  func resetAutoPlay()             // called when a session starts (activates the session)
+  func sessionEnded()              // stop + setActive(false, .notifyOthersOnDeactivation)
 }
 final class StatsService {          // init(activityStore:, dateProvider:)
   func currentStreak() throws -> Int

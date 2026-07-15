@@ -69,6 +69,11 @@ label `#1c1c1e`; secondary text `#6b6b70`; tertiary `#8e8e93`; faint `#a0a0a6`/`
 hairline border `rgba(0,0,0,0.06–0.10)`. Grade "Hard" chip: `#f2f2f7` fill (pressed `#ececef`),
 `#6b6b70` text.
 
+Contrast caveat: tertiary `#8e8e93` (~3:1) and faint `#a0a0a6`/`#b0b0b6` (~2.5:1) fail WCAG AA
+(4.5:1) for small text on white — use them only for decorative or REDUNDANT information (e.g.
+inactive tab labels whose state is also conveyed by the accent icon), never as the sole carrier
+of meaning. `secondaryText #6b6b70` passes and is the floor for information-bearing small text.
+
 Welcome card-stack back tints: blue `#e8f5ff` (oklch 0.965 0.028 258), orange `#fff0df`
 (oklch 0.965 0.03 68). Japan header band `#fff0ee`, band border `#fedbd7`, country label on band
 `#a43b38`, pronunciation-pill text `#a45953`.
