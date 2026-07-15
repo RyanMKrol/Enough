@@ -245,7 +245,7 @@
     {
       "id": "T011",
       "title": "Content schema models (catalog, country, deck, bundle, card)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
