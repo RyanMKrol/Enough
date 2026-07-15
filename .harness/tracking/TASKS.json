@@ -344,7 +344,7 @@
     {
       "id": "T015",
       "title": "TripProfile model + store (active trip, day counter)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T013",
         "T014"
