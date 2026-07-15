@@ -296,7 +296,7 @@
     {
       "id": "T013",
       "title": "Clock abstraction: DateProvider protocol, system + offsettable debug implementations",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
