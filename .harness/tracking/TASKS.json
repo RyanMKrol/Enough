@@ -426,7 +426,7 @@
     {
       "id": "T018",
       "title": "Daily activity record + store (per-day study log)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T013",
         "T014"
