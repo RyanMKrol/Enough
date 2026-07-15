@@ -1695,6 +1695,625 @@
         "risk": []
       },
       "visualVerify": false
+    },
+    {
+      "id": "T065",
+      "title": "Stable accessibility identifiers across the UI (harness driving + VoiceOver groundwork)",
+      "status": "pending",
+      "dependsOn": [
+        "T030",
+        "T044"
+      ],
+      "gate": null,
+      "tags": [
+        "accessibility",
+        "harness-support"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Sources/Features/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T065.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "cross-cutting"
+        ]
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T066",
+      "title": "Privacy manifest (PrivacyInfo.xcprivacy) + required-reason API audit",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "shipping",
+        "privacy"
+      ],
+      "scope": [
+        "Sources/PrivacyInfo.xcprivacy",
+        "project.yml",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T066.md",
+      "facets": {
+        "layer": "infra",
+        "workType": "config",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T067",
+      "title": "Schema-migration guardrail test (V1 tripwire)",
+      "status": "pending",
+      "dependsOn": [
+        "T014"
+      ],
+      "gate": null,
+      "tags": [
+        "persistence"
+      ],
+      "scope": [
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T067.md",
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T068",
+      "title": "Isolate the SwiftData store URL behind one function (app-group readiness)",
+      "status": "pending",
+      "dependsOn": [
+        "T014"
+      ],
+      "gate": null,
+      "tags": [
+        "persistence",
+        "widget-readiness"
+      ],
+      "scope": [
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T068.md",
+      "facets": {
+        "layer": "data",
+        "workType": "config",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T069",
+      "title": "Accessibility conformance sweep (VoiceOver, Dynamic Type, Reduce Motion, hit targets)",
+      "status": "pending",
+      "dependsOn": [
+        "T059",
+        "T065"
+      ],
+      "gate": null,
+      "tags": [
+        "accessibility",
+        "polish"
+      ],
+      "scope": [
+        "Sources/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T069.md",
+      "facets": {
+        "layer": "views",
+        "workType": "style",
+        "risk": [
+          "cross-cutting"
+        ]
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T070",
+      "title": "Install AXe + verify xcui simulator-driving workflow",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": "needs-human",
+      "tags": [
+        "harness-support"
+      ],
+      "scope": [],
+      "design": null,
+      "verify": [],
+      "spec": ".harness/tasks/T070.md"
+    },
+    {
+      "id": "T071",
+      "title": "Host the privacy policy + record its URL",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": "needs-human",
+      "tags": [
+        "shipping",
+        "privacy"
+      ],
+      "scope": [],
+      "design": null,
+      "verify": [],
+      "spec": ".harness/tasks/T071.md"
+    },
+    {
+      "id": "T072",
+      "title": "In-app privacy policy link",
+      "status": "pending",
+      "dependsOn": [
+        "T055",
+        "T071"
+      ],
+      "gate": null,
+      "tags": [
+        "shipping",
+        "privacy"
+      ],
+      "scope": [
+        "Sources/Features/Browse/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T072.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      }
+    },
+    {
+      "id": "T073",
+      "title": "Localized prices & savings via StoreKit (displayPrice/priceFormatStyle everywhere)",
+      "status": "pending",
+      "dependsOn": [
+        "T062"
+      ],
+      "gate": null,
+      "tags": [
+        "storekit",
+        "purchases"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Sources/Features/Browse/**",
+        "Sources/Features/Onboarding/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T073.md",
+      "facets": {
+        "layer": "store",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T074",
+      "title": "App Store submission pack (metadata, screenshots, ratings, nutrition labels)",
+      "status": "pending",
+      "dependsOn": [
+        "T060",
+        "T061",
+        "T063",
+        "T066",
+        "T071"
+      ],
+      "gate": "needs-human",
+      "tags": [
+        "shipping"
+      ],
+      "scope": [],
+      "design": null,
+      "verify": [],
+      "spec": ".harness/tasks/T074.md"
+    },
+    {
+      "id": "T075",
+      "title": "Axiom audit: SwiftData safety (swiftdata-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T075.md",
+      "facets": {
+        "layer": "data",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T076",
+      "title": "Axiom audit: Swift 6 concurrency (concurrency-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T076.md",
+      "facets": {
+        "layer": "services",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T077",
+      "title": "Axiom audit: SwiftUI architecture (swiftui-architecture-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T077.md",
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T078",
+      "title": "Axiom audit: SwiftUI layout (swiftui-layout-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T078.md",
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T079",
+      "title": "Axiom audit: SwiftUI navigation (swiftui-nav-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T079.md",
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T080",
+      "title": "Axiom audit: SwiftUI performance (swiftui-performance-analyzer)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T080.md",
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T081",
+      "title": "Axiom audit: memory leaks (memory-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T081.md",
+      "facets": {
+        "layer": "services",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T082",
+      "title": "Axiom audit: energy & battery (energy-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T082.md",
+      "facets": {
+        "layer": "services",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T083",
+      "title": "Axiom audit: security & privacy (security-privacy-scanner)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T083.md",
+      "facets": {
+        "layer": "infra",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T084",
+      "title": "Axiom audit: UX flows (ux-flow-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T084.md",
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T085",
+      "title": "Axiom audit: test quality (testing-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T085.md",
+      "facets": {
+        "layer": "meta",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T086",
+      "title": "Axiom audit: Codable safety (codable-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T086.md",
+      "facets": {
+        "layer": "data",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T087",
+      "title": "Axiom audit: Swift performance (swift-performance-analyzer)",
+      "status": "pending",
+      "dependsOn": [
+        "T059"
+      ],
+      "gate": null,
+      "tags": [
+        "audit"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T087.md",
+      "facets": {
+        "layer": "services",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T088",
+      "title": "Axiom audit: in-app purchases (iap-auditor)",
+      "status": "pending",
+      "dependsOn": [
+        "T062"
+      ],
+      "gate": null,
+      "tags": [
+        "audit",
+        "purchases"
+      ],
+      "scope": [
+        "Sources/**",
+        "Tests/**",
+        "project.yml"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T088.md",
+      "facets": {
+        "layer": "store",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
     }
   ]
 }

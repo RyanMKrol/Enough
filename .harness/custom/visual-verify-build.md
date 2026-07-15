@@ -14,3 +14,26 @@
   default), canvas `#f2f2f7`, exact copy strings, and layout matching the section for your
   screen. Truncated text, missing sections, default-blue SwiftUI tint, or a blank screen =
   NOT verified.
+
+### Navigating to your screen (xcui/AXe — only if installed)
+
+If `command -v axe` succeeds (installed by task T070; skip this whole section otherwise), you
+can DRIVE the simulator to the screen you changed instead of judging only the launch screen.
+The UI carries stable accessibility identifiers once task T065 has landed (`tab-learn`,
+`tab-reviews`, `tab-progress`, `tab-browse`, `screen-home`, `home-continue-card`,
+`grade-good`, `session-close`, … — full list in `Sources/App/AccessibilityIDs.swift`).
+
+```bash
+XCUI=$(ls ~/.claude/plugins/cache/axiom-marketplace/axiom/*/bin/xcui 2>/dev/null | tail -1)
+UDID=<the booted sim build_run.sh used — pass it to every call; two sims may be booted>
+axe tap --id tab-reviews --udid "$UDID"                       # navigate by identifier
+"$XCUI" wait --for-element screen-reviews --timeout 10s --udid "$UDID"
+xcrun simctl io "$UDID" screenshot screenshots/latest.png      # re-screenshot on that screen
+"$XCUI" assert --id streak-pill --label "6" --udid "$UDID"     # semantic assert (exit 1 = fail)
+axe describe-ui --udid "$UDID"                                 # dump the accessibility tree
+```
+
+Flags go AFTER the subcommand. Prefer one `xcui assert` on the element your task changed —
+it checks label text the screenshot can't. Blank screenshot? Capture the console first:
+`xclog launch com.ryankrol.enough --timeout 30s --max-lines 200 --device "$UDID"`
+(note: xclog terminates and relaunches the app).
