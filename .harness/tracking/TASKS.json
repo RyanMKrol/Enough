@@ -8,11 +8,1693 @@
       "status": "pending",
       "dependsOn": [],
       "gate": "needs-human",
-      "tags": ["scaffold"],
+      "tags": [
+        "scaffold"
+      ],
       "scope": [],
       "design": null,
       "verify": [],
       "spec": ".harness/tasks/T001.md"
+    },
+    {
+      "id": "T002",
+      "title": "Design tokens: colors, typography, layout & motion constants + accent theming",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T002.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "touches-core"
+        ]
+      },
+      "expectsTest": true,
+      "visualVerify": false
+    },
+    {
+      "id": "T003",
+      "title": "Button styles: primary (graphite/accent), tinted secondary, text link",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T003.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T004",
+      "title": "Chips & labels: scenario chip, meta chip, eyebrow label",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T004.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T005",
+      "title": "Progress indicators: animated progress bar + progress ring",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T005.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T006",
+      "title": "Pulsing audio button with ripple-once replay",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T006.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T007",
+      "title": "Feedback motion: check pop, shake modifier, bottom result sheet",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T007.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T008",
+      "title": "Streak pill with flickering flame",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T008.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T009",
+      "title": "Welcome card-stack hero (premium panel)",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T009.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T010",
+      "title": "SRS grade button row (Again/Hard/Good/Easy with interval sublabels)",
+      "status": "pending",
+      "dependsOn": [
+        "T002"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system"
+      ],
+      "scope": [
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T010.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T011",
+      "title": "Content schema models (catalog, country, deck, bundle, card)",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "content"
+      ],
+      "scope": [
+        "Sources/ContentKit/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T011.md",
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": [
+          "touches-schema"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T012",
+      "title": "ContentStore: bundle the Content/ fixture + load catalog, decks, audio URLs",
+      "status": "pending",
+      "dependsOn": [
+        "T011"
+      ],
+      "gate": null,
+      "tags": [
+        "content"
+      ],
+      "scope": [
+        "Sources/ContentKit/**",
+        "project.yml",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T012.md",
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T013",
+      "title": "Clock abstraction: DateProvider protocol, system + offsettable debug implementations",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "core"
+      ],
+      "scope": [
+        "Sources/CoreKit/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T013.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T014",
+      "title": "SwiftData stack: model container factory with in-memory test support",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "persistence"
+      ],
+      "scope": [
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T014.md",
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": [
+          "touches-schema"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T015",
+      "title": "TripProfile model + store (active trip, day counter)",
+      "status": "pending",
+      "dependsOn": [
+        "T013",
+        "T014"
+      ],
+      "gate": null,
+      "tags": [
+        "persistence"
+      ],
+      "scope": [
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T015.md",
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": [
+          "touches-schema"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T016",
+      "title": "Entitlements record + store (owned packs & bundles)",
+      "status": "pending",
+      "dependsOn": [
+        "T014"
+      ],
+      "gate": null,
+      "tags": [
+        "persistence"
+      ],
+      "scope": [
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T016.md",
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": [
+          "touches-schema"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T017",
+      "title": "Card SRS record + store (per-card scheduling rows)",
+      "status": "pending",
+      "dependsOn": [
+        "T014"
+      ],
+      "gate": null,
+      "tags": [
+        "persistence"
+      ],
+      "scope": [
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T017.md",
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": [
+          "touches-schema"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T018",
+      "title": "Daily activity record + store (per-day study log)",
+      "status": "pending",
+      "dependsOn": [
+        "T013",
+        "T014"
+      ],
+      "gate": null,
+      "tags": [
+        "persistence"
+      ],
+      "scope": [
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T018.md",
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": [
+          "touches-schema"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T019",
+      "title": "SRS core: card scheduling state + SM-2 grading function",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "srs"
+      ],
+      "scope": [
+        "Sources/SRSKit/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T019.md",
+      "facets": {
+        "layer": "learning",
+        "workType": "feature",
+        "risk": [
+          "touches-core"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T020",
+      "title": "SRS queries: dueness, mastery, interval previews & next-due formatting",
+      "status": "pending",
+      "dependsOn": [
+        "T019"
+      ],
+      "gate": null,
+      "tags": [
+        "srs"
+      ],
+      "scope": [
+        "Sources/SRSKit/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T020.md",
+      "facets": {
+        "layer": "learning",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T021",
+      "title": "SRS queue builder: review ordering, learn chunking, miss re-queueing",
+      "status": "pending",
+      "dependsOn": [
+        "T019",
+        "T020"
+      ],
+      "gate": null,
+      "tags": [
+        "srs"
+      ],
+      "scope": [
+        "Sources/SRSKit/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T021.md",
+      "facets": {
+        "layer": "learning",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T022",
+      "title": "SRS persistence bridge + DeckProgressService (counts, strength, dues)",
+      "status": "pending",
+      "dependsOn": [
+        "T012",
+        "T017",
+        "T020"
+      ],
+      "gate": null,
+      "tags": [
+        "services",
+        "srs"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T022.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": [
+          "full-stack"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T023",
+      "title": "SessionEngine: pure session state machine (learn/review/practice)",
+      "status": "pending",
+      "dependsOn": [
+        "T021"
+      ],
+      "gate": null,
+      "tags": [
+        "srs",
+        "session"
+      ],
+      "scope": [
+        "Sources/SRSKit/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T023.md",
+      "facets": {
+        "layer": "learning",
+        "workType": "feature",
+        "risk": [
+          "touches-core"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T024",
+      "title": "StudyService: build & commit sessions (learn, review, practice, learn-5-more)",
+      "status": "pending",
+      "dependsOn": [
+        "T018",
+        "T022",
+        "T023"
+      ],
+      "gate": null,
+      "tags": [
+        "services",
+        "session"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T024.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": [
+          "full-stack"
+        ]
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T025",
+      "title": "PricingCalculator: pack/bundle totals, savings & summary lines",
+      "status": "pending",
+      "dependsOn": [
+        "T011"
+      ],
+      "gate": null,
+      "tags": [
+        "purchases"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T025.md",
+      "facets": {
+        "layer": "store",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T026",
+      "title": "PurchaseService protocol + stub implementation (buy, restore, owned stream)",
+      "status": "pending",
+      "dependsOn": [
+        "T016",
+        "T025"
+      ],
+      "gate": null,
+      "tags": [
+        "purchases"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T026.md",
+      "facets": {
+        "layer": "store",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T027",
+      "title": "AudioService: per-card clip playback with auto-play-once semantics",
+      "status": "pending",
+      "dependsOn": [
+        "T012"
+      ],
+      "gate": null,
+      "tags": [
+        "services",
+        "audio"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T027.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T028",
+      "title": "StatsService: streaks, week dots & lifetime totals",
+      "status": "pending",
+      "dependsOn": [
+        "T013",
+        "T018"
+      ],
+      "gate": null,
+      "tags": [
+        "services",
+        "stats"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T028.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T029",
+      "title": "AppState + root router (onboarding vs main, accent injection)",
+      "status": "pending",
+      "dependsOn": [
+        "T002",
+        "T015"
+      ],
+      "gate": null,
+      "tags": [
+        "shell"
+      ],
+      "scope": [
+        "Sources/App/**",
+        "Sources/EnoughApp.swift",
+        "Sources/ContentView.swift",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T029.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "touches-core"
+        ]
+      },
+      "expectsTest": true,
+      "visualVerify": false
+    },
+    {
+      "id": "T030",
+      "title": "Floating liquid-glass tab bar + main shell with 4 placeholder tabs",
+      "status": "pending",
+      "dependsOn": [
+        "T029"
+      ],
+      "gate": null,
+      "tags": [
+        "shell"
+      ],
+      "scope": [
+        "Sources/App/**",
+        "Sources/DesignSystem/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T030.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T031",
+      "title": "Onboarding flow container: nav stack, draft state, completion handoff",
+      "status": "pending",
+      "dependsOn": [
+        "T029"
+      ],
+      "gate": null,
+      "tags": [
+        "onboarding"
+      ],
+      "scope": [
+        "Sources/Features/Onboarding/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T031.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T032",
+      "title": "Welcome screen (card-stack hero, wordmark, restore-purchases link)",
+      "status": "pending",
+      "dependsOn": [
+        "T009",
+        "T026",
+        "T031"
+      ],
+      "gate": null,
+      "tags": [
+        "onboarding"
+      ],
+      "scope": [
+        "Sources/Features/Onboarding/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T032.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T033",
+      "title": "Country picker screen (Step 1) with graphite→accent morph",
+      "status": "pending",
+      "dependsOn": [
+        "T012",
+        "T031"
+      ],
+      "gate": null,
+      "tags": [
+        "onboarding"
+      ],
+      "scope": [
+        "Sources/Features/Onboarding/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T033.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T034",
+      "title": "Shape-your-trip screen (Step 2): duration + scenario chips",
+      "status": "pending",
+      "dependsOn": [
+        "T031"
+      ],
+      "gate": null,
+      "tags": [
+        "onboarding"
+      ],
+      "scope": [
+        "Sources/Features/Onboarding/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T034.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T035",
+      "title": "Plan screen components: bundle row + pack checklist row",
+      "status": "pending",
+      "dependsOn": [
+        "T002",
+        "T004"
+      ],
+      "gate": null,
+      "tags": [
+        "onboarding"
+      ],
+      "scope": [
+        "Sources/Features/Onboarding/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T035.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T036",
+      "title": "Plan screen assembly: seeding, à-la-carte edits, totals, purchase",
+      "status": "pending",
+      "dependsOn": [
+        "T026",
+        "T033",
+        "T034",
+        "T035"
+      ],
+      "gate": null,
+      "tags": [
+        "onboarding",
+        "purchases"
+      ],
+      "scope": [
+        "Sources/Features/Onboarding/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T036.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "full-stack"
+        ]
+      },
+      "expectsTest": true,
+      "visualVerify": true
+    },
+    {
+      "id": "T037",
+      "title": "Debug menu shell: hidden entry (shake / launch argument) + empty sections",
+      "status": "pending",
+      "dependsOn": [
+        "T030"
+      ],
+      "gate": null,
+      "tags": [
+        "debug"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T037.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T038",
+      "title": "Debug setting: unlock all packs",
+      "status": "pending",
+      "dependsOn": [
+        "T026",
+        "T037"
+      ],
+      "gate": null,
+      "tags": [
+        "debug"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T038.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T039",
+      "title": "Debug setting: time travel (shift the app clock by N days)",
+      "status": "pending",
+      "dependsOn": [
+        "T013",
+        "T037"
+      ],
+      "gate": null,
+      "tags": [
+        "debug"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T039.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T040",
+      "title": "Debug setting: force all learned cards due now",
+      "status": "pending",
+      "dependsOn": [
+        "T017",
+        "T022",
+        "T037"
+      ],
+      "gate": null,
+      "tags": [
+        "debug"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T040.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T041",
+      "title": "Debug setting: reset all app data (SRS, trip, entitlements, activity)",
+      "status": "pending",
+      "dependsOn": [
+        "T014",
+        "T037"
+      ],
+      "gate": null,
+      "tags": [
+        "debug"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/Services/**",
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T041.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T042",
+      "title": "Debug setting: seed demo state (mid-trip fixture, also via launch argument)",
+      "status": "pending",
+      "dependsOn": [
+        "T012",
+        "T015",
+        "T016",
+        "T017",
+        "T018",
+        "T037"
+      ],
+      "gate": null,
+      "tags": [
+        "debug"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/Services/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T042.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": [
+          "full-stack"
+        ]
+      },
+      "expectsTest": true,
+      "visualVerify": false
+    },
+    {
+      "id": "T043",
+      "title": "Home components: continue card, reviews banner, deck list row",
+      "status": "pending",
+      "dependsOn": [
+        "T005",
+        "T008"
+      ],
+      "gate": null,
+      "tags": [
+        "home"
+      ],
+      "scope": [
+        "Sources/Features/Home/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T043.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T044",
+      "title": "Home screen assembly (header, day counter, sections, navigation)",
+      "status": "pending",
+      "dependsOn": [
+        "T022",
+        "T028",
+        "T030",
+        "T043"
+      ],
+      "gate": null,
+      "tags": [
+        "home"
+      ],
+      "scope": [
+        "Sources/Features/Home/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T044.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T045",
+      "title": "Deck detail screen (tinted hero, sample cards with audio, actions)",
+      "status": "pending",
+      "dependsOn": [
+        "T027",
+        "T044"
+      ],
+      "gate": null,
+      "tags": [
+        "home",
+        "deck-detail"
+      ],
+      "scope": [
+        "Sources/Features/DeckDetail/**",
+        "Sources/Features/Home/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T045.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T046",
+      "title": "MC question components: question header + four-state answer row",
+      "status": "pending",
+      "dependsOn": [
+        "T006",
+        "T007"
+      ],
+      "gate": null,
+      "tags": [
+        "session"
+      ],
+      "scope": [
+        "Sources/Features/Session/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T046.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T047",
+      "title": "Multiple-choice learn session screen (states, sheets, haptics, transitions)",
+      "status": "pending",
+      "dependsOn": [
+        "T024",
+        "T045",
+        "T046"
+      ],
+      "gate": null,
+      "tags": [
+        "session"
+      ],
+      "scope": [
+        "Sources/Features/Session/**",
+        "Sources/Features/Home/**",
+        "Sources/Features/DeckDetail/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T047.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "full-stack"
+        ]
+      },
+      "expectsTest": true,
+      "visualVerify": true
+    },
+    {
+      "id": "T048",
+      "title": "Flashcard component: front, 3D flip, revealed layout",
+      "status": "pending",
+      "dependsOn": [
+        "T002",
+        "T006"
+      ],
+      "gate": null,
+      "tags": [
+        "session"
+      ],
+      "scope": [
+        "Sources/Features/Session/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T048.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T049",
+      "title": "Flashcard review session screen (grades, live interval previews)",
+      "status": "pending",
+      "dependsOn": [
+        "T010",
+        "T024",
+        "T047",
+        "T048"
+      ],
+      "gate": null,
+      "tags": [
+        "session"
+      ],
+      "scope": [
+        "Sources/Features/Session/**",
+        "Sources/Features/Home/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T049.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "full-stack"
+        ]
+      },
+      "expectsTest": true,
+      "visualVerify": true
+    },
+    {
+      "id": "T050",
+      "title": "Session complete screen (ring race, check pop, stats, learn-5-more)",
+      "status": "pending",
+      "dependsOn": [
+        "T028",
+        "T047",
+        "T049"
+      ],
+      "gate": null,
+      "tags": [
+        "session"
+      ],
+      "scope": [
+        "Sources/Features/Session/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T050.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T051",
+      "title": "Reviews tab (due ring, Due/Learning/Mastered tiles, strength bars)",
+      "status": "pending",
+      "dependsOn": [
+        "T022",
+        "T030",
+        "T049"
+      ],
+      "gate": null,
+      "tags": [
+        "reviews"
+      ],
+      "scope": [
+        "Sources/Features/Reviews/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T051.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T052",
+      "title": "Progress components: streak card + week-dot row",
+      "status": "pending",
+      "dependsOn": [
+        "T002",
+        "T008",
+        "T028"
+      ],
+      "gate": null,
+      "tags": [
+        "progress"
+      ],
+      "scope": [
+        "Sources/Features/Progress/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T052.md",
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T053",
+      "title": "ReadinessCalculator: per-trip survival readiness % + copy line",
+      "status": "pending",
+      "dependsOn": [
+        "T011",
+        "T022"
+      ],
+      "gate": null,
+      "tags": [
+        "progress",
+        "srs"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T053.md",
+      "facets": {
+        "layer": "learning",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T054",
+      "title": "Progress tab assembly (streak card, stat tiles, readiness ring)",
+      "status": "pending",
+      "dependsOn": [
+        "T028",
+        "T030",
+        "T052",
+        "T053"
+      ],
+      "gate": null,
+      "tags": [
+        "progress"
+      ],
+      "scope": [
+        "Sources/Features/Progress/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T054.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T055",
+      "title": "Browse tab store (country sections, prices, buy & restore)",
+      "status": "pending",
+      "dependsOn": [
+        "T012",
+        "T026",
+        "T030"
+      ],
+      "gate": null,
+      "tags": [
+        "browse",
+        "purchases"
+      ],
+      "scope": [
+        "Sources/Features/Browse/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T055.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "full-stack"
+        ]
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T056",
+      "title": "NotificationsService: review-due local notifications, permission after first session",
+      "status": "pending",
+      "dependsOn": [
+        "T022",
+        "T050"
+      ],
+      "gate": null,
+      "tags": [
+        "notifications"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Sources/Features/Session/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T056.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T057",
+      "title": "Debug setting: notification test fire + pending-schedule inspector",
+      "status": "pending",
+      "dependsOn": [
+        "T037",
+        "T056"
+      ],
+      "gate": null,
+      "tags": [
+        "debug",
+        "notifications"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T057.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      },
+      "visualVerify": false
+    },
+    {
+      "id": "T058",
+      "title": "New-trip flow: start/switch trips, accent reskin, owned packs persist",
+      "status": "pending",
+      "dependsOn": [
+        "T036",
+        "T054"
+      ],
+      "gate": null,
+      "tags": [
+        "onboarding",
+        "progress"
+      ],
+      "scope": [
+        "Sources/Features/Progress/**",
+        "Sources/Features/Onboarding/**",
+        "Sources/App/**",
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T058.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "full-stack"
+        ]
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T059",
+      "title": "Motion & haptics conformance sweep against the design spec",
+      "status": "pending",
+      "dependsOn": [
+        "T044",
+        "T045",
+        "T047",
+        "T049",
+        "T050",
+        "T051",
+        "T054",
+        "T055"
+      ],
+      "gate": null,
+      "tags": [
+        "polish"
+      ],
+      "scope": [
+        "Sources/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T059.md",
+      "facets": {
+        "layer": "views",
+        "workType": "style",
+        "risk": [
+          "cross-cutting"
+        ]
+      },
+      "visualVerify": true
+    },
+    {
+      "id": "T060",
+      "title": "End-to-end design acceptance review on the simulator",
+      "status": "pending",
+      "dependsOn": [
+        "T058",
+        "T059"
+      ],
+      "gate": "needs-human",
+      "tags": [
+        "review"
+      ],
+      "scope": [],
+      "design": null,
+      "verify": [],
+      "spec": ".harness/tasks/T060.md"
+    },
+    {
+      "id": "T061",
+      "title": "App Store Connect setup: app record, IAP product ids, signing",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": "needs-human",
+      "tags": [
+        "storekit"
+      ],
+      "scope": [],
+      "design": null,
+      "verify": [],
+      "spec": ".harness/tasks/T061.md"
+    },
+    {
+      "id": "T062",
+      "title": "StoreKit 2 PurchaseService (real IAP behind the existing protocol)",
+      "status": "pending",
+      "dependsOn": [
+        "T055",
+        "T061"
+      ],
+      "gate": null,
+      "tags": [
+        "storekit",
+        "purchases"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Enough.storekit",
+        "project.yml",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T062.md",
+      "facets": {
+        "layer": "store",
+        "workType": "feature",
+        "risk": []
+      },
+      "expectsTest": true
+    },
+    {
+      "id": "T063",
+      "title": "App icon + launch assets",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": "needs-human",
+      "tags": [
+        "assets"
+      ],
+      "scope": [],
+      "design": null,
+      "verify": [],
+      "spec": ".harness/tasks/T063.md"
+    },
+    {
+      "id": "T064",
+      "title": "README implementation-status refresh once the core app exists",
+      "status": "pending",
+      "dependsOn": [
+        "T050"
+      ],
+      "gate": null,
+      "tags": [
+        "docs"
+      ],
+      "scope": [
+        "README.md"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "spec": ".harness/tasks/T064.md",
+      "facets": {
+        "layer": "meta",
+        "workType": "docs",
+        "risk": []
+      },
+      "visualVerify": false
     }
   ]
 }

@@ -1,0 +1,276 @@
+{
+  "deckId": "jp-at-the-bar",
+  "cards": [
+    {
+      "id": "chotto-matte-kudasai",
+      "english": "Wait just a moment, please.",
+      "target": "ちょっと まってください。",
+      "pronunciation": "chotto matte kudasai .",
+      "audio": "c2a274ef31379f80.mp3",
+      "notes": "Possibly premature — explicitly taught later in Lesson 19: Making a Request: Please Give Her My Regards (explicitly re-taught as a dedicated KEY SENTENCES entry (\"Please wait a moment.\"))",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "mou-ichido-onegaishimasu",
+      "english": "Once more, please.",
+      "target": "もう いちど おねがいします。",
+      "pronunciation": "mō ichido onegai shi masu .",
+      "audio": "f607eccb516c48a9.mp3",
+      "notes": "Possibly premature — explicitly taught later in Lesson 2: Possession: Whose Pen Is This? (explicitly re-taught as a dedicated VOCABULARY entry (\"One more time, please.\")) | Possibly incorrect romanization — incorrectly splits 'onegaishimasu' into 'onegai shi masu' — target shows no space within this word",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "no-particle",
+      "english": "of; 's (possessive/affiliation particle)",
+      "target": "の",
+      "pronunciation": "no",
+      "audio": "3b2e79bc71937994.mp3",
+      "notes": "Particle marking belonging or affiliation, e.g. company + の + person (see GRAMMAR 3)",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "desu-suffix",
+      "english": "to be (copula)",
+      "target": "です",
+      "pronunciation": "desu",
+      "audio": "36c7185f86fcf0b4.mp3",
+      "notes": "Suffix — attaches to the end of a noun to mean 'is/am/are' (written 〜です in the source). Example: (わたしは) スミスです。 — '[I am] Smith.' Attaches directly after the noun with no space, and simply states what someone or something is.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "ka-particle",
+      "english": "question marker particle",
+      "target": "か",
+      "pronunciation": "ka",
+      "audio": "f500b3b07ce5e1c7.mp3",
+      "notes": "Placed at the end of a sentence to form a question (see GRAMMAR 2)",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "hai",
+      "english": "yes",
+      "target": "はい",
+      "pronunciation": "hai",
+      "audio": "8f90d85ec13a0b1b.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "sou-desu",
+      "english": "that's right",
+      "target": "そうです。",
+      "pronunciation": "sō desu .",
+      "audio": "8df2900721d9e3ee.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "wa-particle",
+      "english": "topic marker particle",
+      "target": "は",
+      "pronunciation": "wa",
+      "audio": "de77c92e70001383.mp3",
+      "notes": "Follows noun 1, marking it as the sentence topic; similar to 'as for' in English. Example: スミスさんは アメリカじんです。 — 'As for Smith-san, (he) is American.' (i.e. 'Smith-san is American.')",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "kochira",
+      "english": "this one (polite for 'this person')",
+      "target": "こちら",
+      "pronunciation": "kochira",
+      "audio": "1c956b12c2ad6690.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "watashi",
+      "english": "I",
+      "target": "わたし",
+      "pronunciation": "watashi",
+      "audio": "53f24f734e7083e2.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "iie",
+      "english": "no",
+      "target": "いいえ",
+      "pronunciation": "īe",
+      "audio": "48ef2b674823d03d.mp3",
+      "notes": "Possibly incorrect romanization — should be 'iie' (three separate i sounds), not 'īe' (single long i); the two い characters are distinct syllables",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "anata",
+      "english": "you",
+      "target": "あなた",
+      "pronunciation": "anata",
+      "audio": "e640f55e0224b22e.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "o-prefix",
+      "english": "(honorific prefix)",
+      "target": "お",
+      "pronunciation": "o",
+      "audio": "762c1a1a571413e6.mp3",
+      "notes": "お is not a word on its own — it's a short prefix stuck onto the FRONT of certain nouns to make them sound more polite/respectful. It's used almost entirely for things belonging to the person you're talking to (or a third person), not your own things — e.g. お + くに ('country') → おくに ('your country'), heard in this chapter's own dialogue: スミスさん、おくには どちらですか。 ('Smith-san, what country are you from?'). Think of it like the difference between 'your country' (plain) and a more deferential way of asking about someone else's country in English — お signals that same extra politeness, just attached directly to the front of the word instead of being a separate word.",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "dochira",
+      "english": "where (polite word for どこ)",
+      "target": "どちら",
+      "pronunciation": "dochira",
+      "audio": "6521c442ace13d76.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "onegaishimasu-pattern-ch14",
+      "english": "please (I'd like to see Tanaka-san)",
+      "target": "たなかさんを おねがいします",
+      "pronunciation": "ta naka san o onegai shi masu",
+      "audio": "ca28c42f74cc8d7a.mp3",
+      "notes": "Placeholder filled with 'たなかさん', the exact example given in the chapter's own NOTES section — used when asking a receptionist to summon someone (source shows only '〜を おねがいします')",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "kore",
+      "english": "this one",
+      "target": "これ",
+      "pronunciation": "kore",
+      "audio": "f0b5ecd06b9a3cd1.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "dareno",
+      "english": "whose",
+      "target": "だれの",
+      "pronunciation": "dare no",
+      "audio": "df69fc1ba96b8826.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "dare",
+      "english": "who",
+      "target": "だれ",
+      "pronunciation": "dare",
+      "audio": "2f18e8ff87ddea76.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "watashino",
+      "english": "my, mine",
+      "target": "わたしの",
+      "pronunciation": "watashi no",
+      "audio": "603e85d7ef0e5e1b.mp3",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "desu-suffix-ch15",
+      "english": "is / am / are (copula, affirmative)",
+      "target": "です",
+      "pronunciation": "desu",
+      "audio": "36c7185f86fcf0b4.mp3",
+      "notes": "Affirmative counterpart to じゃありません below — see GRAMMAR 2 (already introduced in Lesson 1, repeated here to sit alongside its negative form)",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "ja-arimasen",
+      "english": "is not / are not",
+      "target": "じゃありません",
+      "pronunciation": "ja ari mase n",
+      "audio": "eb9db8d70ac3b639.mp3",
+      "notes": "Negative form of です (source shows 〜じゃありません); じゃ is more informal than では but otherwise the same",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "deshita",
+      "english": "was",
+      "target": "でした",
+      "pronunciation": "deshi ta",
+      "audio": "1ee73a40b18d3c02.mp3",
+      "notes": "Past affirmative form of です (source shows 〜でした) | Possibly incorrect romanization — でした should be romanized as 'deshita' (one unit) or 'de shita', not 'deshi ta' which incorrectly combines the first two mora",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "ja-arimasen-deshita",
+      "english": "was not",
+      "target": "じゃありませんでした",
+      "pronunciation": "ja ari mase n deshi ta",
+      "audio": "15aa6d860d864898.mp3",
+      "notes": "Past negative form of です (source shows 〜じゃありませんでした); ではありませんでした is the less-informal equivalent | Possibly incorrect romanization — the 'deshi ta' portion at the end incorrectly splits でした; should be 'deshita' or 'de shita'",
+      "category": "Grammar & Function Words"
+    },
+    {
+      "id": "juusho",
+      "english": "address",
+      "target": "じゅうしょ",
+      "pronunciation": "jū sho",
+      "audio": "71603f6852a5d003.mp3",
+      "notes": "Possibly incorrect romanization — The word should be romanized as 'jūsho', not split as 'jū sho'",
+      "category": "Home & Household"
+    },
+    {
+      "id": "denwa-bangou",
+      "english": "telephone number",
+      "target": "でんわばんごう",
+      "pronunciation": "denwa ban go u",
+      "audio": "e143f59b042972ce.mp3",
+      "notes": "Possibly incorrect romanization — Spacing breaks the word incorrectly; should be 'denwa bangou' not 'denwa ban go u'",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "denwa",
+      "english": "telephone",
+      "target": "でんわ",
+      "pronunciation": "denwa",
+      "audio": "45b3fda8a8179411.mp3",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "mail-address",
+      "english": "mail address",
+      "target": "メールアドレス",
+      "pronunciation": "mēruadoresu",
+      "audio": "dd4433300c45394f.mp3",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "sumaho",
+      "english": "smart phone",
+      "target": "スマホ",
+      "pronunciation": "sumaho",
+      "audio": "84e3cb7d1e48f725.mp3",
+      "category": "Technology & Communication"
+    },
+    {
+      "id": "kagi",
+      "english": "key",
+      "target": "かぎ",
+      "pronunciation": "kagi",
+      "audio": "457693d155562666.mp3",
+      "category": "Home & Household"
+    },
+    {
+      "id": "hon",
+      "english": "book",
+      "target": "ほん",
+      "pronunciation": "hon",
+      "audio": "d2815033823ea835.mp3",
+      "category": "School & Education"
+    },
+    {
+      "id": "kasa",
+      "english": "umbrella",
+      "target": "かさ",
+      "pronunciation": "kasa",
+      "audio": "34edf5f90cac983f.mp3",
+      "category": "Weather & Nature"
+    },
+    {
+      "id": "mou-ichido",
+      "english": "one more time",
+      "target": "もう いちど",
+      "pronunciation": "mō ichido",
+      "audio": "1f7f33607e5ab31a.mp3",
+      "category": "Grammar & Function Words"
+    }
+  ]
+}

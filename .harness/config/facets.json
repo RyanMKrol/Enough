@@ -18,6 +18,10 @@
           "desc": "persistence (SwiftData/Core Data), deck content models, schema/migrations",
           "difficultyHint": "high"
         },
+        "services": {
+          "desc": "non-UI app services & glue: audio playback, notifications, clock/date providers, stats/streaks, study-session orchestration, debug-tooling backends",
+          "difficultyHint": "med"
+        },
         "store": {
           "desc": "StoreKit in-app purchases, deck entitlements/unlocking",
           "difficultyHint": "high"
