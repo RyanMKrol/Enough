@@ -270,7 +270,7 @@
     {
       "id": "T012",
       "title": "ContentStore: bundle the Content/ fixture + load catalog, decks, audio URLs",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T011"
       ],
