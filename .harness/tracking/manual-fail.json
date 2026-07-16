@@ -8,5 +8,10 @@
     "failed": true,
     "reason": "review-failed: superseded by T090 — same scope but wires onDone via the session view's own @Environment(.dismiss), forbids touching any presenting screen",
     "at": "2026-07-16T08:31:23Z"
+  },
+  "T053": {
+    "failed": true,
+    "reason": "review-failed: superseded by T091 — same pure calculator but requires swiftlint/swift-format-clean code with no config edits; was mislabeled needs-human",
+    "at": "2026-07-16T08:31:25Z"
   }
 }
