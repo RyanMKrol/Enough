@@ -805,7 +805,7 @@
     {
       "id": "T032",
       "title": "Welcome screen (card-stack hero, wordmark, restore-purchases link)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T009",
         "T026",
