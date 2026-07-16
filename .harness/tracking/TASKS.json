@@ -970,7 +970,7 @@
       "status": "pending",
       "dependsOn": [
         "T026",
-        "T037"
+        "T089"
       ],
       "gate": null,
       "tags": [
@@ -997,7 +997,7 @@
       "status": "pending",
       "dependsOn": [
         "T013",
-        "T037"
+        "T089"
       ],
       "gate": null,
       "tags": [
@@ -1025,7 +1025,7 @@
       "dependsOn": [
         "T017",
         "T022",
-        "T037"
+        "T089"
       ],
       "gate": null,
       "tags": [
@@ -1052,7 +1052,7 @@
       "status": "pending",
       "dependsOn": [
         "T014",
-        "T037"
+        "T089"
       ],
       "gate": null,
       "tags": [
@@ -1084,7 +1084,7 @@
         "T016",
         "T017",
         "T018",
-        "T037"
+        "T089"
       ],
       "gate": null,
       "tags": [
@@ -1425,7 +1425,7 @@
         "T028",
         "T030",
         "T052",
-        "T053"
+        "T091"
       ],
       "gate": null,
       "tags": [
@@ -1483,7 +1483,7 @@
       "status": "pending",
       "dependsOn": [
         "T022",
-        "T050"
+        "T090"
       ],
       "gate": null,
       "tags": [
@@ -1510,8 +1510,8 @@
       "title": "Debug setting: notification test fire + pending-schedule inspector",
       "status": "pending",
       "dependsOn": [
-        "T037",
-        "T056"
+        "T056",
+        "T089"
       ],
       "gate": null,
       "tags": [
@@ -1574,10 +1574,10 @@
         "T045",
         "T047",
         "T049",
-        "T050",
         "T051",
         "T054",
-        "T055"
+        "T055",
+        "T090"
       ],
       "gate": null,
       "tags": [
@@ -1677,7 +1677,7 @@
       "title": "README implementation-status refresh once the core app exists",
       "status": "pending",
       "dependsOn": [
-        "T050"
+        "T090"
       ],
       "gate": null,
       "tags": [
@@ -2313,6 +2313,90 @@
         "risk": [
           "cross-cutting"
         ]
+      }
+    },
+    {
+      "id": "T089",
+      "title": "Debug menu shell: hidden entry (shake / launch argument) + empty sections",
+      "status": "pending",
+      "dependsOn": [
+        "T030"
+      ],
+      "gate": null,
+      "tags": [
+        "debug"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T089.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T090",
+      "title": "Session complete screen (ring race, check pop, stats, learn-5-more)",
+      "status": "pending",
+      "dependsOn": [
+        "T028",
+        "T047",
+        "T049"
+      ],
+      "gate": null,
+      "tags": [
+        "session"
+      ],
+      "scope": [
+        "Sources/Features/Session/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T090.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      }
+    },
+    {
+      "id": "T091",
+      "title": "ReadinessCalculator: per-trip survival readiness % + copy line (swiftlint-clean, no config edits)",
+      "status": "pending",
+      "dependsOn": [
+        "T011",
+        "T022"
+      ],
+      "gate": null,
+      "tags": [
+        "progress",
+        "srs"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T091.md",
+      "facets": {
+        "layer": "learning",
+        "workType": "feature",
+        "risk": []
       }
     }
   ]
