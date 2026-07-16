@@ -994,7 +994,7 @@
     {
       "id": "T039",
       "title": "Debug setting: time travel (shift the app clock by N days)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T013",
         "T089"
