@@ -11,6 +11,8 @@ struct DeckDetailView: View {
   @State private var progress: DeckProgressService.DeckProgress?
   @State private var isResetting = false
   @State private var showResetConfirmation = false
+  @State private var sessionEngine: SessionEngine?
+  @State private var isPresentingSession = false
 
   let deckId: String
 
@@ -175,14 +177,12 @@ struct DeckDetailView: View {
 
         VStack(spacing: 10) {
           Button("Continue learning") {
-            // swiftlint:disable:next todo
-            // TODO(T047): launch learn session
+            startLearnSession()
           }
           .buttonStyle(PrimaryButtonStyle(background: accentTheme.accent, subtleShadow: true))
 
-          Button("Practice all \(cards.isEmpty ? 0 : min(5, cards.count))") {
-            // swiftlint:disable:next todo
-            // TODO(T047): launch practice session
+          Button("Practice all \(deckInfo?.cardCount ?? 0)") {
+            startPracticeSession()
           }
           .buttonStyle(TintedButtonStyle())
         }
@@ -205,6 +205,23 @@ struct DeckDetailView: View {
         }
       }
     )
+    .fullScreenCover(isPresented: $isPresentingSession) {
+      if let sessionEngine {
+        MCSessionView(engine: sessionEngine)
+      }
+    }
+  }
+
+  private func startLearnSession() {
+    guard let engine = try? services.study.makeLearnSession(deckId: deckId) else { return }
+    sessionEngine = engine
+    isPresentingSession = true
+  }
+
+  private func startPracticeSession() {
+    guard let engine = try? services.study.makePracticeSession(deckId: deckId) else { return }
+    sessionEngine = engine
+    isPresentingSession = true
   }
 
   private func loadContent() {

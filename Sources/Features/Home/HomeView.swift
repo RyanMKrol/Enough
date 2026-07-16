@@ -3,6 +3,8 @@ import SwiftUI
 struct HomeView: View {
   @Environment(\.services) private var services
   @State private var viewModel: HomeViewModel?
+  @State private var learnSessionEngine: SessionEngine?
+  @State private var isPresentingLearnSession = false
 
   var body: some View {
     NavigationStack {
@@ -13,6 +15,11 @@ struct HomeView: View {
             DeckDetailView(deckId: deckId)
           }
         }
+    }
+    .fullScreenCover(isPresented: $isPresentingLearnSession) {
+      if let learnSessionEngine {
+        MCSessionView(engine: learnSessionEngine)
+      }
     }
   }
 
@@ -30,8 +37,7 @@ struct HomeView: View {
               progress: continueDeck.progress.total > 0
                 ? Double(continueDeck.progress.learned) / Double(continueDeck.progress.total) : 0,
               onPlay: {
-                // swiftlint:disable:next todo
-                // TODO(T047): launch learn session
+                startLearnSession(deckId: continueDeck.deck.id)
               }
             )
           }
@@ -88,6 +94,12 @@ struct HomeView: View {
           viewModel = model
         }
     }
+  }
+
+  private func startLearnSession(deckId: String) {
+    guard let engine = try? services.study.makeLearnSession(deckId: deckId) else { return }
+    learnSessionEngine = engine
+    isPresentingLearnSession = true
   }
 
   private func header(viewModel: HomeViewModel) -> some View {
