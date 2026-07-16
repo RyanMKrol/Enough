@@ -27,6 +27,11 @@ targets:
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
         ITSAppUsesNonExemptEncryption: false
+        # Declaring a launch screen is REQUIRED for iOS to render the app at the device's
+        # native full resolution. Without it, iOS runs the app in legacy compatibility mode —
+        # scaled up inside black letterbox bars (the "iPhone 4 / oversized" look). An empty
+        # dict is the documented minimum to opt into full-screen native rendering.
+        UILaunchScreen: {}
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.ryankrol.enough
