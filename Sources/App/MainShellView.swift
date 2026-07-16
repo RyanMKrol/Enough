@@ -24,6 +24,8 @@ struct MainShellView: View {
     switch tab {
     case .learn:
       HomeView()
+    case .reviews:
+      ReviewsTabView()
     default:
       ZStack {
         EnoughColor.canvas.ignoresSafeArea()
