@@ -779,7 +779,7 @@
     {
       "id": "T031",
       "title": "Onboarding flow container: nav stack, draft state, completion handoff",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T029"
       ],
