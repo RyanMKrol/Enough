@@ -909,7 +909,7 @@
     {
       "id": "T036",
       "title": "Plan screen assembly: seeding, à-la-carte edits, totals, purchase",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T026",
         "T033",
