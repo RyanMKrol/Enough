@@ -1755,7 +1755,7 @@
     {
       "id": "T067",
       "title": "Schema-migration guardrail test (V1 tripwire)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T014"
       ],
