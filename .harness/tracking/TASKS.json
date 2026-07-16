@@ -643,7 +643,7 @@
     {
       "id": "T026",
       "title": "PurchaseService protocol + stub implementation (buy, restore, owned stream)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T016",
         "T025"
