@@ -2398,6 +2398,265 @@
         "workType": "feature",
         "risk": []
       }
+    },
+    {
+      "id": "T092",
+      "title": "Raise minimum deployment target to iOS 26",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "build",
+        "deployment-target",
+        "ios26"
+      ],
+      "scope": [
+        "project.yml",
+        "README.md"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T092.md",
+      "visualVerify": false,
+      "facets": {
+        "layer": "infra",
+        "workType": "config",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T093",
+      "title": "Adopt iOS 26 Liquid Glass on the floating tab bar + deck-detail chrome",
+      "status": "pending",
+      "dependsOn": [
+        "T092"
+      ],
+      "gate": null,
+      "tags": [
+        "design-system",
+        "liquid-glass",
+        "chrome"
+      ],
+      "scope": [
+        "Sources/DesignSystem/LiquidGlassTabBar.swift",
+        "Sources/Features/DeckDetail/DeckDetailView.swift"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T093.md",
+      "facets": {
+        "layer": "views",
+        "workType": "style",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T094",
+      "title": "Provision App Group + entitlements for the reviews widget",
+      "status": "pending",
+      "dependsOn": [
+        "T068"
+      ],
+      "gate": "needs-human",
+      "tags": [
+        "widget",
+        "provisioning",
+        "app-group",
+        "needs-human"
+      ],
+      "scope": [
+        "project.yml",
+        "Sources/Enough.entitlements",
+        "Sources/Widget/EnoughWidget.entitlements",
+        ".harness/custom/docs/LIMITATIONS.md"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T094.md",
+      "visualVerify": false
+    },
+    {
+      "id": "T095",
+      "title": "Move the SwiftData store into the App Group container (one-time file move)",
+      "status": "pending",
+      "dependsOn": [
+        "T068",
+        "T094"
+      ],
+      "gate": null,
+      "tags": [
+        "persistence",
+        "widget",
+        "app-group"
+      ],
+      "scope": [
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T095.md",
+      "facets": {
+        "layer": "data",
+        "workType": "migration",
+        "risk": [
+          "touches-schema",
+          "touches-core"
+        ]
+      }
+    },
+    {
+      "id": "T096",
+      "title": "Extension-safe reviews-summary reader (due count + next-due)",
+      "status": "pending",
+      "dependsOn": [
+        "T095"
+      ],
+      "gate": null,
+      "tags": [
+        "widget",
+        "srs",
+        "reviews"
+      ],
+      "scope": [
+        "Sources/Services/**",
+        "Sources/SRSKit/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/architecture.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T096.md",
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      }
+    },
+    {
+      "id": "T097",
+      "title": "Add the WidgetKit extension target (project.yml + Content + entitlements)",
+      "status": "pending",
+      "dependsOn": [
+        "T094",
+        "T096"
+      ],
+      "gate": null,
+      "tags": [
+        "widget",
+        "infra",
+        "xcodegen"
+      ],
+      "scope": [
+        "project.yml",
+        "Sources/Widget/**",
+        "Sources/PrivacyInfo.xcprivacy"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T097.md",
+      "facets": {
+        "layer": "infra",
+        "workType": "config",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T098",
+      "title": "Reviews-due widget: timeline provider + view",
+      "status": "pending",
+      "dependsOn": [
+        "T097"
+      ],
+      "gate": null,
+      "tags": [
+        "widget",
+        "reviews",
+        "ui"
+      ],
+      "scope": [
+        "Sources/Widget/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T098.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      }
+    },
+    {
+      "id": "T099",
+      "title": "Shared route hook to open a review session",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "navigation",
+        "reviews",
+        "deep-link"
+      ],
+      "scope": [
+        "Sources/App/**",
+        "Sources/Features/Reviews/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/architecture.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T099.md",
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": [
+          "touches-core"
+        ]
+      }
+    },
+    {
+      "id": "T100",
+      "title": "'Start my review' App Intent (Siri / Shortcuts / Spotlight)",
+      "status": "pending",
+      "dependsOn": [
+        "T099"
+      ],
+      "gate": null,
+      "tags": [
+        "app-intent",
+        "siri",
+        "shortcuts",
+        "reviews"
+      ],
+      "scope": [
+        "Sources/App/**",
+        "Sources/Services/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/architecture.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T100.md",
+      "visualVerify": false,
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      }
     }
   ]
 }
