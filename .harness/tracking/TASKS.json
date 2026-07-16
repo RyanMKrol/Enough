@@ -1699,7 +1699,7 @@
     {
       "id": "T065",
       "title": "Stable accessibility identifiers across the UI (harness driving + VoiceOver groundwork)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T030",
         "T044"
