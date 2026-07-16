@@ -18,9 +18,11 @@ struct ReviewSessionView: View {
         .navigationDestination(for: SessionRoute.self) { route in
           switch route {
           case .complete:
-            // swiftlint:disable:next todo
-            Text("Complete")  // TODO(T050): SessionCompleteView
-              .accessibilityIdentifier(AXID.screenSessionComplete)
+            SessionCompleteView(
+              summary: engine.summary(),
+              deckId: nil,
+              onDone: { dismiss() }
+            )
           }
         }
     }
