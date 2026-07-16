@@ -588,7 +588,7 @@
     {
       "id": "T024",
       "title": "StudyService: build & commit sessions (learn, review, practice, learn-5-more)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T018",
         "T022",
