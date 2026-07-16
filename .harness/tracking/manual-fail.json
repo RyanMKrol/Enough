@@ -13,5 +13,10 @@
     "failed": true,
     "reason": "review-failed: superseded by T091 — same pure calculator but requires swiftlint/swift-format-clean code with no config edits; was mislabeled needs-human",
     "at": "2026-07-16T08:31:25Z"
+  },
+  "T040": {
+    "failed": true,
+    "reason": "review-failed: superseded by T102 — re-attempt widens scope to Sources/Persistence/** and mandates CardSRSStore.forceAllDue(now:), resolving the original spec's context-accessor contradiction",
+    "at": "2026-07-16T19:06:13Z"
   }
 }
