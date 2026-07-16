@@ -17,4 +17,14 @@ enum PersistenceStack {
       configurations: [configuration]
     )
   }
+
+  static func container(at url: URL) throws -> ModelContainer {
+    let schema = Schema(versionedSchema: EnoughSchemaV1.self)
+    let configuration = ModelConfiguration(schema: schema, url: url)
+    return try ModelContainer(
+      for: schema,
+      migrationPlan: EnoughMigrationPlan.self,
+      configurations: [configuration]
+    )
+  }
 }
