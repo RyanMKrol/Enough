@@ -1675,7 +1675,7 @@
     {
       "id": "T064",
       "title": "README implementation-status refresh once the core app exists",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T090"
       ],
