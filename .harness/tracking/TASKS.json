@@ -941,7 +941,7 @@
     {
       "id": "T037",
       "title": "Debug menu shell: hidden entry (shake / launch argument) + empty sections",
-      "status": "blocked",
+      "status": "failed",
       "dependsOn": [
         "T030"
       ],
@@ -1311,7 +1311,7 @@
     {
       "id": "T050",
       "title": "Session complete screen (ring race, check pop, stats, learn-5-more)",
-      "status": "blocked",
+      "status": "failed",
       "dependsOn": [
         "T028",
         "T047",
@@ -1393,7 +1393,7 @@
     {
       "id": "T053",
       "title": "ReadinessCalculator: per-trip survival readiness % + copy line",
-      "status": "blocked",
+      "status": "failed",
       "dependsOn": [
         "T011",
         "T022"
