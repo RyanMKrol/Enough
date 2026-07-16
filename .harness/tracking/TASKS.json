@@ -1279,7 +1279,7 @@
     {
       "id": "T049",
       "title": "Flashcard review session screen (grades, live interval previews)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T010",
         "T024",
