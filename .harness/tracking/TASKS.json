@@ -618,7 +618,7 @@
     {
       "id": "T025",
       "title": "PricingCalculator: pack/bundle totals, savings & summary lines",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T011"
       ],
