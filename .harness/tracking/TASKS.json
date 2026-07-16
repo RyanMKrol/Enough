@@ -1049,7 +1049,7 @@
     {
       "id": "T041",
       "title": "Debug setting: reset all app data (SRS, trip, entitlements, activity)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T014",
         "T089"
