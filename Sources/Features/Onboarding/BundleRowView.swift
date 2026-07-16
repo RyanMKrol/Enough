@@ -21,6 +21,7 @@ struct BundleRowView: View {
             Text(title)
               .font(.system(size: 17, weight: .semibold))
               .foregroundColor(EnoughColor.label)
+              .fixedSize()
 
             if isPopular {
               Text("POPULAR")
@@ -30,19 +31,22 @@ struct BundleRowView: View {
                 .padding(.vertical, 3)
                 .background(accentTheme.accent)
                 .cornerRadius(99)
+                .fixedSize()
             }
           }
 
           Text(subtitle)
             .font(.system(size: 13, weight: .regular))
             .foregroundColor(EnoughColor.secondaryText)
+            .fixedSize(horizontal: false, vertical: true)
         }
 
-        Spacer()
+        Spacer(minLength: 8)
 
         Text(price)
           .font(.system(size: 17, weight: .bold))
           .foregroundColor(EnoughColor.label)
+          .fixedSize()
       }
       .padding(16)
       .background(EnoughColor.surface)

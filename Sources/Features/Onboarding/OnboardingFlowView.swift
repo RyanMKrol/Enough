@@ -28,7 +28,7 @@ struct OnboardingFlowView: View {
             }
             .navigationBarBackButtonHidden(true)
           case .plan:
-            Text("Plan")
+            PlanView(onFinish: finish)
               .navigationBarBackButtonHidden(true)
           }
         }
