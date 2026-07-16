@@ -1730,7 +1730,7 @@
     {
       "id": "T066",
       "title": "Privacy manifest (PrivacyInfo.xcprivacy) + required-reason API audit",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
