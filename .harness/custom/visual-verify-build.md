@@ -21,6 +21,12 @@
   default), canvas `#f2f2f7`, exact copy strings, and layout matching the section for your
   screen. Truncated text, missing sections, default-blue SwiftUI tint, or a blank screen =
   NOT verified.
+- **The app MUST fill the whole screen.** If the screenshot shows BLACK LETTERBOX BARS at the top
+  and bottom with the UI scaled up in the middle, the app is running in iOS legacy compatibility
+  mode because it is missing a launch screen — that is a hard FAIL, not a style nit. Confirm
+  `UILaunchScreen` (or a launch storyboard) is present in the generated `Sources/Info.plist`
+  (`plutil -extract UILaunchScreen xml1 -o - Sources/Info.plist`). This globally distorts every
+  screen's proportions, so judge it BEFORE assessing any individual component.
 
 ### Navigating to your screen (xcui/AXe — only if installed)
 
