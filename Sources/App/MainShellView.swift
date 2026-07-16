@@ -21,11 +21,16 @@ struct MainShellView: View {
 
   @ViewBuilder
   private func screen(for tab: EnoughTab) -> some View {
-    ZStack {
-      EnoughColor.canvas.ignoresSafeArea()
-      Text(tab.title)
-        .font(EnoughFont.largeTitle())
-        .foregroundStyle(EnoughColor.label)
+    switch tab {
+    case .learn:
+      HomeView()
+    default:
+      ZStack {
+        EnoughColor.canvas.ignoresSafeArea()
+        Text(tab.title)
+          .font(EnoughFont.largeTitle())
+          .foregroundStyle(EnoughColor.label)
+      }
     }
   }
 }
