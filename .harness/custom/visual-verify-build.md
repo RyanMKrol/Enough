@@ -10,6 +10,13 @@
   then re-screenshot: `xcrun simctl io booted screenshot screenshots/latest.png`.
 - To reach a specific tab/screen for a screenshot, you may also launch with `-debug-menu`
   (opens the debug sheet) — but prefer judging the actual screen your task changed.
+- **Screenshot at DEFAULT text size unless your task is specifically about Dynamic Type.** The
+  simulator's Dynamic Type is a PERSISTENT setting, so an accessibility-sizing task (T069) can leave
+  it cranked up and make every later task's screenshot look wrongly oversized/"blocky". Before
+  judging a normal screenshot, ensure the size is the iOS default: `xcrun simctl ui booted
+  content_size large` (note the UNDERSCORE — `content-size` with a hyphen just prints simctl usage
+  and does nothing on Xcode 26). Only an explicit accessibility task should set an `accessibility-*`
+  size, and it MUST reset to `large` when it finishes.
 - Judge against `.harness/docs/designs/design-spec.md`: correct accent (Japan red `#e24947` by
   default), canvas `#f2f2f7`, exact copy strings, and layout matching the section for your
   screen. Truncated text, missing sections, default-blue SwiftUI tint, or a blank screen =
