@@ -1366,7 +1366,7 @@
     {
       "id": "T052",
       "title": "Progress components: streak card + week-dot row",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002",
         "T008",
