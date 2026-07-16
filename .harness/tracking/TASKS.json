@@ -1449,7 +1449,7 @@
     {
       "id": "T055",
       "title": "Browse tab store (country sections, prices, buy & restore)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T012",
         "T026",
