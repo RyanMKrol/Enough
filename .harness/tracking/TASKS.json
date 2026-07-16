@@ -1195,7 +1195,7 @@
     {
       "id": "T046",
       "title": "MC question components: question header + four-state answer row",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T006",
         "T007"
