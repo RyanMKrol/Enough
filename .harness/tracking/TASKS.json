@@ -669,7 +669,7 @@
     {
       "id": "T027",
       "title": "AudioService: per-card clip playback with auto-play-once semantics",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T012"
       ],
