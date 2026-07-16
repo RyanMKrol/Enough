@@ -45,7 +45,8 @@ final class MCSessionViewModelTests: XCTestCase {
       audio: audio,
       study: study,
       deckProgress: deckProgress,
-      stats: stats
+      stats: stats,
+      notifications: NotificationsService(center: NoopNotificationCenter())
     )
   }
 

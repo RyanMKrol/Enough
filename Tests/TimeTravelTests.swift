@@ -41,7 +41,8 @@ class TimeTravelTests: XCTestCase {
         entitlements: .init(context: ctx),
         dateProvider: provider
       ),
-      stats: .init(activityStore: .init(context: ctx), dateProvider: provider)
+      stats: .init(activityStore: .init(context: ctx), dateProvider: provider),
+      notifications: .init(center: NoopNotificationCenter())
     )
   }
 

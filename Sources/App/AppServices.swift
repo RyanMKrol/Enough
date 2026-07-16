@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import UserNotifications
 
 /// The app's dependency container. Built once per process (`.live()` for the real app,
 /// `.preview()` for tests/SwiftUI previews) and threaded through the environment.
@@ -16,6 +17,7 @@ final class AppServices {
   let study: StudyService
   let deckProgress: DeckProgressService
   let stats: StatsService
+  let notifications: NotificationsService
 
   init(
     dateProvider: DateProvider,
@@ -29,7 +31,8 @@ final class AppServices {
     audio: AudioService,
     study: StudyService,
     deckProgress: DeckProgressService,
-    stats: StatsService
+    stats: StatsService,
+    notifications: NotificationsService
   ) {
     self.dateProvider = dateProvider
     self.contentStore = contentStore
@@ -43,21 +46,24 @@ final class AppServices {
     self.study = study
     self.deckProgress = deckProgress
     self.stats = stats
+    self.notifications = notifications
   }
 
   static func live() -> AppServices {
     // swiftlint:disable:next force_try
     let container = try! PersistenceStack.container()
-    return makeGraph(container: container)
+    return makeGraph(container: container, notificationCenter: UNUserNotificationCenter.current())
   }
 
   static func preview() -> AppServices {
     // swiftlint:disable:next force_try
     let container = try! PersistenceStack.container(inMemory: true)
-    return makeGraph(container: container)
+    return makeGraph(container: container, notificationCenter: NoopNotificationCenter())
   }
 
-  private static func makeGraph(container: ModelContainer) -> AppServices {
+  private static func makeGraph(
+    container: ModelContainer, notificationCenter: UserNotificationCentering
+  ) -> AppServices {
     let dateProvider = AdjustableDateProvider()
     let contentStore = ContentStore()
     let context = ModelContext(container)
@@ -81,6 +87,7 @@ final class AppServices {
       dateProvider: dateProvider
     )
     let stats = StatsService(activityStore: activityStore, dateProvider: dateProvider)
+    let notifications = NotificationsService(center: notificationCenter)
 
     return AppServices(
       dateProvider: dateProvider,
@@ -94,7 +101,8 @@ final class AppServices {
       audio: audio,
       study: study,
       deckProgress: deckProgress,
-      stats: stats
+      stats: stats,
+      notifications: notifications
     )
   }
 }

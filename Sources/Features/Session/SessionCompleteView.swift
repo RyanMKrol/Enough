@@ -50,6 +50,12 @@ struct SessionCompleteView: View {
         showCheck = true
       }
     }
+    .onAppear {
+      Task {
+        _ = await services.notifications.requestPermissionIfNeeded()
+        await rescheduleReviewNotification()
+      }
+    }
   }
 
   private var heroSection: some View {
@@ -194,6 +200,32 @@ struct SessionCompleteView: View {
       return strongestDeckTitle ?? "your strongest deck"
     } catch {
       return "your strongest deck"
+    }
+  }
+
+  private func rescheduleReviewNotification() async {
+    do {
+      let catalog = try services.contentStore.catalog()
+      let owned = try services.entitlementStore.ownedDeckIds(catalog: catalog)
+      let now = services.dateProvider.now
+
+      var dueDates: [Date] = []
+      for deckId in owned {
+        let records = try services.cardSRSStore.records(forDeck: deckId)
+        dueDates.append(
+          contentsOf:
+            records
+            .filter { $0.statusRaw != "new" }
+            .compactMap(\.dueAt)
+        )
+      }
+
+      let forecast = NotificationsService.forecast(dueDates: dueDates, now: now)
+      await services.notifications.rescheduleReviewNotification(
+        dueCount: forecast?.count ?? 0, nextDueDate: forecast?.fireAt
+      )
+    } catch {
+      await services.notifications.rescheduleReviewNotification(dueCount: 0, nextDueDate: nil)
     }
   }
 
