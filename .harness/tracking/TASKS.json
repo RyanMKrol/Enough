@@ -2680,6 +2680,36 @@
       "verify": [],
       "expectsTest": false,
       "spec": ".harness/tasks/T101.md"
+    },
+    {
+      "id": "T102",
+      "title": "Debug setting: force all learned cards due now",
+      "status": "pending",
+      "dependsOn": [
+        "T017",
+        "T022",
+        "T089"
+      ],
+      "gate": null,
+      "tags": [
+        "debug"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/Services/**",
+        "Sources/Persistence/**",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/design-spec.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T102.md",
+      "visualVerify": false,
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      }
     }
   ]
 }
