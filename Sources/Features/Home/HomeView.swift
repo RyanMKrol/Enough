@@ -5,6 +5,8 @@ struct HomeView: View {
   @State private var viewModel: HomeViewModel?
   @State private var learnSessionEngine: SessionEngine?
   @State private var isPresentingLearnSession = false
+  @State private var reviewSessionEngine: SessionEngine?
+  @State private var isPresentingReviewSession = false
 
   var body: some View {
     NavigationStack {
@@ -19,6 +21,11 @@ struct HomeView: View {
     .fullScreenCover(isPresented: $isPresentingLearnSession) {
       if let learnSessionEngine {
         MCSessionView(engine: learnSessionEngine)
+      }
+    }
+    .fullScreenCover(isPresented: $isPresentingReviewSession) {
+      if let reviewSessionEngine {
+        ReviewSessionView(engine: reviewSessionEngine)
       }
     }
   }
@@ -46,8 +53,7 @@ struct HomeView: View {
             ReviewsBanner(
               dueCount: viewModel.dueCount,
               onReview: {
-                // swiftlint:disable:next todo
-                // TODO(T049): launch review session
+                startReviewSession()
               }
             )
           }
@@ -100,6 +106,12 @@ struct HomeView: View {
     guard let engine = try? services.study.makeLearnSession(deckId: deckId) else { return }
     learnSessionEngine = engine
     isPresentingLearnSession = true
+  }
+
+  private func startReviewSession() {
+    guard let engine = try? services.study.makeReviewSession() else { return }
+    reviewSessionEngine = engine
+    isPresentingReviewSession = true
   }
 
   private func header(viewModel: HomeViewModel) -> some View {
