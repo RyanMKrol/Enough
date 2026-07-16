@@ -35,19 +35,9 @@ struct OnboardingFlowView: View {
   }
 
   private var welcomeView: some View {
-    VStack(spacing: 24) {
-      Text("Welcome")
-        .font(.largeTitle)
-
-      Spacer()
-
-      Button("Get started") {
-        path.append(.country)
-      }
-      .frame(maxWidth: .infinity)
-      .frame(height: 54)
+    WelcomeView {
+      path.append(.country)
     }
-    .padding()
   }
 
   func finish() {
