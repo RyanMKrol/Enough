@@ -28,6 +28,7 @@ enum DebugProviders {
     DebugAbout.section,
     DebugUnlock.section,
     DebugTimeTravel.section,
+    DebugDemoSeed.section,
     DebugReset.section,  // swiftlint:disable:this trailing_comma
   ]
 }

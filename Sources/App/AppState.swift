@@ -10,10 +10,12 @@ final class AppState {
     case main
   }
 
+  let services: AppServices
   var phase: Phase
   var activeAccent: AccentTheme
 
   init(services: AppServices) {
+    self.services = services
     let activeTrip = try? services.tripStore.activeTrip()
     if let trip = activeTrip.flatMap({ $0 }) {
       phase = .main
@@ -21,6 +23,16 @@ final class AppState {
     } else {
       phase = .onboarding
       activeAccent = .japan
+    }
+  }
+
+  /// Re-derives `phase`/`activeAccent` from the store — used after a debug/launch-argument
+  /// seed writes a trip after `AppState` was already constructed.
+  func refreshFromStore() {
+    let activeTrip = try? services.tripStore.activeTrip()
+    if let trip = activeTrip.flatMap({ $0 }) {
+      phase = .main
+      activeAccent = AccentTheme(rawValue: trip.accentRawValue) ?? .japan
     }
   }
 

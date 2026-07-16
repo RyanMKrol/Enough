@@ -7,6 +7,8 @@ struct RootView: View {
 
   init(appState: AppState) {
     self.appState = appState
+    LaunchArguments.handle(services: appState.services)
+    appState.refreshFromStore()
   }
 
   var body: some View {
