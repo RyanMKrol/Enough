@@ -10,9 +10,7 @@ struct HomeView: View {
         .navigationDestination(for: HomeDestination.self) { destination in
           switch destination {
           case .deckDetail(let deckId):
-            // swiftlint:disable:next todo
-            // TODO(T045): replace with DeckDetailView
-            Text(deckId)
+            DeckDetailView(deckId: deckId)
           }
         }
     }
