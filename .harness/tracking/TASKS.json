@@ -941,7 +941,7 @@
     {
       "id": "T037",
       "title": "Debug menu shell: hidden entry (shake / launch argument) + empty sections",
-      "status": "pending",
+      "status": "blocked",
       "dependsOn": [
         "T030"
       ],
