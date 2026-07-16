@@ -3,5 +3,10 @@
     "failed": true,
     "reason": "review-failed: superseded by T089 — re-specs identical work + bakes in the swift-format/swiftlint trailing-comma resolution and forbids tooling-config edits",
     "at": "2026-07-16T08:31:21Z"
+  },
+  "T050": {
+    "failed": true,
+    "reason": "review-failed: superseded by T090 — same scope but wires onDone via the session view's own @Environment(.dismiss), forbids touching any presenting screen",
+    "at": "2026-07-16T08:31:23Z"
   }
 }
