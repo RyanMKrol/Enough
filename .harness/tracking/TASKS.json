@@ -2347,7 +2347,7 @@
     {
       "id": "T090",
       "title": "Session complete screen (ring race, check pop, stats, learn-5-more)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T028",
         "T047",
