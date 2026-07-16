@@ -186,6 +186,13 @@ them, don't abandon the task:**
     the exact formatter config).
   - **Lint**: `swiftlint lint --strict`
   - **Test**: `xcodegen generate && xcodebuild test -project Enough.xcodeproj -scheme Enough -destination 'platform=iOS Simulator,name=iPhone 17 Pro'`
+    - **Local run pins the simulator by UDID, not by name.** `.harness/config/harness.env`'s
+      `LOCAL_DOD` (and `build_run.sh`) target a DEDICATED device — `Enough-Sim` (iOS 26.5),
+      `id=9481593E-90BC-4051-9F45-01CAE6D17C61` — instead of `name=iPhone 17 Pro`, so this loop never
+      collides with another iOS loop on the same Mac (two loops sharing a by-name device fight over the
+      foreground app and reset each other's sims mid-test). CI stays by-name (one sim per runner), so
+      the canonical command above is unchanged; the pin is a LOCAL-only override. Recreate the device
+      if deleted: `xcrun simctl create "Enough-Sim" com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro com.apple.CoreSimulator.SimRuntime.iOS-26-5`, then update the UDID in both files.
   - **Build**: folded into the `xcodebuild test` invocation above (a passing test run implies a
     successful build); T001 may split out an explicit `xcodebuild build` step if useful.
 - Define the exact, final versions of these commands in

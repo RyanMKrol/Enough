@@ -4,7 +4,11 @@
 # iOS simulator, entirely from the CLI (no Xcode GUI). This is the command
 # .harness/config/harness.env's VISUAL_VERIFY_HOOK points at.
 #
-# Usage: ./build_run.sh [simulator-name]   (default: "iPhone 17 Pro")
+# Usage: ./build_run.sh [simulator-name-or-udid]
+# Default is the DEDICATED "Enough-Sim" device (pinned by UDID) so this loop's screenshots never
+# clash with another iOS loop on the same Mac. Pass a name/UDID to override. Recreate the device if
+# deleted: xcrun simctl create "Enough-Sim" com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro \
+#   com.apple.CoreSimulator.SimRuntime.iOS-26-5  (then update the default UDID below).
 
 set -euo pipefail
 
@@ -13,7 +17,7 @@ cd "$PROJECT_DIR"
 
 APP_NAME="Enough"
 BUNDLE_ID="com.ryankrol.enough"
-SIM_NAME="${1:-iPhone 17 Pro}"
+SIM_NAME="${1:-9481593E-90BC-4051-9F45-01CAE6D17C61}"   # dedicated "Enough-Sim" (iOS 26.5)
 
 # Resolve the argument to a concrete UDID. A device *name* can be ambiguous (the
 # same model exists per installed runtime), so prefer an already-booted match,
