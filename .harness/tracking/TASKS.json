@@ -722,7 +722,7 @@
     {
       "id": "T029",
       "title": "AppState + root router (onboarding vs main, accent injection)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002",
         "T015"
