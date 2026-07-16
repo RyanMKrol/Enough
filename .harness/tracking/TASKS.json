@@ -967,7 +967,7 @@
     {
       "id": "T038",
       "title": "Debug setting: unlock all packs",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T026",
         "T089"
