@@ -1077,7 +1077,7 @@
     {
       "id": "T042",
       "title": "Debug setting: seed demo state (mid-trip fixture, also via launch argument)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T012",
         "T015",
