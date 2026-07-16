@@ -1508,7 +1508,7 @@
     {
       "id": "T057",
       "title": "Debug setting: notification test fire + pending-schedule inspector",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T056",
         "T089"
