@@ -2657,6 +2657,29 @@
         "workType": "feature",
         "risk": []
       }
+    },
+    {
+      "id": "T101",
+      "title": "Continue card polish: show ring percent + keep meta line on one line",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "home",
+        "design-polish"
+      ],
+      "facets": {
+        "layer": "views",
+        "workType": "style",
+        "risk": []
+      },
+      "scope": [
+        "Sources/Features/Home/ContinueCard.swift"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T101.md"
     }
   ]
 }
