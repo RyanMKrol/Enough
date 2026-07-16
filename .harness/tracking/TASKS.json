@@ -1167,7 +1167,7 @@
     {
       "id": "T045",
       "title": "Deck detail screen (tinted hero, sample cards with audio, actions)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T027",
         "T044"
