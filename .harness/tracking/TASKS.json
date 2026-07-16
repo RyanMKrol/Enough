@@ -695,7 +695,7 @@
     {
       "id": "T028",
       "title": "StatsService: streaks, week dots & lifetime totals",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T013",
         "T018"
