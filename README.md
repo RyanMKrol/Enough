@@ -1,27 +1,9 @@
 # Enough
 
-An iOS app for learning "enough" of a language — just enough to get by on a
-short trip, like a weekend away or a week's holiday.
-
-## The idea
-
-Most language apps optimize for long-term fluency. Enough optimizes for the
-opposite: a focused, short burst of learning aimed at a specific upcoming
-trip. The goal isn't mastery, it's competence for a handful of real
-situations (ordering food, asking directions, basic pleasantries, etc.).
-
-Under the hood, the app uses spaced-repetition flashcard mechanics (in the
-spirit of Anki) to drive learning efficiently in a short window of time.
-
-## How it works (rough shape)
-
-- Users browse and purchase scenario-sized language packs (£1 each) or discounted trip
-  bundles (Weekend / The whole week) — one-time purchases, no subscription.
-- Each deck is scoped to "enough for a trip" rather than a whole language —
-  curated, practical vocabulary and phrases rather than exhaustive courses.
-- Spaced repetition drives review scheduling so a small deck can be learned
-  solidly in a few days.
-- Initial focus: enough of a language for a week or weekend away.
+Enough is a native SwiftUI iOS app that teaches just enough of a language for a short trip —
+scenario-sized packs (£1 each, or discounted trip bundles for a weekend or a week away;
+one-time purchases, no subscription, StoreKit stubbed for now) learned through an Anki-style
+SM-2 spaced-repetition engine.
 
 ## Building this
 
@@ -29,27 +11,58 @@ This repo uses an autonomous build harness (`.harness/`) to work through an impl
 backlog one task at a time — see [`.harness/docs/HARNESS.md`](./.harness/docs/HARNESS.md) for
 how it works, and [`CLAUDE.md`](./CLAUDE.md) for project conventions.
 
-### Implementation status
+## What's implemented
 
-| Task | Description | Status |
-|------|-------------|--------|
-| T001 | Project scaffold + CI green on an empty build | ✅ done |
-| T002–T064 | Full v1 backlog (design system → content/persistence/SRS → screens → polish), authored 2026-07-15 | 📋 pending |
-| T065–T088 | Axiom-derived wave: accessibility, privacy manifest/policy, schema guardrails, price localization, and 14 audit-and-fix sweeps | 📋 pending |
+- **Onboarding** — welcome screen, country picker, and a plan/purchase screen (bundle or
+  à-la-carte pack selection with running totals) that hands off into the main shell.
+- **Main shell** — a floating liquid-glass tab bar with four tabs: Learn (Home), Reviews,
+  Progress, and Browse.
+- **Learn & review sessions** — multiple-choice learn sessions and tap-to-reveal flashcard
+  review sessions, both driving the SM-2 schedule via `SessionEngine`/`StudyService`, ending in
+  a session-complete screen (ring race, stats, "learn 5 more").
+- **Reviews tab** — due ring plus Due/Learning/Mastered tiles and per-deck strength bars.
+- **Browse tab** — country-sectioned store listing packs/bundles with prices, buy, and restore.
+- **Progress** — streak pill, streak card, and week-dot row are built as components; full tab
+  assembly (stat tiles + readiness ring) is not yet merged (`T054` pending).
+- **Streaks & readiness** — `StatsService` computes streaks, week dots, and lifetime totals.
+- **Review-due local notifications** — `NotificationsService` schedules a local notification
+  for the next due review, requesting permission after the first completed session.
+- **Debug god-mode menu** — a hidden menu (shake gesture or the `-debug-menu` launch argument)
+  with settings to unlock all packs, time-travel the app clock, reset all app data, fire a test
+  notification, and inspect pending schedules. The `-demo-state` launch argument wipes and seeds
+  a mid-trip demo fixture (used by `build_run.sh` for screenshots); "force all learned cards due
+  now" is not yet merged (`T102` pending).
 
-The live backlog + statuses are in `.harness/tracking/TASKS.json`; each task's spec is in
-`.harness/tasks/`. The design source of truth is
-[`.harness/docs/designs/design-spec.md`](./.harness/docs/designs/design-spec.md) and the shared
-type/name contract is
-[`.harness/docs/designs/architecture.md`](./.harness/docs/designs/architecture.md).
+## Architecture
+
+- `Sources/App` — `AppState`, `RootView`, `MainShellView`, and `AppServices` (DI root).
+- `CoreKit` — `DateProvider` and shared utilities.
+- `DesignSystem` — tokens (`EnoughFont`, colors, layout) and reusable visual components.
+- `ContentKit` — content catalog models + `ContentStore` (read-only bundled data).
+- `Persistence` — SwiftData `...Record` models and `...Store` types.
+- `SRSKit` — pure SM-2 spaced-repetition logic and the session engine (no SwiftData/SwiftUI).
+- `Services` — study, purchases, audio, stats, and notifications glue between the layers above
+  and the UI.
+- `Features/<Area>` — screens, one directory per area (Onboarding, Home, Session, Reviews,
+  Progress, Browse, Debug, …).
+
+See [`.harness/docs/designs/architecture.md`](./.harness/docs/designs/architecture.md) for exact
+signatures and [`.harness/docs/designs/design-spec.md`](./.harness/docs/designs/design-spec.md)
+for design truth.
+
+## Content
+
+Decks, cards, and audio are bundled data under `Content/` (`catalog.json`, `decks/*.json`,
+`audio/*.mp3`) in the schema described in design-spec §8.1, produced by the external
+anki-builder pipeline. The current content is a placeholder fixture — Japanese textbook slices;
+the France and Germany country entries currently reuse the same Japanese files.
 
 ## Status
 
-Bare app skeleton plus planning collateral: an XcodeGen-generated iOS app (`Enough`) with a
-placeholder screen, a unit test target, SwiftLint + swift-format wired into CI, `build_run.sh`
-for local build/install/launch/screenshot on the simulator, and a bundled sample content fixture
-(`Content/` — 4 Japanese decks, 114 cards + audio, generated from the anki-builder project; see
-design-spec §8.1 for the schema). No product features yet — the backlog builds them.
+The live backlog and per-task status live in `.harness/tracking/TASKS.json` (also viewable via
+the harness dashboard) — that's the source of truth for what's done vs. pending at any given
+time. Tests run via the `LOCAL_DOD` `xcodebuild` invocation in
+`.harness/config/harness.env`.
 
 ## Development
 
