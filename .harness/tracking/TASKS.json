@@ -832,7 +832,7 @@
     {
       "id": "T033",
       "title": "Country picker screen (Step 1) with graphite→accent morph",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T012",
         "T031"
