@@ -15,7 +15,7 @@ struct RootView: View {
       case .onboarding:
         Text("Onboarding")
       case .main:
-        Text("Main")
+        MainShellView()
       }
     }
     .environment(\.accentTheme, appState.activeAccent)
