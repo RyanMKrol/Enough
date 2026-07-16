@@ -1780,7 +1780,7 @@
     {
       "id": "T068",
       "title": "Isolate the SwiftData store URL behind one function (app-group readiness)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T014"
       ],
