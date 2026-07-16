@@ -1138,7 +1138,7 @@
     {
       "id": "T044",
       "title": "Home screen assembly (header, day counter, sections, navigation)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T022",
         "T028",
