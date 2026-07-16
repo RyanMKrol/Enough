@@ -1,1 +1,7 @@
-{}
+{
+  "T037": {
+    "failed": true,
+    "reason": "review-failed: superseded by T089 — re-specs identical work + bakes in the swift-format/swiftlint trailing-comma resolution and forbids tooling-config edits",
+    "at": "2026-07-16T08:31:21Z"
+  }
+}
