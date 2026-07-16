@@ -1221,7 +1221,7 @@
     {
       "id": "T047",
       "title": "Multiple-choice learn session screen (states, sheets, haptics, transitions)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T024",
         "T045",
