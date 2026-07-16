@@ -18,6 +18,7 @@ struct HomeView: View {
           }
         }
     }
+    .accessibilityIdentifier(AXID.screenHome)
     .fullScreenCover(isPresented: $isPresentingLearnSession) {
       if let learnSessionEngine {
         MCSessionView(engine: learnSessionEngine)
@@ -47,6 +48,7 @@ struct HomeView: View {
                 startLearnSession(deckId: continueDeck.deck.id)
               }
             )
+            .accessibilityIdentifier(AXID.homeContinueCard)
           }
 
           if viewModel.dueCount > 0 {
@@ -56,6 +58,7 @@ struct HomeView: View {
                 startReviewSession()
               }
             )
+            .accessibilityIdentifier(AXID.homeReviewsBanner)
           }
 
           VStack(alignment: .leading, spacing: 8) {
@@ -72,6 +75,7 @@ struct HomeView: View {
                   )
                 }
                 .buttonStyle(.plain)
+                .accessibilityIdentifier(AXID.deckRow(row.deck.id))
 
                 if index < viewModel.deckRows.count - 1 {
                   Divider()
@@ -130,6 +134,7 @@ struct HomeView: View {
       Spacer()
 
       StreakPill(count: viewModel.streak)
+        .accessibilityIdentifier(AXID.streakPill)
     }
   }
 }

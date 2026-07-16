@@ -58,6 +58,7 @@ struct PulsingAudioButton: View {
         }
       }
     }
+    .accessibilityIdentifier(AXID.audioButton)
   }
 
   private func onTap() {

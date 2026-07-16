@@ -45,6 +45,7 @@ struct CountryPickerView: View {
     }
     .navigationBarBackButtonHidden(true)
     .onAppear(perform: loadCatalog)
+    .accessibilityIdentifier(AXID.screenCountry)
   }
 
   private var header: some View {
@@ -93,6 +94,7 @@ struct CountryPickerView: View {
       .animation(.easeInOut(duration: 0.35), value: draft.selectedCountryId)
       .disabled(draft.selectedCountryId == nil)
       .opacity(draft.selectedCountryId == nil ? 0.5 : 1.0)
+      .accessibilityIdentifier(AXID.onboardingContinue)
   }
 
   private func loadCatalog() {

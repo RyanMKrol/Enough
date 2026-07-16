@@ -16,6 +16,7 @@ struct SessionChrome: View {
           .frame(width: 30, height: 30)
           .background(Circle().fill(Color(hex: 0xf7f7fa)))
       }
+      .accessibilityIdentifier(AXID.sessionClose)
 
       AnimatedProgressBar(
         progress: progress,

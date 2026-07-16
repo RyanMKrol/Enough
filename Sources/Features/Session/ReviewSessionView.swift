@@ -20,6 +20,7 @@ struct ReviewSessionView: View {
           case .complete:
             // swiftlint:disable:next todo
             Text("Complete")  // TODO(T050): SessionCompleteView
+              .accessibilityIdentifier(AXID.screenSessionComplete)
           }
         }
     }
@@ -78,6 +79,7 @@ struct ReviewSessionView: View {
           }
         }
       }
+      .accessibilityIdentifier(AXID.screenSessionReview)
       .onChange(of: viewModel.route) { _, newRoute in
         if let newRoute {
           path.append(newRoute)

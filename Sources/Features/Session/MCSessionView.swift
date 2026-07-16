@@ -20,6 +20,7 @@ struct MCSessionView: View {
           case .complete:
             // swiftlint:disable:next todo
             Text("Complete")  // TODO(T050): SessionCompleteView
+              .accessibilityIdentifier(AXID.screenSessionComplete)
           }
         }
     }
@@ -60,6 +61,7 @@ struct MCSessionView: View {
                     ? viewModel.rowStates[index] : .idle,
                   action: { viewModel.select(option: option) }
                 )
+                .accessibilityIdentifier(AXID.answerRow(index))
               }
             }
           }
@@ -77,6 +79,7 @@ struct MCSessionView: View {
           resultSheetView(resultSheet, viewModel: viewModel)
         }
       }
+      .accessibilityIdentifier(AXID.screenSessionMC)
       .sensoryFeedback(.impact(weight: .light), trigger: viewModel.selectionCount)
       .sensoryFeedback(trigger: viewModel.lastResult) { _, new in
         switch new {

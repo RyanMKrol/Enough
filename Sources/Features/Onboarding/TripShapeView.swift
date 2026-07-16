@@ -67,6 +67,7 @@ struct TripShapeView: View {
     }
     .navigationBarBackButtonHidden(true)
     .onAppear(perform: loadCatalog)
+    .accessibilityIdentifier(AXID.screenTripShape)
   }
 
   private var header: some View {
@@ -85,6 +86,7 @@ struct TripShapeView: View {
       .buttonStyle(
         PrimaryButtonStyle(background: draft.accent.accent)
       )
+      .accessibilityIdentifier(AXID.onboardingContinue)
   }
 
   private func toggleScenario(_ id: String) {

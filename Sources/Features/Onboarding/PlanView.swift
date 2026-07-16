@@ -40,6 +40,7 @@ struct PlanView: View {
       }
     }
     .navigationBarBackButtonHidden(true)
+    .accessibilityIdentifier(AXID.screenPlan)
     .onAppear(perform: loadCatalog)
   }
 
@@ -191,6 +192,7 @@ struct PlanView: View {
       .buttonStyle(PrimaryButtonStyle(background: draft.accent.accent))
       .disabled(isPurchasing)
       .frame(width: 180)
+      .accessibilityIdentifier(AXID.onboardingContinue)
     }
   }
 

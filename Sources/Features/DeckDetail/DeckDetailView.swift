@@ -180,11 +180,13 @@ struct DeckDetailView: View {
             startLearnSession()
           }
           .buttonStyle(PrimaryButtonStyle(background: accentTheme.accent, subtleShadow: true))
+          .accessibilityIdentifier(AXID.deckContinue)
 
           Button("Practice all \(deckInfo?.cardCount ?? 0)") {
             startPracticeSession()
           }
           .buttonStyle(TintedButtonStyle())
+          .accessibilityIdentifier(AXID.deckPractice)
         }
         .padding(.horizontal, 22)
         .padding(.vertical, 16)
@@ -193,6 +195,7 @@ struct DeckDetailView: View {
       .frame(maxHeight: .infinity, alignment: .bottom)
     }
     .toolbar(.hidden, for: .navigationBar)
+    .accessibilityIdentifier(AXID.screenDeckDetail)
     .onAppear {
       loadContent()
     }

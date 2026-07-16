@@ -60,6 +60,7 @@ struct ReviewsTabView: View {
         .padding(.bottom, 32)
       }
     }
+    .accessibilityIdentifier(AXID.screenReviews)
     .onAppear {
       reload()
     }
@@ -105,6 +106,7 @@ struct ReviewsTabView: View {
           Text("Start review")
         }
         .buttonStyle(PrimaryButtonStyle(background: accentTheme.accent))
+        .accessibilityIdentifier(AXID.startReview)
       }
     }
     .padding(Layout.cardPad)
@@ -130,6 +132,7 @@ struct ReviewsTabView: View {
         Text("Start review")
       }
       .buttonStyle(PrimaryButtonStyle(background: accentTheme.accent))
+      .accessibilityIdentifier(AXID.startReview)
       .opacity(0.5)
       .disabled(true)
     }

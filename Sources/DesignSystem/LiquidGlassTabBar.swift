@@ -27,6 +27,7 @@ struct LiquidGlassTabBar: View {
           }
         )
         .buttonStyle(PlainButtonStyle())
+        .accessibilityIdentifier(tab.axID)
       }
     }
     .frame(maxWidth: .infinity)

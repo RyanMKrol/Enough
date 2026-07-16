@@ -35,4 +35,17 @@ enum EnoughTab: String, CaseIterable, Identifiable {
       "bag.fill"
     }
   }
+
+  var axID: String {
+    switch self {
+    case .learn:
+      AXID.tabLearn
+    case .reviews:
+      AXID.tabReviews
+    case .progress:
+      AXID.tabProgress
+    case .browse:
+      AXID.tabBrowse
+    }
+  }
 }

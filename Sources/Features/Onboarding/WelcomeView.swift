@@ -34,6 +34,7 @@ struct WelcomeView: View {
           onGetStarted()
         }
         .buttonStyle(PrimaryButtonStyle())
+        .accessibilityIdentifier(AXID.onboardingContinue)
 
         restorePurchasesButton
       }
@@ -41,6 +42,7 @@ struct WelcomeView: View {
       .padding(.bottom, 40)
     }
     .background(EnoughColor.surface)
+    .accessibilityIdentifier(AXID.screenWelcome)
   }
 
   private var wordmark: some View {
@@ -81,6 +83,7 @@ struct WelcomeView: View {
       }
       .buttonStyle(TextLinkButtonStyle())
       .disabled(isRestoringPurchases)
+      .accessibilityIdentifier(AXID.restorePurchases)
 
       if let message = restoreMessage {
         Text(message)

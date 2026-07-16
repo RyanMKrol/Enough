@@ -20,6 +20,7 @@ struct BrowseView: View {
         content(viewModel: viewModel)
       }
     }
+    .accessibilityIdentifier(AXID.screenBrowse)
     .onAppear {
       if let viewModel {
         viewModel.refresh()
@@ -63,6 +64,7 @@ struct BrowseView: View {
           .buttonStyle(TextLinkButtonStyle())
           .frame(maxWidth: .infinity)
           .padding(.top, 4)
+          .accessibilityIdentifier(AXID.browseRestore)
 
           if !viewModel.comingSoon.isEmpty {
             Text("More soon: \(viewModel.comingSoon.joined(separator: " · "))")
@@ -249,6 +251,7 @@ struct BrowseView: View {
           .background(Capsule().fill(accent.tint))
       }
       .disabled(viewModel.inFlightProductId != nil)
+      .accessibilityIdentifier(AXID.buy(productId))
     }
   }
 }

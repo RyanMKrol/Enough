@@ -35,6 +35,7 @@ struct FlashcardView: View {
       .frame(maxWidth: .infinity)
       .frame(minHeight: 380)
       .padding(22)
+      .accessibilityIdentifier(AXID.flashcard)
       .onTapGesture {
         if !isRevealed {
           withAnimation(.easeInOut(duration: 0.4)) {

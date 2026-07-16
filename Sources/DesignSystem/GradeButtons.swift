@@ -44,6 +44,19 @@ enum GradeChoice: CaseIterable {
       EnoughColor.easyBlue
     }
   }
+
+  var axID: String {
+    switch self {
+    case .again:
+      AXID.gradeAgain
+    case .hard:
+      AXID.gradeHard
+    case .good:
+      AXID.gradeGood
+    case .easy:
+      AXID.gradeEasy
+    }
+  }
 }
 
 struct GradeButtonRow: View {
@@ -73,6 +86,7 @@ struct GradeButtonRow: View {
           )
         }
         .buttonStyle(GradeButtonStyle())
+        .accessibilityIdentifier(choice.axID)
       }
     }
   }

@@ -63,6 +63,7 @@ struct CountryCardView: View {
       .animation(.spring(duration: 0.3), value: isSelected)
     }
     .buttonStyle(.plain)
+    .accessibilityIdentifier(AXID.countryCard(country.id))
   }
 
   private func handleTap() {
