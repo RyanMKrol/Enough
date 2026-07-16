@@ -1,0 +1,3 @@
+# Short project label shown in the harness dashboard header (next to the gear) and the browser tab.
+# First non-blank, non-# line wins. Keep it short — it's the tab title too.
+Enough
