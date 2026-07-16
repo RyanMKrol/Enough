@@ -883,7 +883,7 @@
     {
       "id": "T035",
       "title": "Plan screen components: bundle row + pack checklist row",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002",
         "T004"
