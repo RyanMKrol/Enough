@@ -1338,7 +1338,7 @@
     {
       "id": "T051",
       "title": "Reviews tab (due ring, Due/Learning/Mastered tiles, strength bars)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T022",
         "T030",
