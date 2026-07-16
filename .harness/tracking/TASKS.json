@@ -1480,7 +1480,7 @@
     {
       "id": "T056",
       "title": "NotificationsService: review-due local notifications, permission after first session",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T022",
         "T090"
