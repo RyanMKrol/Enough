@@ -753,7 +753,7 @@
     {
       "id": "T030",
       "title": "Floating liquid-glass tab bar + main shell with 4 placeholder tabs",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T029"
       ],
