@@ -13,7 +13,7 @@ struct RootView: View {
     Group {
       switch appState.phase {
       case .onboarding:
-        Text("Onboarding")
+        OnboardingFlowView(appState: appState)
       case .main:
         MainShellView()
       }
