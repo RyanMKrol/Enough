@@ -1253,7 +1253,7 @@
     {
       "id": "T048",
       "title": "Flashcard component: front, 3D flip, revealed layout",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T002",
         "T006"
