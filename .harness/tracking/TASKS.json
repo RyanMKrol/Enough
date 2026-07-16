@@ -1393,7 +1393,7 @@
     {
       "id": "T053",
       "title": "ReadinessCalculator: per-trip survival readiness % + copy line",
-      "status": "pending",
+      "status": "blocked",
       "dependsOn": [
         "T011",
         "T022"
