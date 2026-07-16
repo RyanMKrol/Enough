@@ -26,6 +26,8 @@ struct MainShellView: View {
       HomeView()
     case .reviews:
       ReviewsTabView()
+    case .browse:
+      BrowseView()
     default:
       ZStack {
         EnoughColor.canvas.ignoresSafeArea()
