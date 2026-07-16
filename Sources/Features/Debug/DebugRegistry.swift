@@ -24,5 +24,5 @@ enum DebugRowKind {
 
 enum DebugProviders {
   /// Every debug task appends exactly one `Debug<Name>.section` literal to this array.
-  static let all: [DebugSection] = [DebugAbout.section]
+  static let all: [DebugSection] = [DebugAbout.section, DebugUnlock.section]
 }
