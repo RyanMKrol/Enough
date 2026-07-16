@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainShellView: View {
   @State private var selection: EnoughTab = .learn
+  @State private var showDebugMenu = false
 
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -17,6 +18,15 @@ struct MainShellView: View {
         .padding(.bottom, 18)
     }
     .background(EnoughColor.canvas)
+    .onShake { showDebugMenu = true }
+    .sheet(isPresented: $showDebugMenu) {
+      DebugMenuView()
+    }
+    .onAppear {
+      if ProcessInfo.processInfo.arguments.contains("-debug-menu") {
+        showDebugMenu = true
+      }
+    }
   }
 
   @ViewBuilder
