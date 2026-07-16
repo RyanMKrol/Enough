@@ -530,7 +530,7 @@
     {
       "id": "T022",
       "title": "SRS persistence bridge + DeckProgressService (counts, strength, dues)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T012",
         "T017",
