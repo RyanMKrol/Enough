@@ -1112,7 +1112,7 @@
     {
       "id": "T043",
       "title": "Home components: continue card, reviews banner, deck list row",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T005",
         "T008"
