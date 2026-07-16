@@ -38,7 +38,7 @@ extension UNUserNotificationCenter: UserNotificationCentering {
 final class NotificationsService {
   static let reviewDueIdentifier = "review-due"
 
-  private let center: UserNotificationCentering
+  let center: UserNotificationCentering
 
   init(center: UserNotificationCentering) {
     self.center = center
