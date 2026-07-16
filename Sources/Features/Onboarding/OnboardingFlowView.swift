@@ -23,8 +23,10 @@ struct OnboardingFlowView: View {
               path.append(.tripShape)
             }
           case .tripShape:
-            Text("Trip shape")
-              .navigationBarBackButtonHidden(true)
+            TripShapeView {
+              path.append(.plan)
+            }
+            .navigationBarBackButtonHidden(true)
           case .plan:
             Text("Plan")
               .navigationBarBackButtonHidden(true)

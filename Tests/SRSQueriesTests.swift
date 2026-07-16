@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import Enough
 
 final class SRSQueriesTests: XCTestCase {
