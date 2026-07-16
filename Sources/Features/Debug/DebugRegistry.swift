@@ -27,6 +27,7 @@ enum DebugProviders {
   static let all: [DebugSection] = [
     DebugAbout.section,
     DebugUnlock.section,
-    DebugTimeTravel.section,  // swiftlint:disable:this trailing_comma
+    DebugTimeTravel.section,
+    DebugReset.section,  // swiftlint:disable:this trailing_comma
   ]
 }
