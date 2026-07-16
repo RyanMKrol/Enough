@@ -19,8 +19,9 @@ struct OnboardingFlowView: View {
         .navigationDestination(for: OnboardingStep.self) { step in
           switch step {
           case .country:
-            Text("Country")
-              .navigationBarBackButtonHidden(true)
+            CountryPickerView {
+              path.append(.tripShape)
+            }
           case .tripShape:
             Text("Trip shape")
               .navigationBarBackButtonHidden(true)
