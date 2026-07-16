@@ -560,7 +560,7 @@
     {
       "id": "T023",
       "title": "SessionEngine: pure session state machine (learn/review/practice)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T021"
       ],
