@@ -72,3 +72,21 @@ ship.
 **Impact:** adopting cross-device sync later requires a schema migration (add defaults/
 optionals) — a `SchemaV2` + migration stage, not a rewrite.
 **Revisit:** if/when cross-device sync of SRS state becomes a goal.
+
+### 2026-07-16 — Dedicated simulator (Enough-Sim) pinned by hardcoded UDID, no ensure-script
+**What:** to stop concurrent iOS loops on one Mac colliding on a shared `iPhone 17 Pro`, local test
+runs pin to a dedicated device "Enough-Sim". The pin now lives in three surfaces: `LOCAL_DOD` and
+`build_run.sh` (by UDID `9481593E-90BC-4051-9F45-01CAE6D17C61`) and `.harness/custom/build-preamble.md`
+(the standing builder override, by *name*). There is NO idempotent "ensure the device exists" script —
+the device is created once by hand and its UDID hardcoded. CI is deliberately left on `name=iPhone 17
+Pro` (one sim per isolated runner, no collision).
+**Why:** a uniquely-named dedicated device is the fix for the cross-loop device-contention race (the
+running app flip-flops between projects; `xcodebuild test` intermittently fails to launch the XCUITest
+runner). Hardcoding the UDID was the quickest pin; the build-preamble targets by name so it survives a
+recreate.
+**Impact:** if Enough-Sim is deleted/recreated its UDID changes, breaking `LOCAL_DOD` + `build_run.sh`
+until BOTH are hand-updated (the preamble, being name-based, self-heals). On a fresh machine the first
+run fails until the device is created manually — nothing auto-creates it.
+**Revisit:** add an idempotent `loop_sim.sh` ensure-script (create-if-missing on the newest runtime,
+print the UDID) and have `LOCAL_DOD`/`build_run.sh` resolve the device through it, so a fresh/reset
+machine self-heals and no UDID is hardcoded. Pattern: the dedicated-simulator-pinning learnings doc §1.
