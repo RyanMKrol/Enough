@@ -1021,7 +1021,7 @@
     {
       "id": "T040",
       "title": "Debug setting: force all learned cards due now",
-      "status": "blocked",
+      "status": "failed",
       "dependsOn": [
         "T017",
         "T022",
