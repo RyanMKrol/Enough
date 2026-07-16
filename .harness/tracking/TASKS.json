@@ -2318,7 +2318,7 @@
     {
       "id": "T089",
       "title": "Debug menu shell: hidden entry (shake / launch argument) + empty sections",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T030"
       ],
