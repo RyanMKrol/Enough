@@ -2710,6 +2710,60 @@
         "workType": "feature",
         "risk": []
       }
+    },
+    {
+      "id": "T103",
+      "title": "'Start my review' App Intent (Siri / Shortcuts / Spotlight)",
+      "status": "pending",
+      "dependsOn": [
+        "T099"
+      ],
+      "gate": null,
+      "tags": [
+        "app-intent",
+        "siri",
+        "shortcuts",
+        "reviews"
+      ],
+      "scope": [
+        "Sources/App/**",
+        "Sources/Services/**",
+        "Sources/EnoughApp.swift",
+        "Tests/**"
+      ],
+      "design": ".harness/docs/designs/architecture.md",
+      "verify": [],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T103.md",
+      "visualVerify": false,
+      "facets": {
+        "layer": "services",
+        "workType": "feature",
+        "risk": []
+      }
+    },
+    {
+      "id": "T104",
+      "title": "Continue card polish: show ring percent + keep meta line on one line",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "home",
+        "design-polish"
+      ],
+      "scope": [
+        "Sources/Features/Home/ContinueCard.swift"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T104.md",
+      "facets": {
+        "layer": "views",
+        "workType": "style",
+        "risk": []
+      }
     }
   ]
 }
