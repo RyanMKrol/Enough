@@ -23,5 +23,10 @@
     "failed": true,
     "reason": "review-failed: superseded by T103 — re-attempt widens scope to Sources/EnoughApp.swift (the @main file the App Intent must edit to bridge AppState) and forbids the gratuitous .swiftlint.yml edit that scope-blocked the original",
     "at": "2026-07-17T19:51:19Z"
+  },
+  "T101": {
+    "failed": true,
+    "reason": "review-failed: superseded by T104 — re-attempt keeps the same single-file scope but instructs the builder to invoke build_run.sh read-only (never edit it), the scope-creep that blocked the original",
+    "at": "2026-07-17T19:51:21Z"
   }
 }
