@@ -2154,7 +2154,7 @@
     {
       "id": "T083",
       "title": "Axiom audit: security & privacy (security-privacy-scanner)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
