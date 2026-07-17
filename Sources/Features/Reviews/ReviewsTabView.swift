@@ -9,6 +9,7 @@ struct ReviewsTabView: View {
   // swiftlint:disable:next large_tuple
   @State private var dueCounts: (due: Int, learning: Int, mastered: Int) = (0, 0, 0)
   @State private var deckProgresses: [String: DeckProgressService.DeckProgress] = [:]
+  @State private var deckInfoById: [String: DeckInfo] = [:]
   @State private var ownedDeckIds: [String] = []
   @State private var destinationLabel: String = ""
   @State private var nextDueDate: Date?
@@ -196,7 +197,7 @@ struct ReviewsTabView: View {
     HStack(spacing: 12) {
       StrengthBars(strength: progress.strength)
 
-      if let deck = getDeckInfo(deckId) {
+      if let deck = deckInfoById[deckId] {
         Text(deck.title)
           .font(.system(size: 17, weight: .regular))
           .foregroundStyle(EnoughColor.label)
@@ -210,16 +211,6 @@ struct ReviewsTabView: View {
     }
     .padding(.horizontal, Layout.cardPad)
     .padding(.vertical, Layout.rowVPad)
-  }
-
-  private func getDeckInfo(_ deckId: String) -> DeckInfo? {
-    guard let catalog = try? services.contentStore.catalog() else { return nil }
-    for country in catalog.countries {
-      if let deck = country.decks.first(where: { $0.id == deckId }) {
-        return deck
-      }
-    }
-    return nil
   }
 
   private func startReviewSession() {
@@ -241,6 +232,14 @@ struct ReviewsTabView: View {
 
     let owned = (try? services.entitlementStore.ownedDeckIds(catalog: catalog)) ?? []
     ownedDeckIds = Array(owned)
+
+    var infoById: [String: DeckInfo] = [:]
+    for country in catalog.countries {
+      for deck in country.decks {
+        infoById[deck.id] = deck
+      }
+    }
+    deckInfoById = infoById
 
     var progresses: [String: DeckProgressService.DeckProgress] = [:]
     for deckId in owned {
