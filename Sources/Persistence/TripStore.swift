@@ -52,6 +52,14 @@ final class TripStore {
     return max(1, days + 1)
   }
 
+  /// Deactivates the current trip but KEEPS the record (trip history) — used by
+  /// `AppState.startNewTrip()`, which must not touch owned packs or entitlements.
+  func deactivateActiveTrip() throws {
+    guard let trip = try activeTrip() else { return }
+    trip.isActive = false
+    try context.save()
+  }
+
   func reset() throws {
     let existingTrips = try context.fetch(FetchDescriptor<TripProfileRecord>())
     for trip in existingTrips {

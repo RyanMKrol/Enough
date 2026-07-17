@@ -13,6 +13,10 @@ final class AppState {
   let services: AppServices
   var phase: Phase
   var activeAccent: AccentTheme
+  /// Set by `startNewTrip()`, cleared on `completeOnboarding()` — lets the onboarding flow
+  /// know to re-enter directly at the country picker instead of the first-launch welcome
+  /// screen.
+  var isReonboarding = false
 
   init(services: AppServices) {
     self.services = services
@@ -39,9 +43,17 @@ final class AppState {
   func completeOnboarding(accent: AccentTheme) {
     activeAccent = accent
     phase = .main
+    isReonboarding = false
   }
 
+  /// Ends the current trip and re-runs onboarding. Wipes learning progress (SRS + daily
+  /// activity) but NEVER entitlements/purchases — owned packs must survive across trips.
   func startNewTrip() {
+    try? services.tripStore.deactivateActiveTrip()
+    try? services.cardSRSStore.reset()
+    try? services.activityStore.reset()
+    services.notifications.cancelAll()
+    isReonboarding = true
     phase = .onboarding
   }
 }

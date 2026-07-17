@@ -17,11 +17,12 @@ struct RootView: View {
     Group {
       switch appState.phase {
       case .onboarding:
-        OnboardingFlowView(appState: appState)
+        OnboardingFlowView(appState: appState, startAtCountryPicker: appState.isReonboarding)
       case .main:
         MainShellView()
       }
     }
+    .environment(appState)
     .environment(\.accentTheme, appState.activeAccent)
     .onChange(of: scenePhase) { _, newPhase in
       guard newPhase == .active, appState.phase == .main else { return }

@@ -17,6 +17,7 @@ enum AXID {
   static let screenSessionComplete = "screen-session-complete"
   static let screenReviews = "screen-reviews"
   static let screenProgress = "screen-progress"
+  static let progressNewTrip = "progress-new-trip"
   static let screenBrowse = "screen-browse"
   static let screenDebug = "screen-debug"
 

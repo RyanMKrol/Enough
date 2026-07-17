@@ -4,6 +4,7 @@ struct CountryPickerView: View {
   @Environment(\.services) private var services
   @Environment(OnboardingDraft.self) private var draft
 
+  var showsBackButton: Bool = true
   let onContinue: () -> Void
 
   @State private var catalog: ContentCatalog?
@@ -39,8 +40,10 @@ struct CountryPickerView: View {
         .background(EnoughColor.surface)
     }
     .toolbar {
-      ToolbarItem(placement: .navigationBarLeading) {
-        OnboardingBackButton()
+      if showsBackButton {
+        ToolbarItem(placement: .navigationBarLeading) {
+          OnboardingBackButton()
+        }
       }
     }
     .navigationBarBackButtonHidden(true)
