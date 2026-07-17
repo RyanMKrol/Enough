@@ -2818,6 +2818,144 @@
       "expectsTest": false,
       "visualVerify": true,
       "spec": ".harness/tasks/T106.md"
+    },
+    {
+      "id": "T107",
+      "title": "Debug reset re-enters onboarding in place, no relaunch",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "debug",
+        "onboarding",
+        "reset"
+      ],
+      "scope": [
+        "Sources/Features/Debug/**",
+        "Sources/App/RootView.swift",
+        "Sources/App/AppState.swift",
+        "Sources/App/MainShellView.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T107.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "feature",
+        "risk": []
+      }
+    },
+    {
+      "id": "T108",
+      "title": "Fix bottom tab bar dead taps (contentShape hit area)",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "tab-bar",
+        "hit-testing",
+        "bugfix"
+      ],
+      "scope": [
+        "Sources/DesignSystem/LiquidGlassTabBar.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T108.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": []
+      }
+    },
+    {
+      "id": "T109",
+      "title": "Build Liquid Glass tab bar polish variants behind a switch",
+      "status": "pending",
+      "dependsOn": [
+        "T108"
+      ],
+      "gate": null,
+      "tags": [
+        "tab-bar",
+        "liquid-glass",
+        "variants"
+      ],
+      "scope": [
+        "Sources/DesignSystem/LiquidGlassTabBar.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T109.md",
+      "facets": {
+        "layer": "views",
+        "workType": "style",
+        "risk": []
+      }
+    },
+    {
+      "id": "T110",
+      "title": "Review & pick a Liquid Glass tab bar variant",
+      "status": "pending",
+      "dependsOn": [
+        "T109"
+      ],
+      "gate": "needs-human",
+      "tags": [
+        "tab-bar",
+        "liquid-glass",
+        "review",
+        "needs-human"
+      ],
+      "scope": [
+        "Sources/DesignSystem/LiquidGlassTabBar.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T110.md"
+    },
+    {
+      "id": "T111",
+      "title": "Hardcode the chosen Liquid Glass tab bar variant",
+      "status": "pending",
+      "dependsOn": [
+        "T110"
+      ],
+      "gate": null,
+      "tags": [
+        "tab-bar",
+        "liquid-glass",
+        "cleanup"
+      ],
+      "scope": [
+        "Sources/DesignSystem/LiquidGlassTabBar.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T111.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "style",
+        "risk": []
+      }
     }
   ]
 }
