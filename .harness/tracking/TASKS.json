@@ -1536,7 +1536,7 @@
     {
       "id": "T058",
       "title": "New-trip flow: start/switch trips, accent reskin, owned packs persist",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T036",
         "T054"
