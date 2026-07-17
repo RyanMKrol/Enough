@@ -1420,7 +1420,7 @@
     {
       "id": "T054",
       "title": "Progress tab assembly (streak card, stat tiles, readiness ring)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T028",
         "T030",
