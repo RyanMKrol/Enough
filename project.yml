@@ -2,7 +2,7 @@ name: Enough
 options:
   bundleIdPrefix: com.ryankrol
   deploymentTarget:
-    iOS: "18.0"
+    iOS: "26.0"
   createIntermediateGroups: true
 settings:
   base:

@@ -5,6 +5,13 @@ scenario-sized packs (£1 each, or discounted trip bundles for a weekend or a we
 one-time purchases, no subscription, StoreKit stubbed for now) learned through an Anki-style
 SM-2 spaced-repetition engine.
 
+## Requirements
+
+Enough targets **iOS 26 and above** (excluding iOS 18-25 devices). This is a deliberate
+choice — Enough is a never-shipped app for current-generation iPhones, so it ships iOS
+26-only, which unblocks adopting iOS 26-only APIs (e.g. Liquid Glass `glassEffect()`)
+unconditionally, with no `#available` guards or pre-26 fallbacks.
+
 ## Building this
 
 This repo uses an autonomous build harness (`.harness/`) to work through an implementation
