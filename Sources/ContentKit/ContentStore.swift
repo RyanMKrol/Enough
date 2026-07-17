@@ -93,6 +93,14 @@ final class ContentStore {
     throw ContentStoreError.deckNotFound(id)
   }
 
+  func countryId(forDeck deckId: String) throws -> String {
+    let catalog = try catalog()
+    for country in catalog.countries where country.decks.contains(where: { $0.id == deckId }) {
+      return country.id
+    }
+    throw ContentStoreError.deckNotFound(deckId)
+  }
+
   private func parsePath(_ path: String) -> (filename: String, extension: String) {
     let url = URL(fileURLWithPath: path)
     let filename = url.deletingPathExtension().lastPathComponent

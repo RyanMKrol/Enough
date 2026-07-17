@@ -84,6 +84,21 @@ final class ContentStoreTests: XCTestCase {
     }
   }
 
+  func testCountryIdForDeck() throws {
+    let countryId = try store.countryId(forDeck: "jp-greetings")
+    XCTAssertEqual(countryId, "japan")
+  }
+
+  func testCountryIdForDeckNotFound() throws {
+    XCTAssertThrowsError(try store.countryId(forDeck: "bogus")) { error in
+      if case ContentStoreError.deckNotFound = error {
+        // Expected
+      } else {
+        XCTFail("Expected deckNotFound error")
+      }
+    }
+  }
+
   func testCatalogCaching() throws {
     let first = try store.catalog()
     let second = try store.catalog()

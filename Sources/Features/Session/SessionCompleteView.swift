@@ -53,7 +53,7 @@ struct SessionCompleteView: View {
     .onAppear {
       Task {
         _ = await services.notifications.requestPermissionIfNeeded()
-        await rescheduleReviewNotification()
+        await services.notifications.rescheduleAfterActivity(services: services)
       }
     }
   }
@@ -174,59 +174,15 @@ struct SessionCompleteView: View {
   }
 
   private func getStrongestDeckTitle() -> String {
-    do {
-      let catalog = try services.contentStore.catalog()
-      let owned = try services.entitlementStore.ownedDeckIds(catalog: catalog)
-
-      var strongestDeckId: String?
-      var strongestDeckTitle: String?
-      var strongestStrength: Int = -1
-      var strongestLearned: Int = -1
-
-      for deckId in owned {
-        let progress = try services.deckProgress.progress(forDeck: deckId)
-        let isStronger = progress.strength > strongestStrength
-        let isSameLearned =
-          progress.strength == strongestStrength && progress.mastered > strongestLearned
-        if strongestDeckId == nil || isStronger || isSameLearned {
-          let deck = try services.contentStore.deck(deckId)
-          strongestDeckId = deckId
-          strongestDeckTitle = deck.title
-          strongestStrength = progress.strength
-          strongestLearned = progress.mastered
-        }
-      }
-
-      return strongestDeckTitle ?? "your strongest deck"
-    } catch {
+    guard
+      let owned = try? services.entitlementStore.ownedDeckIds(
+        catalog: services.contentStore.catalog()),
+      let strongestId = services.deckProgress.strongestDeckId(among: owned),
+      let deck = try? services.contentStore.deck(strongestId)
+    else {
       return "your strongest deck"
     }
-  }
-
-  private func rescheduleReviewNotification() async {
-    do {
-      let catalog = try services.contentStore.catalog()
-      let owned = try services.entitlementStore.ownedDeckIds(catalog: catalog)
-      let now = services.dateProvider.now
-
-      var dueDates: [Date] = []
-      for deckId in owned {
-        let records = try services.cardSRSStore.records(forDeck: deckId)
-        dueDates.append(
-          contentsOf:
-            records
-            .filter { $0.statusRaw != "new" }
-            .compactMap(\.dueAt)
-        )
-      }
-
-      let forecast = NotificationsService.forecast(dueDates: dueDates, now: now)
-      await services.notifications.rescheduleReviewNotification(
-        dueCount: forecast?.count ?? 0, nextDueDate: forecast?.fireAt
-      )
-    } catch {
-      await services.notifications.rescheduleReviewNotification(dueCount: 0, nextDueDate: nil)
-    }
+    return deck.title
   }
 
   private func formatDuration(_ seconds: TimeInterval) -> String {

@@ -173,4 +173,23 @@ final class NotificationsServiceTests: XCTestCase {
 
     XCTAssertNil(forecast)
   }
+
+  func testRescheduleAfterActivityForecastsFromLiveSRSState() async throws {
+    let services = AppServices.preview()
+    let now = services.dateProvider.now
+    try services.entitlementStore.grant(productId: "jp-greetings", kind: "deck", now: now)
+    let dueDate = now.addingTimeInterval(3600)
+    try services.cardSRSStore.upsert(
+      deckId: "jp-greetings", cardId: "ohayou-gozaimasu", statusRaw: "review", easeFactor: 2.5,
+      intervalDays: 8, repetitions: 1, lapses: 0, dueAt: dueDate, lastReviewedAt: nil
+    )
+
+    let center = FakeNotificationCenter()
+    let service = NotificationsService(center: center)
+
+    await service.rescheduleAfterActivity(services: services)
+
+    XCTAssertEqual(center.addedRequests.count, 1)
+    XCTAssertEqual(center.addedRequests.first?.content.body, "1 card is slipping")
+  }
 }

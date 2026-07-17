@@ -87,6 +87,34 @@ final class NotificationsService {
     center.removePendingRequests(withIdentifiers: [Self.reviewDueIdentifier])
   }
 
+  /// Recomputes the review-due forecast from current SRS state and reschedules the local
+  /// notification accordingly. Shared by every call site that reacts to app activity
+  /// (foregrounding, finishing a session) so the forecast logic lives in one testable place.
+  func rescheduleAfterActivity(services: AppServices) async {
+    do {
+      let catalog = try services.contentStore.catalog()
+      let owned = try services.entitlementStore.ownedDeckIds(catalog: catalog)
+      let now = services.dateProvider.now
+
+      var dueDates: [Date] = []
+      for deckId in owned {
+        let records = try services.cardSRSStore.records(forDeck: deckId)
+        dueDates.append(
+          contentsOf:
+            records
+            .filter { $0.statusRaw != "new" }
+            .compactMap(\.dueAt)
+        )
+      }
+
+      let forecast = Self.forecast(dueDates: dueDates, now: now)
+      await rescheduleReviewNotification(
+        dueCount: forecast?.count ?? 0, nextDueDate: forecast?.fireAt)
+    } catch {
+      await rescheduleReviewNotification(dueCount: 0, nextDueDate: nil)
+    }
+  }
+
   /// Pure helper: `fireAt` is the earliest due date strictly after `now` (nil if none);
   /// `count` is how many `dueDates` are at or before `fireAt` (already-due cards still
   /// count, since they'll still be due then too).

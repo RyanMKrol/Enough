@@ -27,35 +27,8 @@ struct RootView: View {
     .onChange(of: scenePhase) { _, newPhase in
       guard newPhase == .active, appState.phase == .main else { return }
       Task {
-        await rescheduleReviewNotification()
+        await appState.services.notifications.rescheduleAfterActivity(services: appState.services)
       }
-    }
-  }
-
-  private func rescheduleReviewNotification() async {
-    let services = appState.services
-    do {
-      let catalog = try services.contentStore.catalog()
-      let owned = try services.entitlementStore.ownedDeckIds(catalog: catalog)
-      let now = services.dateProvider.now
-
-      var dueDates: [Date] = []
-      for deckId in owned {
-        let records = try services.cardSRSStore.records(forDeck: deckId)
-        dueDates.append(
-          contentsOf:
-            records
-            .filter { $0.statusRaw != "new" }
-            .compactMap(\.dueAt)
-        )
-      }
-
-      let forecast = NotificationsService.forecast(dueDates: dueDates, now: now)
-      await services.notifications.rescheduleReviewNotification(
-        dueCount: forecast?.count ?? 0, nextDueDate: forecast?.fireAt
-      )
-    } catch {
-      await services.notifications.rescheduleReviewNotification(dueCount: 0, nextDueDate: nil)
     }
   }
 }

@@ -90,6 +90,29 @@ final class DeckProgressService {
     return learned
   }
 
+  /// Picks the deck with the highest `strength` (ties broken by `mastered`) among `deckIds`.
+  /// Decks whose progress can't be read are skipped rather than failing the whole lookup.
+  func strongestDeckId(among deckIds: some Sequence<String>) -> String? {
+    var strongestId: String?
+    var strongestStrength = -1
+    // swiftlint:disable:next inclusive_language
+    var strongestMastered = -1
+
+    for deckId in deckIds {
+      guard let progress = try? progress(forDeck: deckId) else { continue }
+      let isStronger = progress.strength > strongestStrength
+      let isSameLearned =
+        progress.strength == strongestStrength && progress.mastered > strongestMastered
+      if strongestId == nil || isStronger || isSameLearned {
+        strongestId = deckId
+        strongestStrength = progress.strength
+        strongestMastered = progress.mastered
+      }
+    }
+
+    return strongestId
+  }
+
   private func strength(learned: Int, dueNow: Int) -> Int {
     if learned == 0 { return 0 }
     if dueNow == 0 { return 3 }

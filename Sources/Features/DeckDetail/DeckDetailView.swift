@@ -242,7 +242,7 @@ struct DeckDetailView: View {
       cards = Array(allCards.prefix(5))
 
       if let deckInfo {
-        let countryId = try findCountryForDeck(deckInfo.id)
+        let countryId = try services.contentStore.countryId(forDeck: deckInfo.id)
         countryInfo = try services.contentStore.country(countryId)
       }
 
@@ -250,14 +250,6 @@ struct DeckDetailView: View {
     } catch {
       // Handle error gracefully
     }
-  }
-
-  private func findCountryForDeck(_ deckId: String) throws -> String {
-    let catalog = try services.contentStore.catalog()
-    for country in catalog.countries where country.decks.contains(where: { $0.id == deckId }) {
-      return country.id
-    }
-    throw ContentStoreError.deckNotFound(deckId)
   }
 
   private func resetProgress() {
