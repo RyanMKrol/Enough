@@ -98,7 +98,8 @@ struct PulsingAudioButton: View {
       }
     }
 
-    DispatchQueue.main.asyncAfter(deadline: .now() + Motion.tapRippleDecay) {
+    Task {
+      try? await Task.sleep(for: .seconds(Motion.tapRippleDecay))
       tapRipples.removeAll { $0.id == ripple.id }
     }
   }

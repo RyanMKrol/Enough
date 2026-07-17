@@ -120,7 +120,8 @@ struct CardStackHero: View {
     }
 
     // Back-left card animation: ±4pt, 4s ease-in-out, phase offset 0.5s
-    DispatchQueue.main.asyncAfter(deadline: .now() + Motion.bobPhaseOffsetShort) {
+    Task {
+      try? await Task.sleep(for: .seconds(Motion.bobPhaseOffsetShort))
       guard isBobbing else { return }
       withAnimation(
         Animation.easeInOut(duration: Motion.bobDuration)
@@ -131,7 +132,8 @@ struct CardStackHero: View {
     }
 
     // Back-right card animation: ±4pt, 4s ease-in-out, phase offset 1.0s
-    DispatchQueue.main.asyncAfter(deadline: .now() + Motion.bobPhaseOffsetLong) {
+    Task {
+      try? await Task.sleep(for: .seconds(Motion.bobPhaseOffsetLong))
       guard isBobbing else { return }
       withAnimation(
         Animation.easeInOut(duration: Motion.bobDuration)

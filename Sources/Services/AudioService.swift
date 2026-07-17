@@ -1,11 +1,13 @@
-@preconcurrency import AVFoundation
+import AVFoundation
 import Foundation
 
-final class AudioService: @unchecked Sendable {
+final class AudioService {
   private let content: ContentStore
   private var currentPlayer: AVAudioPlayer?
   private var playedCardIds: Set<String> = []
-  private var interruptionObserverToken: (any NSObjectProtocol)?
+  // SAFE: deinit is nonisolated by language rule and NSObjectProtocol observer tokens are
+  // documented as safe to remove from any thread, so this is the standard teardown escape valve.
+  private nonisolated(unsafe) var interruptionObserverToken: (any NSObjectProtocol)?
 
   var playHandler: ((URL) -> Void)?
 
@@ -18,23 +20,19 @@ final class AudioService: @unchecked Sendable {
       object: session,
       queue: .main
     ) { [weak self] notification in
-      guard let self = self else {
-        return
-      }
-
-      guard let userInfo = notification.userInfo else {
-        return
-      }
-
-      let interruptionTypeValue = userInfo["AVAudioSessionInterruptionTypeKey"] as? UInt
+      let interruptionTypeValue =
+        notification.userInfo?["AVAudioSessionInterruptionTypeKey"] as? UInt
       guard let rawValue = interruptionTypeValue,
-        let interruptionType = AVAudioSession.InterruptionType(rawValue: rawValue)
+        let interruptionType = AVAudioSession.InterruptionType(rawValue: rawValue),
+        interruptionType == .began
       else {
         return
       }
 
-      if interruptionType == .began {
-        self.currentPlayer?.stop()
+      // SAFE: queue: .main guarantees delivery on the main thread; MainActor.assumeIsolated
+      // documents that guarantee instead of widening the whole class to @unchecked Sendable.
+      MainActor.assumeIsolated {
+        self?.currentPlayer?.stop()
       }
     }
   }

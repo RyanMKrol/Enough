@@ -3,6 +3,8 @@ import Foundation
 @Observable
 final class BrowseViewModel {
   private let services: AppServices
+  // SAFE: deinit is nonisolated by language rule and NSObjectProtocol observer tokens are
+  // documented as safe to remove from any thread, so this is the standard teardown escape valve.
   private nonisolated(unsafe) var entitlementsToken: NSObjectProtocol?
 
   var countries: [CountryInfo] = []
