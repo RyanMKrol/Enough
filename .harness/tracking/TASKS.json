@@ -2714,7 +2714,7 @@
     {
       "id": "T103",
       "title": "'Start my review' App Intent (Siri / Shortcuts / Spotlight)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T099"
       ],
