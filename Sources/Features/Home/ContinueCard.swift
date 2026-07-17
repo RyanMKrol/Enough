@@ -16,7 +16,7 @@ struct ContinueCard: View {
           size: 64,
           lineWidth: 6,
           tint: accentTheme.accent,
-          showsPercent: false
+          showsPercent: true
         )
 
         VStack(alignment: .leading, spacing: 4) {
@@ -29,7 +29,10 @@ struct ContinueCard: View {
           Text(detailLine)
             .font(.system(size: 13, weight: .regular))
             .foregroundColor(EnoughColor.secondaryText)
+            .lineLimit(1)
+            .minimumScaleFactor(0.85)
         }
+        .layoutPriority(1)
 
         Spacer()
 
