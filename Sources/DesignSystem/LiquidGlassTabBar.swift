@@ -20,6 +20,7 @@ struct LiquidGlassTabBar: View {
             }
             .frame(maxWidth: .infinity)
             .frame(minHeight: 58)
+            .contentShape(Rectangle())
             .foregroundStyle(
               selection == tab ? accentTheme.accent : EnoughColor.inactiveTab
             )
