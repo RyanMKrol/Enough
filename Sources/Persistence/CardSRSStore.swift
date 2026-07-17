@@ -143,4 +143,18 @@ final class CardSRSStore {
     }
     try context.save()
   }
+
+  /// Sets dueAt = now on every CardSRSRecord whose statusRaw != "new"
+  /// (learning + review cards; untouched cards have no row and stay New).
+  /// Saves the context and returns the number of records updated.
+  @discardableResult
+  func forceAllDue(now: Date) throws -> Int {
+    let descriptor = FetchDescriptor<CardSRSRecord>(predicate: #Predicate { $0.statusRaw != "new" })
+    let records = try context.fetch(descriptor)
+    for record in records {
+      record.dueAt = now
+    }
+    try context.save()
+    return records.count
+  }
 }
