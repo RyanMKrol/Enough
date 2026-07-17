@@ -186,12 +186,14 @@ struct PlanView: View {
               .tint(.white)
           } else {
             Text(vm.ctaTitle)
+              .lineLimit(1)
+              .minimumScaleFactor(0.7)
           }
         }
       )
       .buttonStyle(PrimaryButtonStyle(background: draft.accent.accent))
       .disabled(isPurchasing)
-      .frame(width: 180)
+      .frame(minWidth: 180)
       .accessibilityIdentifier(AXID.onboardingContinue)
     }
   }
