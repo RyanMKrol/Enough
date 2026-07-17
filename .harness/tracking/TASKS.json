@@ -2745,7 +2745,7 @@
     {
       "id": "T104",
       "title": "Continue card polish: show ring percent + keep meta line on one line",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
