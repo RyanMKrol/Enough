@@ -131,6 +131,30 @@ final class ContentStoreTests: XCTestCase {
     }
   }
 
+  func testMalformedCatalogThrowsDecodingError() throws {
+    let bundle = try makeBundle(withCatalogMissingKey: "version")
+    let malformedStore = ContentStore(bundle: bundle)
+
+    XCTAssertThrowsError(try malformedStore.catalog()) { error in
+      guard case DecodingError.keyNotFound = error else {
+        XCTFail("Expected DecodingError.keyNotFound, got \(error)")
+        return
+      }
+    }
+  }
+
+  func testMalformedDeckFileThrowsDecodingError() throws {
+    let bundle = try makeBundle(withDeckFileMissingKey: "english")
+    let malformedStore = ContentStore(bundle: bundle)
+
+    XCTAssertThrowsError(try malformedStore.cards(forDeck: "ghost-deck")) { error in
+      guard case DecodingError.keyNotFound = error else {
+        XCTFail("Expected DecodingError.keyNotFound, got \(error)")
+        return
+      }
+    }
+  }
+
   private func makeEmptyBundle() throws -> Bundle {
     let root = FileManager.default.temporaryDirectory.appendingPathComponent(
       "content-store-empty-fixture-\(UUID().uuidString)")
@@ -161,6 +185,58 @@ final class ContentStoreTests: XCTestCase {
 
     try JSONSerialization.data(withJSONObject: catalog).write(
       to: root.appendingPathComponent("Content/catalog.json"))
+
+    return try XCTUnwrap(Bundle(path: root.path))
+  }
+
+  private func makeBundle(withCatalogMissingKey missingKey: String) throws -> Bundle {
+    let root = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "content-store-malformed-catalog-fixture-\(UUID().uuidString)")
+    try FileManager.default.createDirectory(
+      at: root.appendingPathComponent("Content"), withIntermediateDirectories: true)
+
+    var catalog: [String: Any] = [
+      "version": 1, "scenarios": [], "countries": [], "comingSoon": [],
+    ]  // swiftlint:disable:previous trailing_comma
+    catalog.removeValue(forKey: missingKey)
+
+    try JSONSerialization.data(withJSONObject: catalog).write(
+      to: root.appendingPathComponent("Content/catalog.json"))
+
+    return try XCTUnwrap(Bundle(path: root.path))
+  }
+
+  private func makeBundle(withDeckFileMissingKey missingKey: String) throws -> Bundle {
+    let root = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "content-store-malformed-deck-fixture-\(UUID().uuidString)")
+    try FileManager.default.createDirectory(
+      at: root.appendingPathComponent("Content/decks"), withIntermediateDirectories: true)
+
+    let deck: [String: Any] = [
+      "id": "ghost-deck", "title": "Ghost", "subtitle": "s", "scenario": "s", "icon": "star",
+      "cardsFile": "decks/ghost-deck.json", "cardCount": 1, "priceGBP": 1.0,
+    ]  // swiftlint:disable:previous trailing_comma
+    let country: [String: Any] = [
+      "id": "ghostland", "name": "Ghostland", "languageName": "Ghostish",
+      "nativeLanguageName": "Ghostish", "accent": "japan", "flagEmoji": "🏳️",
+      "decks": [deck], "bundles": [],
+    ]  // swiftlint:disable:previous trailing_comma
+    let catalog: [String: Any] = [
+      "version": 1, "scenarios": [], "countries": [country], "comingSoon": [],
+    ]  // swiftlint:disable:previous trailing_comma
+
+    try JSONSerialization.data(withJSONObject: catalog).write(
+      to: root.appendingPathComponent("Content/catalog.json"))
+
+    var card: [String: Any] = [
+      "id": "ghost-card", "english": "hello", "target": "t", "pronunciation": "p",
+      "audio": "a.mp3",
+    ]  // swiftlint:disable:previous trailing_comma
+    card.removeValue(forKey: missingKey)
+    let deckCards: [String: Any] = ["deckId": "ghost-deck", "cards": [card]]
+
+    try JSONSerialization.data(withJSONObject: deckCards).write(
+      to: root.appendingPathComponent("Content/decks/ghost-deck.json"))
 
     return try XCTUnwrap(Bundle(path: root.path))
   }
