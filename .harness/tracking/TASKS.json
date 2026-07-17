@@ -2100,7 +2100,7 @@
     {
       "id": "T081",
       "title": "Axiom audit: memory leaks (memory-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
