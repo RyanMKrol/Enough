@@ -2684,7 +2684,7 @@
     {
       "id": "T102",
       "title": "Debug setting: force all learned cards due now",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T017",
         "T022",
