@@ -2822,7 +2822,7 @@
     {
       "id": "T107",
       "title": "Debug reset re-enters onboarding in place, no relaunch",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
