@@ -66,6 +66,16 @@ final class AppState {
     phase = .onboarding
   }
 
+  /// Re-enters onboarding at the very first screen (`WelcomeView`) in place, no relaunch
+  /// needed. Used by the debug "Reset all data" action after `AppReset.wipeAll` has already
+  /// cleared the stores — unlike `startNewTrip()`, it doesn't touch the stores itself and
+  /// lands on `WelcomeView` rather than the country picker (`isReonboarding = false`).
+  func reenterOnboardingFresh() {
+    services.notifications.cancelAll()
+    isReonboarding = false
+    phase = .onboarding
+  }
+
   /// Callable synchronously from the main actor (e.g. an App Intent) to switch the shell to
   /// the Reviews tab and start a review session via the existing StudyService path.
   func requestStartReview() {

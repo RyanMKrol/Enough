@@ -13,7 +13,7 @@ enum DebugReset {
         kind: .action { @MainActor services in
           let context = ModelContext(services.container)
           try AppReset.wipeAll(context: context, userDefaults: .standard)
-          return "Data wiped — relaunch the app"
+          return "Data wiped"
         }
       )
     ]

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DebugMenuView: View {
   @Environment(\.services) private var services
+  @Environment(AppState.self) private var appState
   @Environment(\.dismiss) private var dismiss
   @State private var toast: String?
 
@@ -48,6 +49,9 @@ struct DebugMenuView: View {
         Task {
           do {
             let message = try await action(services)
+            if row.id == "reset-all" {
+              appState.reenterOnboardingFresh()
+            }
             showToast(message)
           } catch {
             showToast("\(error)")
@@ -78,4 +82,5 @@ struct DebugMenuView: View {
 
 #Preview {
   DebugMenuView()
+    .environment(AppState(services: AppServices.preview()))
 }
