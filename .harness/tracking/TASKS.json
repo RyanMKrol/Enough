@@ -2181,7 +2181,7 @@
     {
       "id": "T084",
       "title": "Axiom audit: UX flows (ux-flow-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
