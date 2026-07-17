@@ -2430,7 +2430,7 @@
     {
       "id": "T093",
       "title": "Adopt iOS 26 Liquid Glass on the floating tab bar + deck-detail chrome",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T092"
       ],
