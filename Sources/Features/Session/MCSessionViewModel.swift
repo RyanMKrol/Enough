@@ -101,6 +101,7 @@ final class MCSessionViewModel {
 
     if engine.isComplete {
       try? services.study.commit(engine)
+      services.audio.sessionEnded()
       route = .complete
       return
     }
@@ -110,6 +111,7 @@ final class MCSessionViewModel {
 
   func closeAndCommit() {
     try? services.study.commit(engine)
+    services.audio.sessionEnded()
   }
 
   private func loadCurrentCard() {

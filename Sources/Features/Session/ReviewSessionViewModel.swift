@@ -46,6 +46,7 @@ final class ReviewSessionViewModel {
 
   func closeAndCommit() {
     try? services.study.commit(engine)
+    services.audio.sessionEnded()
   }
 
   func replayAudio() {
@@ -58,6 +59,7 @@ final class ReviewSessionViewModel {
 
     if engine.isComplete {
       try? services.study.commit(engine)
+      services.audio.sessionEnded()
       route = .complete
       return
     }
