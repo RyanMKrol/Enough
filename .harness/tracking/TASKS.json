@@ -2236,7 +2236,7 @@
     {
       "id": "T086",
       "title": "Axiom audit: Codable safety (codable-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
