@@ -3,6 +3,7 @@ import SwiftUI
 struct ReviewsTabView: View {
   @Environment(\.services) var services
   @Environment(\.accentTheme) var accentTheme
+  @Environment(AppState.self) private var appState
 
   @State private var reviewSessionEngine: SessionEngine?
   @State private var isShowingReviewSession = false
@@ -65,6 +66,10 @@ struct ReviewsTabView: View {
     .accessibilityIdentifier(AXID.screenReviews)
     .onAppear {
       reload()
+      consumePendingActionIfNeeded()
+    }
+    .onChange(of: appState.pendingAction) { _, _ in
+      consumePendingActionIfNeeded()
     }
     .fullScreenCover(isPresented: $isShowingReviewSession) {
       if let reviewSessionEngine {
@@ -215,6 +220,12 @@ struct ReviewsTabView: View {
     .padding(.vertical, Layout.rowVPad)
   }
 
+  private func consumePendingActionIfNeeded() {
+    guard appState.pendingAction == .startReview else { return }
+    appState.pendingAction = nil
+    startReviewSession()
+  }
+
   private func startReviewSession() {
     do {
       reviewSessionEngine = try services.study.makeReviewSession()
@@ -258,8 +269,10 @@ struct ReviewsTabView: View {
       nextDueDate = getNextDueDate()
     }
   }
+}
 
-  private func getNextDueDate() -> Date? {
+extension ReviewsTabView {
+  fileprivate func getNextDueDate() -> Date? {
     guard let catalog = try? services.contentStore.catalog() else { return nil }
     let owned = (try? services.entitlementStore.ownedDeckIds(catalog: catalog)) ?? []
     let now = services.dateProvider.now
@@ -284,7 +297,7 @@ struct ReviewsTabView: View {
     return earliestDueDate
   }
 
-  private static func destinationLabel(countryId: String, country: CountryInfo?) -> String {
+  fileprivate static func destinationLabel(countryId: String, country: CountryInfo?) -> String {
     switch countryId {
     case "japan": return "Tokyo"
     case "france": return "Paris"
@@ -298,4 +311,5 @@ struct ReviewsTabView: View {
   ReviewsTabView()
     .environment(\.accentTheme, .japan)
     .environment(\.services, AppServices.preview())
+    .environment(AppState(services: AppServices.preview()))
 }

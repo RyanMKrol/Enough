@@ -10,6 +10,12 @@ final class AppState {
     case main
   }
 
+  /// A pending cross-screen action requested externally (e.g. an App Intent) that the shell
+  /// and target tab observe and act on, then clear.
+  enum AppAction: Equatable {
+    case startReview
+  }
+
   let services: AppServices
   var phase: Phase
   var activeAccent: AccentTheme
@@ -17,6 +23,9 @@ final class AppState {
   /// know to re-enter directly at the country picker instead of the first-launch welcome
   /// screen.
   var isReonboarding = false
+  /// Set by `requestStartReview()`; consumed by `MainShellView` (switches tab) and
+  /// `ReviewsTabView` (starts the session), then cleared by whoever consumes it.
+  var pendingAction: AppAction?
 
   init(services: AppServices) {
     self.services = services
@@ -55,5 +64,11 @@ final class AppState {
     services.notifications.cancelAll()
     isReonboarding = true
     phase = .onboarding
+  }
+
+  /// Callable synchronously from the main actor (e.g. an App Intent) to switch the shell to
+  /// the Reviews tab and start a review session via the existing StudyService path.
+  func requestStartReview() {
+    pendingAction = .startReview
   }
 }

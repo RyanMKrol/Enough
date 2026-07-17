@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MainShellView: View {
+  @Environment(AppState.self) private var appState
   @State private var selection: EnoughTab = .learn
   @State private var showDebugMenu = false
 
@@ -25,6 +26,11 @@ struct MainShellView: View {
     .onAppear {
       if ProcessInfo.processInfo.arguments.contains("-debug-menu") {
         showDebugMenu = true
+      }
+    }
+    .onChange(of: appState.pendingAction) { _, newValue in
+      if newValue == .startReview {
+        selection = .reviews
       }
     }
   }
@@ -54,4 +60,5 @@ struct MainShellView: View {
 #Preview {
   MainShellView()
     .environment(\.accentTheme, .japan)
+    .environment(AppState(services: AppServices.preview()))
 }
