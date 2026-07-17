@@ -227,36 +227,36 @@ private struct DeckDetailHeroSection: View {
   var body: some View {
     VStack(spacing: 16) {
       // Top buttons row
-      HStack {
-        Button(action: onBack) {
-          Image(systemName: "chevron.backward")
-            .font(.system(size: 18, weight: .semibold))
-            .foregroundStyle(accentTheme.accent)
-            .frame(width: 36, height: 36)
-            .background(Color.white.opacity(0.25), in: Circle())
-            .background(.ultraThinMaterial)
-            .frame(width: 44, height: 44)
-            .contentShape(Rectangle())
-        }
-        .accessibilityLabel("Back")
-
-        Spacer()
-
-        Menu {
-          Button(role: .destructive, action: onResetTapped) {
-            Label("Reset deck progress", systemImage: "arrow.counterclockwise")
+      GlassEffectContainer {
+        HStack {
+          Button(action: onBack) {
+            Image(systemName: "chevron.backward")
+              .font(.system(size: 18, weight: .semibold))
+              .foregroundStyle(accentTheme.accent)
+              .frame(width: 36, height: 36)
+              .glassEffect(.regular, in: Circle())
+              .frame(width: 44, height: 44)
+              .contentShape(Rectangle())
           }
-        } label: {
-          Image(systemName: "ellipsis")
-            .font(.system(size: 18, weight: .semibold))
-            .foregroundStyle(accentTheme.accent)
-            .frame(width: 36, height: 36)
-            .background(Color.white.opacity(0.25), in: Circle())
-            .background(.ultraThinMaterial)
-            .frame(width: 44, height: 44)
-            .contentShape(Rectangle())
+          .accessibilityLabel("Back")
+
+          Spacer()
+
+          Menu {
+            Button(role: .destructive, action: onResetTapped) {
+              Label("Reset deck progress", systemImage: "arrow.counterclockwise")
+            }
+          } label: {
+            Image(systemName: "ellipsis")
+              .font(.system(size: 18, weight: .semibold))
+              .foregroundStyle(accentTheme.accent)
+              .frame(width: 36, height: 36)
+              .glassEffect(.regular, in: Circle())
+              .frame(width: 44, height: 44)
+              .contentShape(Rectangle())
+          }
+          .accessibilityLabel("More options")
         }
-        .accessibilityLabel("More options")
       }
       .padding(.horizontal, 22)
       .padding(.top, 16)

@@ -34,15 +34,7 @@ struct LiquidGlassTabBar: View {
     .frame(maxWidth: .infinity)
     .frame(minHeight: 58)
     .padding(.vertical, 10)
-    .background {
-      Capsule()
-        .fill(.ultraThinMaterial)
-        .overlay(Color.white.opacity(0.55))
-    }
-    .overlay {
-      Capsule()
-        .stroke(Color.black.opacity(0.06), lineWidth: 0.5)
-    }
+    .glassEffect(.regular, in: Capsule())
     .shadow(color: .black.opacity(0.1), radius: 22, y: 6)
   }
 }
