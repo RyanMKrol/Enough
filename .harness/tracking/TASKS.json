@@ -1964,7 +1964,7 @@
     {
       "id": "T076",
       "title": "Axiom audit: Swift 6 concurrency (concurrency-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
