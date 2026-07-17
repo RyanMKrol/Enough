@@ -8,7 +8,9 @@ struct EnoughApp: App {
   init() {
     let services = AppServices.live()
     _services = State(initialValue: services)
-    _appState = State(initialValue: AppState(services: services))
+    let newAppState = AppState(services: services)
+    _appState = State(initialValue: newAppState)
+    AppStatePublisher.shared.appState = newAppState
   }
 
   var body: some Scene {
