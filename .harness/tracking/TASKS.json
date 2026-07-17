@@ -2764,6 +2764,29 @@
         "workType": "style",
         "risk": []
       }
+    },
+    {
+      "id": "T105",
+      "title": "Human audit: verify current documentation still reflects reality",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": "needs-human",
+      "tags": [
+        "docs",
+        "audit",
+        "needs-human"
+      ],
+      "scope": [
+        "README.md",
+        "CLAUDE.md",
+        ".harness/custom/docs/LIMITATIONS.md",
+        ".harness/docs/designs/architecture.md",
+        ".harness/docs/designs/design-spec.md"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T105.md"
     }
   ]
 }
