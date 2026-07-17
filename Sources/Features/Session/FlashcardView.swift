@@ -37,12 +37,14 @@ struct FlashcardView: View {
       .padding(22)
       .accessibilityIdentifier(AXID.flashcard)
       .onTapGesture {
-        if !isRevealed {
-          withAnimation(.easeInOut(duration: Motion.cardFlip)) {
-            flipAngle = 180
-            isRevealed = true
-          }
-        }
+        reveal()
+      }
+      .accessibilityElement(children: isRevealed ? .contain : .combine)
+      .accessibilityAddTraits(isRevealed ? [] : .isButton)
+      .accessibilityLabel(isRevealed ? "" : card.target)
+      .accessibilityHint(isRevealed ? "" : "Double tap to reveal translation")
+      .accessibilityAction {
+        reveal()
       }
       .onChange(of: isRevealed) { _, newValue in
         if !newValue {
@@ -58,6 +60,14 @@ struct FlashcardView: View {
           .foregroundStyle(EnoughColor.tertiaryText)
           .padding(.top, 14)
       }
+    }
+  }
+
+  private func reveal() {
+    guard !isRevealed else { return }
+    withAnimation(.easeInOut(duration: Motion.cardFlip)) {
+      flipAngle = 180
+      isRevealed = true
     }
   }
 

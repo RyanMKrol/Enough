@@ -6,6 +6,7 @@ struct ReviewsTabView: View {
 
   @State private var reviewSessionEngine: SessionEngine?
   @State private var isShowingReviewSession = false
+  @State private var sessionStartError: String?
   // swiftlint:disable:next large_tuple
   @State private var dueCounts: (due: Int, learning: Int, mastered: Int) = (0, 0, 0)
   @State private var deckProgresses: [String: DeckProgressService.DeckProgress] = [:]
@@ -70,6 +71,7 @@ struct ReviewsTabView: View {
         ReviewSessionView(engine: reviewSessionEngine)
       }
     }
+    .errorAlert("Couldn't start review", message: $sessionStartError)
   }
 
   @ViewBuilder
@@ -214,9 +216,12 @@ struct ReviewsTabView: View {
   }
 
   private func startReviewSession() {
-    guard let engine = try? services.study.makeReviewSession() else { return }
-    reviewSessionEngine = engine
-    isShowingReviewSession = true
+    do {
+      reviewSessionEngine = try services.study.makeReviewSession()
+      isShowingReviewSession = true
+    } catch {
+      sessionStartError = "Couldn't start review — try again"
+    }
   }
 
   private func reload() {

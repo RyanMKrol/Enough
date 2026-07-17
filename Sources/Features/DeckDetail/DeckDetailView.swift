@@ -13,95 +13,23 @@ struct DeckDetailView: View {
   @State private var showResetConfirmation = false
   @State private var sessionEngine: SessionEngine?
   @State private var isPresentingSession = false
+  @State private var sessionStartError: String?
+  @State private var loadFailed = false
+  @State private var resetErrorMessage: String?
 
   let deckId: String
 
   var body: some View {
     ZStack {
       VStack(spacing: 0) {
-        // Hero section
-        VStack(spacing: 16) {
-          // Top buttons row
-          HStack {
-            Button {
-              dismiss()
-            } label: {
-              Image(systemName: "chevron.backward")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(accentTheme.accent)
-                .frame(width: 36, height: 36)
-                .background(Color.white.opacity(0.25), in: Circle())
-                .background(.ultraThinMaterial)
-                .frame(width: 44, height: 44)
-                .contentShape(Rectangle())
-            }
-            .accessibilityLabel("Back")
-
-            Spacer()
-
-            Menu {
-              Button(role: .destructive) {
-                showResetConfirmation = true
-              } label: {
-                Label("Reset deck progress", systemImage: "arrow.counterclockwise")
-              }
-            } label: {
-              Image(systemName: "ellipsis")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(accentTheme.accent)
-                .frame(width: 36, height: 36)
-                .background(Color.white.opacity(0.25), in: Circle())
-                .background(.ultraThinMaterial)
-                .frame(width: 44, height: 44)
-                .contentShape(Rectangle())
-            }
-            .accessibilityLabel("More options")
-          }
-          .padding(.horizontal, 22)
-          .padding(.top, 16)
-
-          // Icon tile and info
-          if let deckInfo {
-            VStack(spacing: 12) {
-              ZStack {
-                RoundedRectangle(cornerRadius: 14)
-                  .fill(Color.white)
-                  .frame(height: 56)
-
-                HStack(spacing: 12) {
-                  Image(systemName: deckInfo.icon)
-                    .font(.system(size: 28, weight: .semibold))
-                    .foregroundStyle(accentTheme.accent)
-
-                  VStack(alignment: .leading, spacing: 2) {
-                    Text(deckInfo.title)
-                      .font(.system(size: 30, weight: .bold))
-                      .foregroundStyle(EnoughColor.label)
-
-                    if let countryInfo {
-                      Text("\(countryInfo.languageName) · \(deckInfo.subtitle)")
-                        .font(.system(size: 15, weight: .regular))
-                        .foregroundStyle(accentTheme.deep)
-                    }
-                  }
-
-                  Spacer()
-                }
-                .padding(.horizontal, 16)
-              }
-
-              // Meta chips
-              HStack(spacing: 8) {
-                MetaChip(text: "\(deckInfo.cardCount) cards")
-                MetaChip(text: "~\(minutesEstimate(deckInfo.cardCount)) min")
-                MetaChip(text: "Audio")
-              }
-            }
-            .padding(.horizontal, 22)
-            .padding(.bottom, 22)
-          }
-        }
-        .background(accentTheme.accent)
+        DeckDetailHeroSection(
+          deckInfo: deckInfo,
+          countryInfo: countryInfo,
+          accentTheme: accentTheme,
+          onBack: { dismiss() },
+          onResetTapped: { showResetConfirmation = true },
+          minutesEstimate: minutesEstimate
+        )
 
         // Main content
         ScrollView {
@@ -134,11 +62,19 @@ struct DeckDetailView: View {
               .padding(.top, 22)
             }
 
+            if loadFailed {
+              loadFailedBanner
+            }
+
             // Samples section
             VStack(alignment: .leading, spacing: 16) {
               EyebrowLabel("In this deck")
 
               VStack(spacing: 0) {
+                if cards.isEmpty && !loadFailed {
+                  emptyCardsRow
+                }
+
                 ForEach(Array(cards.prefix(5).enumerated()), id: \.element.id) { index, card in
                   VStack(alignment: .leading, spacing: 3) {
                     Text(card.target)
@@ -173,33 +109,12 @@ struct DeckDetailView: View {
       }
       .background(EnoughColor.canvas)
 
-      // Sticky bottom action bar
-      VStack(spacing: 0) {
-        LinearGradient(
-          gradient: Gradient(colors: [Color.white.opacity(0), Color.white]),
-          startPoint: .top,
-          endPoint: .bottom
-        )
-        .frame(height: 110)
-
-        VStack(spacing: 10) {
-          Button("Continue learning") {
-            startLearnSession()
-          }
-          .buttonStyle(PrimaryButtonStyle(background: accentTheme.accent, subtleShadow: true))
-          .accessibilityIdentifier(AXID.deckContinue)
-
-          Button("Practice all \(deckInfo?.cardCount ?? 0)") {
-            startPracticeSession()
-          }
-          .buttonStyle(TintedButtonStyle())
-          .accessibilityIdentifier(AXID.deckPractice)
-        }
-        .padding(.horizontal, 22)
-        .padding(.vertical, 16)
-        .background(Color.white)
-      }
-      .frame(maxHeight: .infinity, alignment: .bottom)
+      DeckDetailActionBar(
+        accentTheme: accentTheme,
+        cardCount: deckInfo?.cardCount ?? 0,
+        onLearn: startLearnSession,
+        onPractice: startPracticeSession
+      )
     }
     .toolbar(.hidden, for: .navigationBar)
     .accessibilityIdentifier(AXID.screenDeckDetail)
@@ -220,18 +135,49 @@ struct DeckDetailView: View {
         MCSessionView(engine: sessionEngine)
       }
     }
+    .errorAlert("Couldn't start session", message: $sessionStartError)
+    .errorAlert("Couldn't reset progress", message: $resetErrorMessage)
+  }
+
+  private var loadFailedBanner: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      Text("We couldn't load this deck")
+        .font(.system(size: 17, weight: .semibold))
+        .foregroundStyle(EnoughColor.label)
+
+      Button("Try again") {
+        loadFailed = false
+        loadContent()
+      }
+      .buttonStyle(TextLinkButtonStyle())
+    }
+    .padding(.horizontal, 22)
+  }
+
+  private var emptyCardsRow: some View {
+    Text("No cards in this deck yet")
+      .font(.system(size: 15, weight: .regular))
+      .foregroundStyle(EnoughColor.secondaryText)
+      .padding(.vertical, 12)
+      .padding(.horizontal, 16)
   }
 
   private func startLearnSession() {
-    guard let engine = try? services.study.makeLearnSession(deckId: deckId) else { return }
-    sessionEngine = engine
-    isPresentingSession = true
+    do {
+      sessionEngine = try services.study.makeLearnSession(deckId: deckId)
+      isPresentingSession = true
+    } catch {
+      sessionStartError = "Couldn't start this session — try again"
+    }
   }
 
   private func startPracticeSession() {
-    guard let engine = try? services.study.makePracticeSession(deckId: deckId) else { return }
-    sessionEngine = engine
-    isPresentingSession = true
+    do {
+      sessionEngine = try services.study.makePracticeSession(deckId: deckId)
+      isPresentingSession = true
+    } catch {
+      sessionStartError = "Couldn't start practice — try again"
+    }
   }
 
   private func loadContent() {
@@ -247,8 +193,9 @@ struct DeckDetailView: View {
       }
 
       progress = try services.deckProgress.progress(forDeck: deckId)
+      loadFailed = false
     } catch {
-      dismiss()
+      loadFailed = true
     }
   }
 
@@ -258,7 +205,7 @@ struct DeckDetailView: View {
       try services.cardSRSStore.deleteAll(forDeck: deckId)
       progress = try services.deckProgress.progress(forDeck: deckId)
     } catch {
-      // Handle error gracefully
+      resetErrorMessage = "Try again in a moment."
     }
     isResetting = false
   }
@@ -266,6 +213,128 @@ struct DeckDetailView: View {
   private func minutesEstimate(_ cardCount: Int) -> Int {
     let seconds = cardCount * 25
     return (seconds + 59) / 60
+  }
+}
+
+private struct DeckDetailHeroSection: View {
+  let deckInfo: DeckInfo?
+  let countryInfo: CountryInfo?
+  let accentTheme: AccentTheme
+  let onBack: () -> Void
+  let onResetTapped: () -> Void
+  let minutesEstimate: (Int) -> Int
+
+  var body: some View {
+    VStack(spacing: 16) {
+      // Top buttons row
+      HStack {
+        Button(action: onBack) {
+          Image(systemName: "chevron.backward")
+            .font(.system(size: 18, weight: .semibold))
+            .foregroundStyle(accentTheme.accent)
+            .frame(width: 36, height: 36)
+            .background(Color.white.opacity(0.25), in: Circle())
+            .background(.ultraThinMaterial)
+            .frame(width: 44, height: 44)
+            .contentShape(Rectangle())
+        }
+        .accessibilityLabel("Back")
+
+        Spacer()
+
+        Menu {
+          Button(role: .destructive, action: onResetTapped) {
+            Label("Reset deck progress", systemImage: "arrow.counterclockwise")
+          }
+        } label: {
+          Image(systemName: "ellipsis")
+            .font(.system(size: 18, weight: .semibold))
+            .foregroundStyle(accentTheme.accent)
+            .frame(width: 36, height: 36)
+            .background(Color.white.opacity(0.25), in: Circle())
+            .background(.ultraThinMaterial)
+            .frame(width: 44, height: 44)
+            .contentShape(Rectangle())
+        }
+        .accessibilityLabel("More options")
+      }
+      .padding(.horizontal, 22)
+      .padding(.top, 16)
+
+      // Icon tile and info
+      if let deckInfo {
+        VStack(spacing: 12) {
+          ZStack {
+            RoundedRectangle(cornerRadius: 14)
+              .fill(Color.white)
+              .frame(height: 56)
+
+            HStack(spacing: 12) {
+              Image(systemName: deckInfo.icon)
+                .font(.system(size: 28, weight: .semibold))
+                .foregroundStyle(accentTheme.accent)
+
+              VStack(alignment: .leading, spacing: 2) {
+                Text(deckInfo.title)
+                  .font(.system(size: 30, weight: .bold))
+                  .foregroundStyle(EnoughColor.label)
+
+                if let countryInfo {
+                  Text("\(countryInfo.languageName) · \(deckInfo.subtitle)")
+                    .font(.system(size: 15, weight: .regular))
+                    .foregroundStyle(accentTheme.deep)
+                }
+              }
+
+              Spacer()
+            }
+            .padding(.horizontal, 16)
+          }
+
+          // Meta chips
+          HStack(spacing: 8) {
+            MetaChip(text: "\(deckInfo.cardCount) cards")
+            MetaChip(text: "~\(minutesEstimate(deckInfo.cardCount)) min")
+            MetaChip(text: "Audio")
+          }
+        }
+        .padding(.horizontal, 22)
+        .padding(.bottom, 22)
+      }
+    }
+    .background(accentTheme.accent)
+  }
+}
+
+private struct DeckDetailActionBar: View {
+  let accentTheme: AccentTheme
+  let cardCount: Int
+  let onLearn: () -> Void
+  let onPractice: () -> Void
+
+  var body: some View {
+    VStack(spacing: 0) {
+      LinearGradient(
+        gradient: Gradient(colors: [Color.white.opacity(0), Color.white]),
+        startPoint: .top,
+        endPoint: .bottom
+      )
+      .frame(height: 110)
+
+      VStack(spacing: 10) {
+        Button("Continue learning", action: onLearn)
+          .buttonStyle(PrimaryButtonStyle(background: accentTheme.accent, subtleShadow: true))
+          .accessibilityIdentifier(AXID.deckContinue)
+
+        Button("Practice all \(cardCount)", action: onPractice)
+          .buttonStyle(TintedButtonStyle())
+          .accessibilityIdentifier(AXID.deckPractice)
+      }
+      .padding(.horizontal, 22)
+      .padding(.vertical, 16)
+      .background(Color.white)
+    }
+    .frame(maxHeight: .infinity, alignment: .bottom)
   }
 }
 

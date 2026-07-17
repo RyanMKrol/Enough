@@ -4,7 +4,7 @@ struct PlanView: View {
   @Environment(\.services) private var services
   @Environment(OnboardingDraft.self) private var draft
 
-  let onFinish: () -> Void
+  let onFinish: () -> Bool
 
   @State private var catalog: ContentCatalog?
   @State private var vm: PlanViewModel?
@@ -234,7 +234,9 @@ struct PlanView: View {
 
         switch outcome {
         case .success:
-          onFinish()
+          if !onFinish() {
+            errorNote = "We couldn't finish setup. Your purchase is safe — tap Continue to retry."
+          }
         case .cancelled:
           break
         case .pending:

@@ -8,6 +8,7 @@ struct CountryPickerView: View {
   let onContinue: () -> Void
 
   @State private var catalog: ContentCatalog?
+  @State private var loadError = false
 
   private let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
 
@@ -16,16 +17,20 @@ struct CountryPickerView: View {
       VStack(alignment: .leading, spacing: 24) {
         header
 
-        LazyVGrid(columns: columns, spacing: 12) {
-          ForEach(catalog?.countries ?? []) { country in
-            CountryCardView(
-              country: country,
-              isSelected: draft.selectedCountryId == country.id,
-              action: { draft.selectCountry(country) }
-            )
-          }
+        if loadError {
+          errorState
+        } else {
+          LazyVGrid(columns: columns, spacing: 12) {
+            ForEach(catalog?.countries ?? []) { country in
+              CountryCardView(
+                country: country,
+                isSelected: draft.selectedCountryId == country.id,
+                action: { draft.selectCountry(country) }
+              )
+            }
 
-          moreSoonTile
+            moreSoonTile
+          }
         }
       }
       .padding(.horizontal, 22)
@@ -66,6 +71,27 @@ struct CountryPickerView: View {
     }
   }
 
+  private var errorState: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      Text("We couldn't load the destinations")
+        .font(.system(size: 17, weight: .semibold))
+        .foregroundColor(EnoughColor.label)
+
+      Text("Check your connection and try again.")
+        .font(.system(size: 15, weight: .regular))
+        .foregroundColor(EnoughColor.secondaryText)
+
+      Button("Try again") {
+        loadError = false
+        catalog = nil
+        loadCatalog()
+      }
+      .buttonStyle(TextLinkButtonStyle())
+    }
+    .frame(maxWidth: .infinity, alignment: .leading)
+    .padding(.vertical, 24)
+  }
+
   private var moreSoonTile: some View {
     VStack(alignment: .leading, spacing: 4) {
       Text("More soon")
@@ -102,7 +128,11 @@ struct CountryPickerView: View {
 
   private func loadCatalog() {
     guard catalog == nil else { return }
-    catalog = try? services.contentStore.catalog()
+    do {
+      catalog = try services.contentStore.catalog()
+    } catch {
+      loadError = true
+    }
   }
 }
 

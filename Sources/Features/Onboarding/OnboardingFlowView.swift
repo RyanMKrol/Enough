@@ -64,11 +64,12 @@ struct OnboardingFlowView: View {
     path.append(step)
   }
 
-  func finish() {
+  func finish() -> Bool {
     do {
       try OnboardingCompleter.complete(draft: draft, services: services, appState: appState)
+      return true
     } catch {
-      // Handle error appropriately in real implementation
+      return false
     }
   }
 }

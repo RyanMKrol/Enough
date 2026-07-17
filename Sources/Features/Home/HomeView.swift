@@ -7,6 +7,7 @@ struct HomeView: View {
   @State private var isPresentingLearnSession = false
   @State private var reviewSessionEngine: SessionEngine?
   @State private var isPresentingReviewSession = false
+  @State private var sessionStartError: String?
 
   var body: some View {
     NavigationStack {
@@ -29,6 +30,7 @@ struct HomeView: View {
         ReviewSessionView(engine: reviewSessionEngine)
       }
     }
+    .errorAlert("Couldn't start session", message: $sessionStartError)
   }
 
   @ViewBuilder
@@ -107,15 +109,21 @@ struct HomeView: View {
   }
 
   private func startLearnSession(deckId: String) {
-    guard let engine = try? services.study.makeLearnSession(deckId: deckId) else { return }
-    learnSessionEngine = engine
-    isPresentingLearnSession = true
+    do {
+      learnSessionEngine = try services.study.makeLearnSession(deckId: deckId)
+      isPresentingLearnSession = true
+    } catch {
+      sessionStartError = "Couldn't start this session — try again"
+    }
   }
 
   private func startReviewSession() {
-    guard let engine = try? services.study.makeReviewSession() else { return }
-    reviewSessionEngine = engine
-    isPresentingReviewSession = true
+    do {
+      reviewSessionEngine = try services.study.makeReviewSession()
+      isPresentingReviewSession = true
+    } catch {
+      sessionStartError = "Couldn't start review — try again"
+    }
   }
 
   private func header(viewModel: HomeViewModel) -> some View {
