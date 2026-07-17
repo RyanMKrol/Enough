@@ -2018,7 +2018,7 @@
     {
       "id": "T078",
       "title": "Axiom audit: SwiftUI layout (swiftui-layout-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
