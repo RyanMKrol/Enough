@@ -2046,7 +2046,7 @@
     {
       "id": "T079",
       "title": "Axiom audit: SwiftUI navigation (swiftui-nav-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
