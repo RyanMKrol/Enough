@@ -1806,7 +1806,7 @@
     {
       "id": "T069",
       "title": "Accessibility conformance sweep (VoiceOver, Dynamic Type, Reduce Motion, hit targets)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059",
         "T065"
