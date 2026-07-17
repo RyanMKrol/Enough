@@ -2127,7 +2127,7 @@
     {
       "id": "T082",
       "title": "Axiom audit: energy & battery (energy-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
