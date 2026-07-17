@@ -38,6 +38,8 @@ struct MainShellView: View {
       ReviewsTabView()
     case .browse:
       BrowseView()
+    case .progress:
+      ProgressTabView()
     default:
       ZStack {
         EnoughColor.canvas.ignoresSafeArea()
