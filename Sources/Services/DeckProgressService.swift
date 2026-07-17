@@ -65,14 +65,11 @@ final class DeckProgressService {
     // swiftlint:disable:next inclusive_language
     var mastered = 0
 
-    for deckId in owned {
-      let records = try srsStore.records(forDeck: deckId)
-      for record in records {
-        let state = SRSBridge.state(from: record)
-        if SRSEngine.isDue(state, now: now) { due += 1 }
-        if record.statusRaw == CardStatus.learning.rawValue { learning += 1 }
-        if SRSEngine.isMastered(state) { mastered += 1 }
-      }
+    for record in try srsStore.records(forDecks: owned) {
+      let state = SRSBridge.state(from: record)
+      if SRSEngine.isDue(state, now: now) { due += 1 }
+      if record.statusRaw == CardStatus.learning.rawValue { learning += 1 }
+      if SRSEngine.isMastered(state) { mastered += 1 }
     }
 
     return (due: due, learning: learning, mastered: mastered)
@@ -80,14 +77,8 @@ final class DeckProgressService {
 
   func wordsLearned() throws -> Int {
     let owned = try entitlements.ownedDeckIds(catalog: try content.catalog())
-    var learned = 0
-
-    for deckId in owned {
-      let records = try srsStore.records(forDeck: deckId)
-      learned += records.filter { $0.statusRaw != CardStatus.new.rawValue }.count
-    }
-
-    return learned
+    return try srsStore.records(forDecks: owned).filter { $0.statusRaw != CardStatus.new.rawValue }
+      .count
   }
 
   /// Picks the deck with the highest `strength` (ties broken by `mastered`) among `deckIds`.

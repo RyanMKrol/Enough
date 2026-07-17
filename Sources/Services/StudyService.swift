@@ -19,9 +19,10 @@ final class StudyService {
   }
 
   func makeLearnSession(deckId: String, size: Int = 12) throws -> SessionEngine {
-    let newCardIds = try newCardIds(forDeck: deckId)
+    let recordsById = try recordsById(forDeck: deckId)
+    let newCardIds = try newCardIds(forDeck: deckId, recordsById: recordsById)
     let batch = SRSQueueBuilder.learnBatch(newCardIds: newCardIds, size: size)
-    let cards = try batch.map { try sessionCard(deckId: deckId, cardId: $0) }
+    let cards = batch.map { sessionCard(deckId: deckId, cardId: $0, recordsById: recordsById) }
     return SessionEngine(mode: .learn, cards: cards, now: { [dateProvider] in dateProvider.now })
   }
 
@@ -39,7 +40,10 @@ final class StudyService {
 
   func makePracticeSession(deckId: String) throws -> SessionEngine {
     let deckCards = try content.cards(forDeck: deckId)
-    let cards = try deckCards.map { try sessionCard(deckId: deckId, cardId: $0.id) }
+    let recordsById = try recordsById(forDeck: deckId)
+    let cards = deckCards.map {
+      sessionCard(deckId: deckId, cardId: $0.id, recordsById: recordsById)
+    }
     return SessionEngine(
       mode: .practice, cards: cards, now: { [dateProvider] in dateProvider.now })
   }
@@ -52,10 +56,11 @@ final class StudyService {
     for country in catalog.countries {
       for deck in country.decks where owned.contains(deck.id) {
         if collected.count >= size { break }
-        let newIds = try newCardIds(forDeck: deck.id)
+        let recordsById = try recordsById(forDeck: deck.id)
+        let newIds = try newCardIds(forDeck: deck.id, recordsById: recordsById)
         for cardId in newIds {
           if collected.count >= size { break }
-          collected.append(try sessionCard(deckId: deck.id, cardId: cardId))
+          collected.append(sessionCard(deckId: deck.id, cardId: cardId, recordsById: recordsById))
         }
       }
       if collected.count >= size { break }
@@ -67,17 +72,25 @@ final class StudyService {
 
   func commit(_ engine: SessionEngine) throws {
     let now = dateProvider.now
-    for (card, grade) in engine.gradedResults {
-      let existing = try srsStore.record(deckId: card.deckId, cardId: card.cardId)
+    let gradedResults = engine.gradedResults
+    let deckIds = Set(gradedResults.map(\.card.deckId))
+    let existingByKey = Dictionary(
+      uniqueKeysWithValues: try srsStore.records(forDecks: deckIds).map {
+        ("\($0.deckId)|\($0.cardId)", $0)
+      })
+
+    let updates = gradedResults.map { card, grade -> CardSRSStore.Update in
+      let existing = existingByKey["\(card.deckId)|\(card.cardId)"]
       let currentState = existing.map { SRSBridge.state(from: $0) } ?? SRSState.newCard
       let newState = SRSEngine.apply(grade, to: currentState, now: now)
-      try srsStore.upsert(
+      return CardSRSStore.Update(
         deckId: card.deckId, cardId: card.cardId, statusRaw: newState.status.rawValue,
         easeFactor: newState.easeFactor, intervalDays: newState.intervalDays,
         repetitions: newState.repetitions, lapses: newState.lapses, dueAt: newState.dueAt,
         lastReviewedAt: now
       )
     }
+    try srsStore.upsertBatch(updates)
 
     let summary = engine.summary()
     let cardsReviewed: Int
@@ -100,21 +113,24 @@ final class StudyService {
     )
   }
 
-  private func newCardIds(forDeck deckId: String) throws -> [String] {
-    let deckCards = try content.cards(forDeck: deckId)
-    var newIds: [String] = []
-    for card in deckCards {
-      let record = try srsStore.record(deckId: deckId, cardId: card.id)
-      if record == nil || record?.statusRaw == CardStatus.new.rawValue {
-        newIds.append(card.id)
-      }
-    }
-    return newIds
+  private func recordsById(forDeck deckId: String) throws -> [String: CardSRSRecord] {
+    Dictionary(uniqueKeysWithValues: try srsStore.records(forDeck: deckId).map { ($0.cardId, $0) })
   }
 
-  private func sessionCard(deckId: String, cardId: String) throws -> SessionCard {
-    let record = try srsStore.record(deckId: deckId, cardId: cardId)
-    let state = record.map { SRSBridge.state(from: $0) } ?? SRSState.newCard
+  private func newCardIds(
+    forDeck deckId: String, recordsById: [String: CardSRSRecord]
+  ) throws -> [String] {
+    let deckCards = try content.cards(forDeck: deckId)
+    return deckCards.filter { card in
+      let record = recordsById[card.id]
+      return record == nil || record?.statusRaw == CardStatus.new.rawValue
+    }.map(\.id)
+  }
+
+  private func sessionCard(
+    deckId: String, cardId: String, recordsById: [String: CardSRSRecord]
+  ) -> SessionCard {
+    let state = recordsById[cardId].map { SRSBridge.state(from: $0) } ?? SRSState.newCard
     return SessionCard(deckId: deckId, cardId: cardId, state: state)
   }
 }

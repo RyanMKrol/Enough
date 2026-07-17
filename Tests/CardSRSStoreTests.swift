@@ -119,6 +119,61 @@ class CardSRSStoreTests: XCTestCase {
     XCTAssertEqual(aAndB.map(\.cardId), ["d", "a"])
   }
 
+  func testRecordsForDecksReturnsRowsAcrossMultipleDecks() throws {
+    let (store, _) = try makeStore()
+    try store.upsert(
+      deckId: "A", cardId: "card-1", statusRaw: "review", easeFactor: 2.5,
+      intervalDays: 1, repetitions: 1, lapses: 0, dueAt: nil, lastReviewedAt: nil
+    )
+    try store.upsert(
+      deckId: "B", cardId: "card-2", statusRaw: "review", easeFactor: 2.5,
+      intervalDays: 1, repetitions: 1, lapses: 0, dueAt: nil, lastReviewedAt: nil
+    )
+    try store.upsert(
+      deckId: "C", cardId: "card-3", statusRaw: "review", easeFactor: 2.5,
+      intervalDays: 1, repetitions: 1, lapses: 0, dueAt: nil, lastReviewedAt: nil
+    )
+
+    let records = try store.records(forDecks: ["A", "B"])
+    XCTAssertEqual(Set(records.map(\.cardId)), ["card-1", "card-2"])
+  }
+
+  func testUpsertBatchInsertsAndUpdatesInOneSave() throws {
+    let (store, context) = try makeStore()
+    let dueAt = Date(timeIntervalSince1970: 1_700_000_000)
+
+    try store.upsert(
+      deckId: "A", cardId: "card-1", statusRaw: "review", easeFactor: 2.3,
+      intervalDays: 4, repetitions: 2, lapses: 1, dueAt: nil, lastReviewedAt: nil
+    )
+
+    let updateCard1 = CardSRSStore.Update(
+      deckId: "A", cardId: "card-1", statusRaw: "review", easeFactor: 2.6,
+      intervalDays: 8, repetitions: 3, lapses: 1, dueAt: dueAt, lastReviewedAt: dueAt
+    )
+    let insertCard2 = CardSRSStore.Update(
+      deckId: "A", cardId: "card-2", statusRaw: "new", easeFactor: 2.5,
+      intervalDays: 0, repetitions: 0, lapses: 0, dueAt: nil, lastReviewedAt: nil
+    )
+    try store.upsertBatch([updateCard1, insertCard2])
+
+    let updated = try XCTUnwrap(try store.record(deckId: "A", cardId: "card-1"))
+    XCTAssertEqual(updated.easeFactor, 2.6)
+    XCTAssertEqual(updated.dueAt, dueAt)
+
+    let inserted = try XCTUnwrap(try store.record(deckId: "A", cardId: "card-2"))
+    XCTAssertEqual(inserted.statusRaw, "new")
+
+    let allRecords = try context.fetch(FetchDescriptor<CardSRSRecord>())
+    XCTAssertEqual(allRecords.count, 2)
+  }
+
+  func testUpsertBatchWithNoUpdatesIsNoOp() throws {
+    let (store, _) = try makeStore()
+    try store.upsertBatch([])
+    XCTAssertTrue(try store.records(forDeck: "A").isEmpty)
+  }
+
   func testResetDeletesAllRecords() throws {
     let (store, _) = try makeStore()
     try store.upsert(

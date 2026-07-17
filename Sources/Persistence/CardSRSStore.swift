@@ -55,6 +55,64 @@ final class CardSRSStore {
     try context.fetch(FetchDescriptor<CardSRSRecord>(predicate: #Predicate { $0.deckId == deckId }))
   }
 
+  /// Fetches records for multiple decks in a single query, filtering in memory (same
+  /// `Set.contains`-in-`#Predicate` crash-risk workaround as `dueRecords`).
+  func records(forDecks deckIds: Set<String>) throws -> [CardSRSRecord] {
+    try context.fetch(FetchDescriptor<CardSRSRecord>()).filter { deckIds.contains($0.deckId) }
+  }
+
+  struct Update {
+    let deckId: String
+    let cardId: String
+    let statusRaw: String
+    let easeFactor: Double
+    let intervalDays: Double
+    let repetitions: Int
+    let lapses: Int
+    let dueAt: Date?
+    let lastReviewedAt: Date?
+  }
+
+  /// Applies multiple upserts against a single batched fetch and a single `context.save()`,
+  /// instead of one fetch + one save per update (avoids N+1 SwiftData round-trips when
+  /// committing a whole session at once).
+  func upsertBatch(_ updates: [Update]) throws {
+    guard !updates.isEmpty else { return }
+
+    let deckIds = Set(updates.map(\.deckId))
+    let existing = try records(forDecks: deckIds)
+    var byKey = Dictionary(uniqueKeysWithValues: existing.map { ("\($0.deckId)|\($0.cardId)", $0) })
+
+    for update in updates {
+      let key = "\(update.deckId)|\(update.cardId)"
+      if let record = byKey[key] {
+        record.statusRaw = update.statusRaw
+        record.easeFactor = update.easeFactor
+        record.intervalDays = update.intervalDays
+        record.repetitions = update.repetitions
+        record.lapses = update.lapses
+        record.dueAt = update.dueAt
+        record.lastReviewedAt = update.lastReviewedAt
+      } else {
+        let record = CardSRSRecord(
+          deckId: update.deckId,
+          cardId: update.cardId,
+          statusRaw: update.statusRaw,
+          easeFactor: update.easeFactor,
+          intervalDays: update.intervalDays,
+          repetitions: update.repetitions,
+          lapses: update.lapses,
+          dueAt: update.dueAt,
+          lastReviewedAt: update.lastReviewedAt
+        )
+        context.insert(record)
+        byKey[key] = record
+      }
+    }
+
+    try context.save()
+  }
+
   func deleteAll(forDeck deckId: String) throws {
     let records = try records(forDeck: deckId)
     for record in records {
