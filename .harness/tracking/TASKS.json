@@ -2375,7 +2375,7 @@
     {
       "id": "T091",
       "title": "ReadinessCalculator: per-trip survival readiness % + copy line (swiftlint-clean, no config edits)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T011",
         "T022"
