@@ -1991,7 +1991,7 @@
     {
       "id": "T077",
       "title": "Axiom audit: SwiftUI architecture (swiftui-architecture-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
