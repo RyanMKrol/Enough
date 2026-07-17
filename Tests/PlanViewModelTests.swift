@@ -7,10 +7,10 @@ final class PlanViewModelTests: XCTestCase {
   var store: ContentStore!
   var japan: CountryInfo!
 
-  override func setUp() {
-    super.setUp()
+  override func setUp() async throws {
+    try await super.setUp()
     store = ContentStore()
-    japan = try? store.country("japan")
+    japan = try XCTUnwrap(try store.country("japan"))
   }
 
   func testWeekendDraftSeedsWeekendBundle() {

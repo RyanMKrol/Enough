@@ -104,4 +104,64 @@ final class ContentStoreTests: XCTestCase {
     let second = try store.catalog()
     XCTAssertEqual(first, second)
   }
+
+  func testMissingCatalogResourceThrowsMissingResource() throws {
+    let emptyBundle = try makeEmptyBundle()
+    let emptyStore = ContentStore(bundle: emptyBundle)
+
+    XCTAssertThrowsError(try emptyStore.catalog()) { error in
+      if case ContentStoreError.missingResource(let path) = error {
+        XCTAssertEqual(path, "Content/catalog.json")
+      } else {
+        XCTFail("Expected missingResource error")
+      }
+    }
+  }
+
+  func testMissingDeckFileResourceThrowsMissingResource() throws {
+    let bundle = try makeBundle(withCatalogReferencingMissingDeckFile: "decks/nope.json")
+    let missingDeckStore = ContentStore(bundle: bundle)
+
+    XCTAssertThrowsError(try missingDeckStore.cards(forDeck: "ghost-deck")) { error in
+      if case ContentStoreError.missingResource(let path) = error {
+        XCTAssertEqual(path, "decks/nope.json")
+      } else {
+        XCTFail("Expected missingResource error")
+      }
+    }
+  }
+
+  private func makeEmptyBundle() throws -> Bundle {
+    let root = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "content-store-empty-fixture-\(UUID().uuidString)")
+    try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+    return try XCTUnwrap(Bundle(path: root.path))
+  }
+
+  private func makeBundle(
+    withCatalogReferencingMissingDeckFile cardsFile: String
+  ) throws -> Bundle {
+    let root = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "content-store-missing-deck-fixture-\(UUID().uuidString)")
+    try FileManager.default.createDirectory(
+      at: root.appendingPathComponent("Content"), withIntermediateDirectories: true)
+
+    let deck: [String: Any] = [
+      "id": "ghost-deck", "title": "Ghost", "subtitle": "s", "scenario": "s", "icon": "star",
+      "cardsFile": cardsFile, "cardCount": 1, "priceGBP": 1.0,
+    ]  // swiftlint:disable:previous trailing_comma
+    let country: [String: Any] = [
+      "id": "ghostland", "name": "Ghostland", "languageName": "Ghostish",
+      "nativeLanguageName": "Ghostish", "accent": "japan", "flagEmoji": "🏳️",
+      "decks": [deck], "bundles": [],
+    ]  // swiftlint:disable:previous trailing_comma
+    let catalog: [String: Any] = [
+      "version": 1, "scenarios": [], "countries": [country], "comingSoon": [],
+    ]  // swiftlint:disable:previous trailing_comma
+
+    try JSONSerialization.data(withJSONObject: catalog).write(
+      to: root.appendingPathComponent("Content/catalog.json"))
+
+    return try XCTUnwrap(Bundle(path: root.path))
+  }
 }
