@@ -263,12 +263,7 @@ struct DeckDetailView: View {
   private func resetProgress() {
     isResetting = true
     do {
-      let records = try services.cardSRSStore.records(forDeck: deckId)
-      let context = services.container.mainContext
-      for record in records {
-        context.delete(record)
-      }
-      try context.save()
+      try services.cardSRSStore.deleteAll(forDeck: deckId)
       progress = try services.deckProgress.progress(forDeck: deckId)
     } catch {
       // Handle error gracefully

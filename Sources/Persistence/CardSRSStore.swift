@@ -55,6 +55,14 @@ final class CardSRSStore {
     try context.fetch(FetchDescriptor<CardSRSRecord>(predicate: #Predicate { $0.deckId == deckId }))
   }
 
+  func deleteAll(forDeck deckId: String) throws {
+    let records = try records(forDeck: deckId)
+    for record in records {
+      context.delete(record)
+    }
+    try context.save()
+  }
+
   func dueRecords(now: Date, ownedDeckIds: Set<String>) throws -> [CardSRSRecord] {
     let sentinel = Date.distantFuture
     let predicate = #Predicate<CardSRSRecord> {
