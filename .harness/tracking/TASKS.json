@@ -2209,7 +2209,7 @@
     {
       "id": "T085",
       "title": "Axiom audit: test quality (testing-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
