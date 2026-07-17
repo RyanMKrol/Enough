@@ -39,6 +39,12 @@ struct WeekDotsRow: View {
 
       Spacer()
     }
+    .accessibilityElement(children: .ignore)
+    .accessibilityLabel("This week: \(doneCount) of 7 days practiced")
+  }
+
+  private var doneCount: Int {
+    dots.prefix(7).filter { $0 == .done }.count
   }
 }
 

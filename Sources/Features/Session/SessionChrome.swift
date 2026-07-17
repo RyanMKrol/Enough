@@ -15,8 +15,11 @@ struct SessionChrome: View {
           .foregroundStyle(Color(hex: 0x6b6b70))
           .frame(width: 30, height: 30)
           .background(Circle().fill(Color(hex: 0xf7f7fa)))
+          .frame(width: 44, height: 44)
+          .contentShape(Rectangle())
       }
       .accessibilityIdentifier(AXID.sessionClose)
+      .accessibilityLabel("Close")
 
       AnimatedProgressBar(
         progress: progress,

@@ -66,7 +66,10 @@ struct PulsingAudioButton: View {
         pulseOpacity = 0.6
       }
     }
+    .frame(minWidth: 44, minHeight: 44)
+    .contentShape(Rectangle())
     .accessibilityIdentifier(AXID.audioButton)
+    .accessibilityLabel("Play audio")
   }
 
   private func onTap() {

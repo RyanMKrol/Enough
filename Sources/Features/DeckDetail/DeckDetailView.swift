@@ -32,7 +32,10 @@ struct DeckDetailView: View {
                 .frame(width: 36, height: 36)
                 .background(Color.white.opacity(0.25), in: Circle())
                 .background(.ultraThinMaterial)
+                .frame(width: 44, height: 44)
+                .contentShape(Rectangle())
             }
+            .accessibilityLabel("Back")
 
             Spacer()
 
@@ -49,7 +52,10 @@ struct DeckDetailView: View {
                 .frame(width: 36, height: 36)
                 .background(Color.white.opacity(0.25), in: Circle())
                 .background(.ultraThinMaterial)
+                .frame(width: 44, height: 44)
+                .contentShape(Rectangle())
             }
+            .accessibilityLabel("More options")
           }
           .padding(.horizontal, 22)
           .padding(.top, 16)
@@ -147,6 +153,7 @@ struct DeckDetailView: View {
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .padding(.vertical, 12)
                   .padding(.horizontal, 16)
+                  .accessibilityElement(children: .combine)
 
                   if index < min(4, cards.count - 1) {
                     Divider()

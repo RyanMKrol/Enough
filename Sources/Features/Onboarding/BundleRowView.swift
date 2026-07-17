@@ -15,6 +15,7 @@ struct BundleRowView: View {
       HStack(spacing: 12) {
         radioIndicator
           .frame(width: 22, height: 22)
+          .accessibilityHidden(true)
 
         VStack(alignment: .leading, spacing: 4) {
           HStack(spacing: 6) {
@@ -66,6 +67,7 @@ struct BundleRowView: View {
       .animation(.spring(duration: Motion.selectionSpringResponse), value: isSelected)
     }
     .buttonStyle(.plain)
+    .accessibilityAddTraits(isSelected ? .isSelected : [])
   }
 
   @ViewBuilder

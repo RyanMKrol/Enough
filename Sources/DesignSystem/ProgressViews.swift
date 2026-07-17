@@ -33,6 +33,12 @@ struct AnimatedProgressBar: View {
         }
       }
     }
+    .accessibilityElement(children: .ignore)
+    .accessibilityValue("\(percentValue) percent")
+  }
+
+  private var percentValue: Int {
+    Int((clampProgress(progress) * 100).rounded())
   }
 
   private func clampProgress(_ value: Double) -> Double {
@@ -83,6 +89,12 @@ struct ProgressRing: View {
         displayedProgress = clampProgress(newProgress)
       }
     }
+    .accessibilityElement(children: .ignore)
+    .accessibilityValue("\(percentValue) percent")
+  }
+
+  private var percentValue: Int {
+    Int((clampProgress(progress) * 100).rounded())
   }
 
   private func clampProgress(_ value: Double) -> Double {

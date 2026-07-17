@@ -93,6 +93,7 @@ struct CardStackHero: View {
       .clipped()
     }
     .frame(width: 255, height: 292)
+    .accessibilityHidden(true)
     .onAppear {
       if !reduceMotion {
         isBobbing = true

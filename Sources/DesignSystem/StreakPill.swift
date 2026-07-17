@@ -32,6 +32,8 @@ struct StreakPill: View {
     )
     .onAppear { updateFlicker() }
     .onChange(of: isTabActive) { _, _ in updateFlicker() }
+    .accessibilityElement(children: .ignore)
+    .accessibilityLabel("\(count)-day streak")
   }
 
   private func updateFlicker() {

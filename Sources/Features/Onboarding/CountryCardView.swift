@@ -19,6 +19,7 @@ struct CountryCardView: View {
 
           Text(country.flagEmoji)
             .font(.system(size: 28))
+            .accessibilityHidden(true)
         }
 
         VStack(alignment: .leading, spacing: 2) {
@@ -58,12 +59,14 @@ struct CountryCardView: View {
               .foregroundColor(.white)
           }
           .offset(x: 8, y: -8)
+          .accessibilityHidden(true)
         }
       }
       .animation(.spring(duration: Motion.selectionSpringResponse), value: isSelected)
     }
     .buttonStyle(.plain)
     .accessibilityIdentifier(AXID.countryCard(country.id))
+    .accessibilityAddTraits(isSelected ? .isSelected : [])
   }
 
   private func handleTap() {

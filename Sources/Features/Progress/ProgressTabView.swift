@@ -60,6 +60,8 @@ struct ProgressTabView: View {
       }
       .font(.system(size: 13, weight: .semibold))
       .foregroundStyle(EnoughColor.linkBlue)
+      .frame(minHeight: 44)
+      .contentShape(Rectangle())
       .accessibilityIdentifier(AXID.progressNewTrip)
     }
     .frame(maxWidth: .infinity, alignment: .leading)

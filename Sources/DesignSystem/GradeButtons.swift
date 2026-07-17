@@ -79,11 +79,14 @@ struct GradeButtonRow: View {
               .foregroundColor(choice.textColor.opacity(0.7))
           }
           .frame(maxWidth: .infinity)
-          .frame(height: 56)
+          .frame(minHeight: 56)
           .background(
             RoundedRectangle(cornerRadius: Layout.chipRadius)
               .fill(choice.fill)
           )
+          .accessibilityElement(children: .ignore)
+          .accessibilityLabel(choice.title)
+          .accessibilityValue(previews[choice] ?? "")
         }
         .buttonStyle(GradeButtonStyle())
         .accessibilityIdentifier(choice.axID)

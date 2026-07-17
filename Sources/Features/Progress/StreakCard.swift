@@ -17,6 +17,7 @@ struct StreakCard: View {
           .foregroundColor(EnoughColor.streakAmber)
           .scaleEffect(isAnimating ? 1.08 : 1.0)
           .rotationEffect(.degrees(isAnimating ? 3 : -3))
+          .accessibilityHidden(true)
 
         Text("\(streak)-day streak")
           .font(.system(size: 22, weight: .bold))

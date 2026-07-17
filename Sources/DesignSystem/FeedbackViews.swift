@@ -73,6 +73,7 @@ struct BottomResultSheet<Content: View>: View {
                 .background(Color.black.opacity(0.15))
                 .clipShape(Circle())
             }
+            .accessibilityLabel("Continue")
           }
         }
         .padding(20)

@@ -29,6 +29,7 @@ struct ScenarioChip: View {
         )
     }
     .animation(Motion.selectionSpring, value: isSelected)
+    .accessibilityAddTraits(isSelected ? .isSelected : [])
   }
 }
 

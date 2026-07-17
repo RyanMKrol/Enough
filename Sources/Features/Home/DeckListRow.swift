@@ -24,6 +24,7 @@ struct DeckListRow: View {
             .font(.system(size: 15, weight: .semibold))
             .foregroundColor(accentTheme.accent)
         )
+        .accessibilityHidden(true)
 
       VStack(alignment: .leading, spacing: 5) {
         Text(title)
@@ -43,6 +44,7 @@ struct DeckListRow: View {
       statusView
     }
     .padding(.vertical, 12)
+    .accessibilityElement(children: .combine)
   }
 
   @ViewBuilder
@@ -53,6 +55,7 @@ struct DeckListRow: View {
         Image(systemName: "checkmark.circle.fill")
           .font(.system(size: 15, weight: .semibold))
           .foregroundColor(EnoughColor.successGreen)
+          .accessibilityHidden(true)
 
         Text("Learned")
           .font(.system(size: 13, weight: .semibold))

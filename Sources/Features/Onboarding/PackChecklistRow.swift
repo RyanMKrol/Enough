@@ -20,8 +20,20 @@ struct PackChecklistRow: View {
         content
       }
       .buttonStyle(.plain)
+      .accessibilityAddTraits(isChecked ? .isSelected : [])
     } else {
       content
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(isChecked ? .isSelected : [])
+    }
+  }
+
+  private var isChecked: Bool {
+    switch state {
+    case .inBundle, .extra:
+      return true
+    case .available:
+      return false
     }
   }
 
@@ -30,6 +42,7 @@ struct PackChecklistRow: View {
     HStack(spacing: 12) {
       indicator
         .frame(width: 22, height: 22)
+        .accessibilityHidden(true)
 
       VStack(alignment: .leading, spacing: 2) {
         Text(name)
