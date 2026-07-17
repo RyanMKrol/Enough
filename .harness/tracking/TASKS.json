@@ -2879,7 +2879,7 @@
     {
       "id": "T109",
       "title": "Build Liquid Glass tab bar polish variants behind a switch",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T108"
       ],
