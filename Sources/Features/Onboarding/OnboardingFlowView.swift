@@ -26,11 +26,11 @@ struct OnboardingFlowView: View {
           switch step {
           case .country:
             CountryPickerView(showsBackButton: !startAtCountryPicker) {
-              path.append(.tripShape)
+              advance(to: .tripShape)
             }
           case .tripShape:
             TripShapeView {
-              path.append(.plan)
+              advance(to: .plan)
             }
             .navigationBarBackButtonHidden(true)
           case .plan:
@@ -47,7 +47,7 @@ struct OnboardingFlowView: View {
   private var rootView: some View {
     if startAtCountryPicker {
       CountryPickerView(showsBackButton: false) {
-        path.append(.tripShape)
+        advance(to: .tripShape)
       }
     } else {
       welcomeView
@@ -56,8 +56,12 @@ struct OnboardingFlowView: View {
 
   private var welcomeView: some View {
     WelcomeView {
-      path.append(.country)
+      advance(to: .country)
     }
+  }
+
+  private func advance(to step: OnboardingStep) {
+    path.append(step)
   }
 
   func finish() {

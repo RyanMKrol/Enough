@@ -248,7 +248,7 @@ struct DeckDetailView: View {
 
       progress = try services.deckProgress.progress(forDeck: deckId)
     } catch {
-      // Handle error gracefully
+      dismiss()
     }
   }
 
