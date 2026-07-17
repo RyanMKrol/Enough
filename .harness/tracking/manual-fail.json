@@ -18,5 +18,10 @@
     "failed": true,
     "reason": "review-failed: superseded by T102 — re-attempt widens scope to Sources/Persistence/** and mandates CardSRSStore.forceAllDue(now:), resolving the original spec's context-accessor contradiction",
     "at": "2026-07-16T19:06:13Z"
+  },
+  "T100": {
+    "failed": true,
+    "reason": "review-failed: superseded by T103 — re-attempt widens scope to Sources/EnoughApp.swift (the @main file the App Intent must edit to bridge AppState) and forbids the gratuitous .swiftlint.yml edit that scope-blocked the original",
+    "at": "2026-07-17T19:51:19Z"
   }
 }
