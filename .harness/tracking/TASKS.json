@@ -1937,7 +1937,7 @@
     {
       "id": "T075",
       "title": "Axiom audit: SwiftData safety (swiftdata-auditor)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
