@@ -34,3 +34,4 @@
 {"id":"T069","ts":"2026-07-17T05:48:09Z","kind":"audit-fail","rung":1,"attempt":1,"model":"claude-sonnet-5","effort":"medium","facets":{"layer":"views","workType":"style","risk":["cross-cutting"]},"detail":""}
 {"id":"T069","ts":"2026-07-17T06:24:45Z","kind":"audit-fail","rung":2,"attempt":0,"model":"claude-sonnet-5","effort":"high","facets":{"layer":"views","workType":"style","risk":["cross-cutting"]},"detail":""}
 {"id":"T069","ts":"2026-07-17T07:11:49Z","kind":"audit-fail","rung":2,"attempt":1,"model":"claude-sonnet-5","effort":"high","facets":{"layer":"views","workType":"style","risk":["cross-cutting"]},"detail":""}
+{"id":"T087","ts":"2026-07-17T11:31:28Z","kind":"ci-red","rung":0,"attempt":0,"model":"claude-sonnet-5","effort":"low","facets":{"layer":"services","workType":"bugfix","risk":["cross-cutting"]},"detail":"CI checks failed on the branch"}

@@ -2263,7 +2263,7 @@
     {
       "id": "T087",
       "title": "Axiom audit: Swift performance (swift-performance-analyzer)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T059"
       ],
