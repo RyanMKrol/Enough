@@ -2791,7 +2791,7 @@
     {
       "id": "T106",
       "title": "Fix MCSessionView blank-screen: learn session never renders",
-      "status": "pending",
+      "status": "blocked",
       "dependsOn": [
         "T047"
       ],
