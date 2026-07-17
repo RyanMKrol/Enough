@@ -36,3 +36,4 @@
 {"id":"T069","ts":"2026-07-17T07:11:49Z","kind":"audit-fail","rung":2,"attempt":1,"model":"claude-sonnet-5","effort":"high","facets":{"layer":"views","workType":"style","risk":["cross-cutting"]},"detail":""}
 {"id":"T087","ts":"2026-07-17T11:31:28Z","kind":"ci-red","rung":0,"attempt":0,"model":"claude-sonnet-5","effort":"low","facets":{"layer":"services","workType":"bugfix","risk":["cross-cutting"]},"detail":"CI checks failed on the branch"}
 {"id":"T100","ts":"2026-07-17T12:34:36Z","kind":"scope-creep","rung":0,"attempt":0,"model":"claude-haiku-4-5","effort":"","facets":{"layer":"services","workType":"feature","risk":[]},"detail":".swiftlint.yml Sources/EnoughApp.swift"}
+{"id":"T101","ts":"2026-07-17T12:47:06Z","kind":"scope-creep","rung":0,"attempt":0,"model":"claude-haiku-4-5","effort":"","facets":{"layer":"views","workType":"style","risk":[]},"detail":"build_run.sh"}
