@@ -23,7 +23,7 @@ struct PrimaryButtonStyle: ButtonStyle {
       )
       .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
       .opacity(configuration.isPressed ? 0.9 : 1.0)
-      .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
+      .animation(.easeOut(duration: Motion.pressFeedback), value: configuration.isPressed)
   }
 }
 
@@ -38,7 +38,7 @@ struct TintedButtonStyle: ButtonStyle {
       .frame(height: Layout.buttonHeight)
       .background(accentTheme.tint, in: RoundedRectangle(cornerRadius: Layout.buttonRadius))
       .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
-      .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
+      .animation(.easeOut(duration: Motion.pressFeedback), value: configuration.isPressed)
   }
 }
 
@@ -48,7 +48,7 @@ struct TextLinkButtonStyle: ButtonStyle {
       .font(.system(size: 15, weight: .regular))
       .foregroundStyle(EnoughColor.linkBlue)
       .opacity(configuration.isPressed ? 0.6 : 1.0)
-      .animation(.easeOut(duration: 0.15), value: configuration.isPressed)
+      .animation(.easeOut(duration: Motion.pressFeedback), value: configuration.isPressed)
   }
 }
 

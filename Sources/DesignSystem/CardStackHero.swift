@@ -1,9 +1,12 @@
 import SwiftUI
 
 struct CardStackHero: View {
+  @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
   @State private var frontOffset: CGFloat = 0
   @State private var backLeftOffset: CGFloat = 0
   @State private var backRightOffset: CGFloat = 0
+  @State private var isBobbing = false
 
   init() {
     // Empty init as specified
@@ -91,11 +94,22 @@ struct CardStackHero: View {
     }
     .frame(width: 255, height: 292)
     .onAppear {
-      startBobAnimation()
+      if !reduceMotion {
+        isBobbing = true
+        startBobAnimation()
+      }
+    }
+    .onDisappear {
+      isBobbing = false
+      frontOffset = 0
+      backLeftOffset = 0
+      backRightOffset = 0
     }
   }
 
   private func startBobAnimation() {
+    guard isBobbing else { return }
+
     // Front card animation: ±6pt, 4s ease-in-out, infinite
     withAnimation(
       Animation.easeInOut(duration: Motion.bobDuration)
@@ -105,7 +119,8 @@ struct CardStackHero: View {
     }
 
     // Back-left card animation: ±4pt, 4s ease-in-out, phase offset 0.5s
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + Motion.bobPhaseOffsetShort) {
+      guard isBobbing else { return }
       withAnimation(
         Animation.easeInOut(duration: Motion.bobDuration)
           .repeatForever(autoreverses: true)
@@ -115,7 +130,8 @@ struct CardStackHero: View {
     }
 
     // Back-right card animation: ±4pt, 4s ease-in-out, phase offset 1.0s
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + Motion.bobPhaseOffsetLong) {
+      guard isBobbing else { return }
       withAnimation(
         Animation.easeInOut(duration: Motion.bobDuration)
           .repeatForever(autoreverses: true)

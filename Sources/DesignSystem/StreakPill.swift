@@ -3,6 +3,9 @@ import SwiftUI
 struct StreakPill: View {
   let count: Int
 
+  @Environment(\.accessibilityReduceMotion) private var reduceMotion
+  @Environment(\.isTabActive) private var isTabActive
+
   @State private var isAnimating = false
 
   var body: some View {
@@ -27,13 +30,20 @@ struct StreakPill: View {
       x: 0,
       y: 1
     )
-    .onAppear {
-      withAnimation(
-        .easeInOut(duration: Motion.flicker)
-          .repeatForever(autoreverses: true)
-      ) {
-        isAnimating = true
-      }
+    .onAppear { updateFlicker() }
+    .onChange(of: isTabActive) { _, _ in updateFlicker() }
+  }
+
+  private func updateFlicker() {
+    guard isTabActive, !reduceMotion else {
+      isAnimating = false
+      return
+    }
+    withAnimation(
+      .easeInOut(duration: Motion.flicker)
+        .repeatForever(autoreverses: true)
+    ) {
+      isAnimating = true
     }
   }
 }

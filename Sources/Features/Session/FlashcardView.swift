@@ -38,7 +38,7 @@ struct FlashcardView: View {
       .accessibilityIdentifier(AXID.flashcard)
       .onTapGesture {
         if !isRevealed {
-          withAnimation(.easeInOut(duration: 0.4)) {
+          withAnimation(.easeInOut(duration: Motion.cardFlip)) {
             flipAngle = 180
             isRevealed = true
           }

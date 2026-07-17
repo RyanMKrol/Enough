@@ -82,6 +82,17 @@ struct ReviewSessionView: View {
         }
       }
       .accessibilityIdentifier(AXID.screenSessionReview)
+      .sensoryFeedback(.impact(weight: .light), trigger: viewModel.gradeCount)
+      .sensoryFeedback(trigger: viewModel.lastGradeFeedback) { _, new in
+        switch new {
+        case .remembered:
+          return .success
+        case .forgotten:
+          return .error
+        case nil:
+          return nil
+        }
+      }
       .onChange(of: viewModel.route) { _, newRoute in
         if let newRoute {
           path.append(newRoute)

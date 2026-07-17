@@ -10,7 +10,6 @@ struct LiquidGlassTabBar: View {
         Button(
           action: {
             selection = tab
-            hapticFeedback()
           },
           label: {
             VStack(spacing: 4) {
@@ -43,12 +42,6 @@ struct LiquidGlassTabBar: View {
         .stroke(Color.black.opacity(0.06), lineWidth: 0.5)
     }
     .shadow(color: .black.opacity(0.1), radius: 22, y: 6)
-    .sensoryFeedback(.impact(weight: .light), trigger: selection)
-  }
-
-  private func hapticFeedback() {
-    let generator = UIImpactFeedbackGenerator(style: .light)
-    generator.impactOccurred()
   }
 }
 

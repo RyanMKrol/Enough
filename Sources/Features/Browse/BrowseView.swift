@@ -100,7 +100,7 @@ struct BrowseView: View {
           }
         }
       }
-      .animation(.easeInOut(duration: 0.2), value: viewModel.showRestoredToast)
+      .animation(.easeInOut(duration: Motion.selectionFade), value: viewModel.showRestoredToast)
   }
 
   @ViewBuilder

@@ -90,15 +90,13 @@ struct TripShapeView: View {
   }
 
   private func toggleScenario(_ id: String) {
-    withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+    withAnimation(Motion.selectionSpring) {
       if draft.scenarioIds.contains(id) {
         draft.scenarioIds.remove(id)
       } else {
         draft.scenarioIds.insert(id)
       }
     }
-    let impact = UIImpactFeedbackGenerator(style: .light)
-    impact.impactOccurred()
   }
 
   private func loadCatalog() {

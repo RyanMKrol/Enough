@@ -60,17 +60,13 @@ struct CountryCardView: View {
           .offset(x: 8, y: -8)
         }
       }
-      .animation(.spring(duration: 0.3), value: isSelected)
+      .animation(.spring(duration: Motion.selectionSpringResponse), value: isSelected)
     }
     .buttonStyle(.plain)
     .accessibilityIdentifier(AXID.countryCard(country.id))
   }
 
   private func handleTap() {
-    if !isSelected {
-      let generator = UIImpactFeedbackGenerator(style: .light)
-      generator.impactOccurred()
-    }
     action()
   }
 }

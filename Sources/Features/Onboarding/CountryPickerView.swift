@@ -94,7 +94,7 @@ struct CountryPickerView: View {
             ? EnoughColor.graphite : draft.accent.accent
         )
       )
-      .animation(.easeInOut(duration: 0.35), value: draft.selectedCountryId)
+      .animation(.easeInOut(duration: Motion.toastFade), value: draft.selectedCountryId)
       .disabled(draft.selectedCountryId == nil)
       .opacity(draft.selectedCountryId == nil ? 0.5 : 1.0)
       .accessibilityIdentifier(AXID.onboardingContinue)

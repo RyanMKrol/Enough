@@ -88,8 +88,6 @@ struct PackChecklistRow: View {
   }
 
   private func handleTap() {
-    let generator = UIImpactFeedbackGenerator(style: .light)
-    generator.impactOccurred()
     onToggle?()
   }
 }

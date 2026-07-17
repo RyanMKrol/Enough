@@ -63,7 +63,7 @@ struct BundleRowView: View {
         radius: isSelected ? 12 : 0,
         y: isSelected ? 5 : 0
       )
-      .animation(.spring(duration: 0.3), value: isSelected)
+      .animation(.spring(duration: Motion.selectionSpringResponse), value: isSelected)
     }
     .buttonStyle(.plain)
   }
@@ -86,8 +86,6 @@ struct BundleRowView: View {
   }
 
   private func handleTap() {
-    let generator = UIImpactFeedbackGenerator(style: .light)
-    generator.impactOccurred()
     action()
   }
 }

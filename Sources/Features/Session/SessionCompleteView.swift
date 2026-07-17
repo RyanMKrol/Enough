@@ -45,8 +45,8 @@ struct SessionCompleteView: View {
     .accessibilityIdentifier(AXID.screenSessionComplete)
     .task {
       streak = (try? services.stats.currentStreak()) ?? 0
-      try? await Task.sleep(for: .seconds(0.3))
-      withAnimation(Motion.popSpring) {
+      try? await Task.sleep(for: .seconds(Motion.completePopDelay))
+      withAnimation(Motion.completePopSpring) {
         showCheck = true
       }
     }
@@ -243,7 +243,7 @@ struct SessionCompleteView: View {
       summary: SessionSummary(
         cardsCompleted: 12,
         correctCount: 10,
-        duration: 250,
+        duration: TimeInterval(250),
         mode: .review
       ),
       deckId: nil,
@@ -256,7 +256,7 @@ struct SessionCompleteView: View {
       summary: SessionSummary(
         cardsCompleted: 5,
         correctCount: 4,
-        duration: 125,
+        duration: TimeInterval(125),
         mode: .learn
       ),
       deckId: "jp-basic",

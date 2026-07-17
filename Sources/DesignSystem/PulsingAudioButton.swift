@@ -8,6 +8,7 @@ struct TapRipple: Identifiable {
 
 struct PulsingAudioButton: View {
   @Environment(\.accentTheme) var accentTheme
+  @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
   let size: CGFloat
   let isPulsing: Bool
@@ -16,6 +17,7 @@ struct PulsingAudioButton: View {
   @State private var pulseScale: CGFloat = 0.85
   @State private var pulseOpacity: Double = 0.6
   @State private var tapRipples: [TapRipple] = []
+  @State private var isVisible = false
 
   init(size: CGFloat = 60, isPulsing: Bool = true, action: @escaping () -> Void) {
     self.size = size
@@ -53,9 +55,15 @@ struct PulsingAudioButton: View {
       }
       .frame(width: size, height: size)
       .onAppear {
-        if isPulsing {
+        if isPulsing && !reduceMotion {
+          isVisible = true
           startIdlePulse()
         }
+      }
+      .onDisappear {
+        isVisible = false
+        pulseScale = 0.85
+        pulseOpacity = 0.6
       }
     }
     .accessibilityIdentifier(AXID.audioButton)
@@ -67,6 +75,7 @@ struct PulsingAudioButton: View {
   }
 
   private func startIdlePulse() {
+    guard isVisible else { return }
     withAnimation(
       .easeOut(duration: Motion.pulse).repeatForever(autoreverses: false)
     ) {
@@ -79,14 +88,14 @@ struct PulsingAudioButton: View {
     let ripple = TapRipple(scale: 0.85, opacity: 0.6)
     tapRipples.append(ripple)
 
-    withAnimation(.easeOut(duration: 0.8)) {
+    withAnimation(.easeOut(duration: Motion.tapRippleDecay)) {
       if let index = tapRipples.firstIndex(where: { $0.id == ripple.id }) {
         tapRipples[index].scale = 1.7
         tapRipples[index].opacity = 0.0
       }
     }
 
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + Motion.tapRippleDecay) {
       tapRipples.removeAll { $0.id == ripple.id }
     }
   }

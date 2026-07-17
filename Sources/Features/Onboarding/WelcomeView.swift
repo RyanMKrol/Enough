@@ -121,7 +121,7 @@ struct WelcomeView: View {
     restoreMessageTimer = Task {
       try? await Task.sleep(nanoseconds: 2_000_000_000)
       await MainActor.run {
-        withAnimation(.easeOut(duration: 0.3)) {
+        withAnimation(.easeOut(duration: Motion.welcomeTransition)) {
           restoreMessage = nil
         }
       }

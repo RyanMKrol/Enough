@@ -28,7 +28,7 @@ struct ScenarioChip: View {
             : nil
         )
     }
-    .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isSelected)
+    .animation(Motion.selectionSpring, value: isSelected)
   }
 }
 

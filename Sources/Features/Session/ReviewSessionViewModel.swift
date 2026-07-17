@@ -1,4 +1,9 @@
-import UIKit
+import Foundation
+
+enum ReviewGradeFeedback: Equatable {
+  case remembered
+  case forgotten
+}
 
 @Observable
 final class ReviewSessionViewModel {
@@ -8,6 +13,8 @@ final class ReviewSessionViewModel {
   private(set) var currentCardId: String?
   var isRevealed: Bool = false
   private(set) var previews: [GradeChoice: String] = [:]
+  private(set) var gradeCount: Int = 0
+  var lastGradeFeedback: ReviewGradeFeedback?
   private var audioFile: String = ""
 
   var route: SessionRoute?
@@ -31,7 +38,8 @@ final class ReviewSessionViewModel {
 
   func grade(_ choice: GradeChoice) {
     guard let srsGrade = Self.srsGrade(for: choice) else { return }
-    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+    gradeCount += 1
+    lastGradeFeedback = choice == .again ? .forgotten : .remembered
     engine.submitGrade(srsGrade)
     advance()
   }

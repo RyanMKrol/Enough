@@ -123,7 +123,7 @@ struct AnswerRow: View {
     withAnimation(Motion.popSpring) {
       scale = 1.03
     }
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + Motion.correctBounce) {
       withAnimation(Motion.popSpring) {
         scale = 1.0
       }
