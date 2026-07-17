@@ -2787,6 +2787,37 @@
       "verify": [],
       "expectsTest": false,
       "spec": ".harness/tasks/T105.md"
+    },
+    {
+      "id": "T106",
+      "title": "Fix MCSessionView blank-screen: learn session never renders",
+      "status": "pending",
+      "dependsOn": [
+        "T047"
+      ],
+      "gate": null,
+      "tags": [
+        "session",
+        "bugfix",
+        "learn"
+      ],
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": [
+          "touches-core"
+        ]
+      },
+      "scope": [
+        "Sources/Features/Session/**"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "visualVerify": true,
+      "spec": ".harness/tasks/T106.md"
     }
   ]
 }
