@@ -2852,7 +2852,7 @@
     {
       "id": "T108",
       "title": "Fix bottom tab bar dead taps (contentShape hit area)",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
