@@ -1568,7 +1568,7 @@
     {
       "id": "T059",
       "title": "Motion & haptics conformance sweep against the design spec",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T044",
         "T045",
