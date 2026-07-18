@@ -28,5 +28,10 @@
     "failed": true,
     "reason": "review-failed: superseded by T104 — re-attempt keeps the same single-file scope but instructs the builder to invoke build_run.sh read-only (never edit it), the scope-creep that blocked the original",
     "at": "2026-07-17T19:51:21Z"
+  },
+  "T106": {
+    "failed": true,
+    "reason": "review-failed: superseded by T112 — re-attempt widens scope to include the HomeView/DeckDetailView fullScreenCover call sites (the nil-engine capture the builder judged is the real cause) and switches to .fullScreenCover(item:); original spec wrongly forbade touching them",
+    "at": "2026-07-18T09:04:10Z"
   }
 }
