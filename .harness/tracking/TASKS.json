@@ -2956,6 +2956,40 @@
         "workType": "style",
         "risk": []
       }
+    },
+    {
+      "id": "T112",
+      "title": "Fix MCSessionView blank-screen: widen scope to include the fullScreenCover call sites",
+      "status": "pending",
+      "dependsOn": [
+        "T047"
+      ],
+      "gate": null,
+      "tags": [
+        "session",
+        "bugfix",
+        "learn"
+      ],
+      "scope": [
+        "Sources/Features/Session/MCSessionView.swift",
+        "Sources/Features/Session/MCSessionViewModel.swift",
+        "Sources/Features/Home/HomeView.swift",
+        "Sources/Features/DeckDetail/DeckDetailView.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T112.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": [
+          "touches-core"
+        ]
+      }
     }
   ]
 }
