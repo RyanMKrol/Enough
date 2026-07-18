@@ -2960,7 +2960,7 @@
     {
       "id": "T112",
       "title": "Fix MCSessionView blank-screen: widen scope to include the fullScreenCover call sites",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T047"
       ],
