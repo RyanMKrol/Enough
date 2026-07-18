@@ -1,5 +1,15 @@
 import SwiftUI
 
+struct SessionEnginePresentation: Identifiable {
+  let id: ObjectIdentifier
+  let engine: SessionEngine
+
+  init(_ engine: SessionEngine) {
+    self.id = ObjectIdentifier(engine)
+    self.engine = engine
+  }
+}
+
 struct MCSessionView: View {
   @Environment(\.services) private var services
   @Environment(\.dismiss) private var dismiss
@@ -25,6 +35,11 @@ struct MCSessionView: View {
             )
           }
         }
+    }
+    .task {
+      if viewModel == nil {
+        viewModel = MCSessionViewModel(engine: engine, services: services)
+      }
     }
   }
 
@@ -100,9 +115,6 @@ struct MCSessionView: View {
       }
     } else {
       Color.white.ignoresSafeArea()
-        .onAppear {
-          viewModel = MCSessionViewModel(engine: engine, services: services)
-        }
     }
   }
 

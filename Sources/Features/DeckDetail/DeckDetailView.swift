@@ -11,8 +11,7 @@ struct DeckDetailView: View {
   @State private var progress: DeckProgressService.DeckProgress?
   @State private var isResetting = false
   @State private var showResetConfirmation = false
-  @State private var sessionEngine: SessionEngine?
-  @State private var isPresentingSession = false
+  @State private var sessionPresentation: SessionEnginePresentation?
   @State private var sessionStartError: String?
   @State private var loadFailed = false
   @State private var resetErrorMessage: String?
@@ -130,10 +129,8 @@ struct DeckDetailView: View {
         }
       }
     )
-    .fullScreenCover(isPresented: $isPresentingSession) {
-      if let sessionEngine {
-        MCSessionView(engine: sessionEngine)
-      }
+    .fullScreenCover(item: $sessionPresentation) { session in
+      MCSessionView(engine: session.engine)
     }
     .errorAlert("Couldn't start session", message: $sessionStartError)
     .errorAlert("Couldn't reset progress", message: $resetErrorMessage)
@@ -164,8 +161,8 @@ struct DeckDetailView: View {
 
   private func startLearnSession() {
     do {
-      sessionEngine = try services.study.makeLearnSession(deckId: deckId)
-      isPresentingSession = true
+      sessionPresentation = SessionEnginePresentation(
+        try services.study.makeLearnSession(deckId: deckId))
     } catch {
       sessionStartError = "Couldn't start this session — try again"
     }
@@ -173,8 +170,8 @@ struct DeckDetailView: View {
 
   private func startPracticeSession() {
     do {
-      sessionEngine = try services.study.makePracticeSession(deckId: deckId)
-      isPresentingSession = true
+      sessionPresentation = SessionEnginePresentation(
+        try services.study.makePracticeSession(deckId: deckId))
     } catch {
       sessionStartError = "Couldn't start practice — try again"
     }

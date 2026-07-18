@@ -3,8 +3,7 @@ import SwiftUI
 struct HomeView: View {
   @Environment(\.services) private var services
   @State private var viewModel: HomeViewModel?
-  @State private var learnSessionEngine: SessionEngine?
-  @State private var isPresentingLearnSession = false
+  @State private var learnSession: SessionEnginePresentation?
   @State private var reviewSessionEngine: SessionEngine?
   @State private var isPresentingReviewSession = false
   @State private var sessionStartError: String?
@@ -20,10 +19,8 @@ struct HomeView: View {
         }
     }
     .accessibilityIdentifier(AXID.screenHome)
-    .fullScreenCover(isPresented: $isPresentingLearnSession) {
-      if let learnSessionEngine {
-        MCSessionView(engine: learnSessionEngine)
-      }
+    .fullScreenCover(item: $learnSession) { session in
+      MCSessionView(engine: session.engine)
     }
     .fullScreenCover(isPresented: $isPresentingReviewSession) {
       if let reviewSessionEngine {
@@ -110,8 +107,7 @@ struct HomeView: View {
 
   private func startLearnSession(deckId: String) {
     do {
-      learnSessionEngine = try services.study.makeLearnSession(deckId: deckId)
-      isPresentingLearnSession = true
+      learnSession = SessionEnginePresentation(try services.study.makeLearnSession(deckId: deckId))
     } catch {
       sessionStartError = "Couldn't start this session — try again"
     }
