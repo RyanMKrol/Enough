@@ -2990,6 +2990,211 @@
           "touches-core"
         ]
       }
+    },
+    {
+      "id": "T113",
+      "title": "Wire up onboarding 'Browse all decks' link to present the Browse deck list",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "onboarding",
+        "browse",
+        "bugfix"
+      ],
+      "scope": [
+        "Sources/Features/Onboarding/",
+        "Sources/Features/Browse/"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T113.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": []
+      }
+    },
+    {
+      "id": "T114",
+      "title": "Fix ReviewSessionView blank-screen: value-driven fullScreenCover + state-safe view-model",
+      "status": "pending",
+      "dependsOn": [
+        "T112"
+      ],
+      "gate": null,
+      "tags": [
+        "session",
+        "reviews",
+        "bugfix"
+      ],
+      "scope": [
+        "Sources/Features/Reviews/ReviewsTabView.swift",
+        "Sources/Features/Session/ReviewSessionView.swift",
+        "Sources/Features/Session/ReviewSessionViewModel.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T114.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": []
+      }
+    },
+    {
+      "id": "T115",
+      "title": "Group Reviews deck list into per-language sections",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "reviews",
+        "views",
+        "grouping"
+      ],
+      "scope": [
+        "Sources/Features/Reviews/ReviewsTabView.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T115.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "component",
+        "risk": []
+      }
+    },
+    {
+      "id": "T116",
+      "title": "Reserve bottom space for the glass tab bar so bottom-pinned CTAs aren't occluded",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "ui",
+        "bugfix",
+        "tab-bar",
+        "layout"
+      ],
+      "scope": [
+        "Sources/App/MainShellView.swift",
+        "Sources/DesignSystem/LiquidGlassTabBar.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T116.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "bugfix",
+        "risk": [
+          "cross-cutting"
+        ]
+      }
+    },
+    {
+      "id": "T117",
+      "title": "Remove the 'New trip' button and retire the recurring new-trip flow",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": null,
+      "tags": [
+        "trip",
+        "onboarding",
+        "cleanup"
+      ],
+      "scope": [
+        "Sources/Features/Progress/ProgressTabView.swift",
+        "Sources/App/AppState.swift",
+        "Sources/App/AXID.swift",
+        "Tests/AppStateTests.swift"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T117.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "views",
+        "workType": "refactor",
+        "risk": []
+      }
+    },
+    {
+      "id": "T118",
+      "title": "DESIGN DECISION: multi-trip / pack-switcher model",
+      "status": "pending",
+      "dependsOn": [],
+      "gate": "needs-human",
+      "tags": [
+        "trip",
+        "pack-switcher",
+        "design-decision",
+        "needs-human"
+      ],
+      "scope": [
+        ".harness/custom/docs/LIMITATIONS.md"
+      ],
+      "design": null,
+      "verify": [],
+      "expectsTest": false,
+      "spec": ".harness/tasks/T118.md",
+      "visualVerify": false
+    },
+    {
+      "id": "T119",
+      "title": "Build the owned-pack switcher from the settled multi-trip decision",
+      "status": "pending",
+      "dependsOn": [
+        "T118"
+      ],
+      "gate": null,
+      "tags": [
+        "trip",
+        "pack-switcher"
+      ],
+      "scope": [
+        "Sources/Persistence/TripStore.swift",
+        "Sources/Persistence/Records.swift",
+        "Sources/Features/Home/**",
+        "Sources/Features/Browse/**",
+        "Sources/App/**",
+        "Tests/**"
+      ],
+      "design": null,
+      "verify": [
+        "run-app"
+      ],
+      "expectsTest": true,
+      "spec": ".harness/tasks/T119.md",
+      "visualVerify": true,
+      "facets": {
+        "layer": "data",
+        "workType": "feature",
+        "risk": [
+          "touches-schema",
+          "touches-core",
+          "full-stack"
+        ]
+      }
     }
   ]
 }
