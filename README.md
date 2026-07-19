@@ -29,16 +29,15 @@ how it works, and [`CLAUDE.md`](./CLAUDE.md) for project conventions.
   a session-complete screen (ring race, stats, "learn 5 more").
 - **Reviews tab** — due ring plus Due/Learning/Mastered tiles and per-deck strength bars.
 - **Browse tab** — country-sectioned store listing packs/bundles with prices, buy, and restore.
-- **Progress** — streak pill, streak card, and week-dot row are built as components; full tab
-  assembly (stat tiles + readiness ring) is not yet merged (`T054` pending).
+- **Progress** — streak pill, streak card, and week-dot row components (the full stat-tile +
+  readiness-ring tab assembly is in progress).
 - **Streaks & readiness** — `StatsService` computes streaks, week dots, and lifetime totals.
 - **Review-due local notifications** — `NotificationsService` schedules a local notification
   for the next due review, requesting permission after the first completed session.
 - **Debug god-mode menu** — a hidden menu (shake gesture or the `-debug-menu` launch argument)
   with settings to unlock all packs, time-travel the app clock, reset all app data, fire a test
   notification, and inspect pending schedules. The `-demo-state` launch argument wipes and seeds
-  a mid-trip demo fixture (used by `build_run.sh` for screenshots); "force all learned cards due
-  now" is not yet merged (`T102` pending).
+  a mid-trip demo fixture (used by `build_run.sh` for screenshots).
 
 ## Architecture
 
@@ -63,13 +62,6 @@ Decks, cards, and audio are bundled data under `Content/` (`catalog.json`, `deck
 `audio/*.mp3`) in the schema described in design-spec §8.1, produced by the external
 anki-builder pipeline. The current content is a placeholder fixture — Japanese textbook slices;
 the France and Germany country entries currently reuse the same Japanese files.
-
-## Status
-
-The live backlog and per-task status live in `.harness/tracking/TASKS.json` (also viewable via
-the harness dashboard) — that's the source of truth for what's done vs. pending at any given
-time. Tests run via the `LOCAL_DOD` `xcodebuild` invocation in
-`.harness/config/harness.env`.
 
 ## Development
 
