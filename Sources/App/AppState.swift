@@ -19,9 +19,9 @@ final class AppState {
   let services: AppServices
   var phase: Phase
   var activeAccent: AccentTheme
-  /// Set by `startNewTrip()`, cleared on `completeOnboarding()` — lets the onboarding flow
-  /// know to re-enter directly at the country picker instead of the first-launch welcome
-  /// screen.
+  /// Used by the debug 'Reset all data' action to re-enter onboarding at the country picker
+  /// instead of the first-launch welcome screen. Set to true when re-onboarding, false
+  /// otherwise or after onboarding completes.
   var isReonboarding = false
   /// Set by `requestStartReview()`; consumed by `MainShellView` (switches tab) and
   /// `ReviewsTabView` (starts the session), then cleared by whoever consumes it.
@@ -55,21 +55,10 @@ final class AppState {
     isReonboarding = false
   }
 
-  /// Ends the current trip and re-runs onboarding. Wipes learning progress (SRS + daily
-  /// activity) but NEVER entitlements/purchases — owned packs must survive across trips.
-  func startNewTrip() {
-    try? services.tripStore.deactivateActiveTrip()
-    try? services.cardSRSStore.reset()
-    try? services.activityStore.reset()
-    services.notifications.cancelAll()
-    isReonboarding = true
-    phase = .onboarding
-  }
-
   /// Re-enters onboarding at the very first screen (`WelcomeView`) in place, no relaunch
   /// needed. Used by the debug "Reset all data" action after `AppReset.wipeAll` has already
-  /// cleared the stores — unlike `startNewTrip()`, it doesn't touch the stores itself and
-  /// lands on `WelcomeView` rather than the country picker (`isReonboarding = false`).
+  /// cleared the stores. Doesn't touch the stores itself, landing on `WelcomeView` with
+  /// `isReonboarding = false`.
   func reenterOnboardingFresh() {
     services.notifications.cancelAll()
     isReonboarding = false

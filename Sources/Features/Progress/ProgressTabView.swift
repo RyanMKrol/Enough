@@ -6,7 +6,6 @@ struct ProgressTabView: View {
   @Environment(AppState.self) private var appState: AppState?
 
   @State private var vm: ProgressViewModel?
-  @State private var showsNewTripConfirmation = false
 
   var body: some View {
     ZStack {
@@ -32,39 +31,14 @@ struct ProgressTabView: View {
       vm = viewModel
       viewModel.refresh()
     }
-    .confirmationDialog(
-      "Start a new trip?",
-      isPresented: $showsNewTripConfirmation,
-      titleVisibility: .visible
-    ) {
-      Button("Start new trip", role: .destructive) {
-        appState?.startNewTrip()
-      }
-      Button("Cancel", role: .cancel) {}
-    } message: {
-      Text("Your packs stay yours. Progress and streaks reset.")
-    }
   }
 
   @ViewBuilder
   private var titleRow: some View {
-    HStack(alignment: .firstTextBaseline) {
-      Text("Progress")
-        .font(EnoughFont.largeTitle())
-        .foregroundStyle(EnoughColor.label)
-
-      Spacer()
-
-      Button("New trip") {
-        showsNewTripConfirmation = true
-      }
-      .font(.system(size: 13, weight: .semibold))
-      .foregroundStyle(EnoughColor.linkBlue)
-      .frame(minHeight: 44)
-      .contentShape(Rectangle())
-      .accessibilityIdentifier(AXID.progressNewTrip)
-    }
-    .frame(maxWidth: .infinity, alignment: .leading)
+    Text("Progress")
+      .font(EnoughFont.largeTitle())
+      .foregroundStyle(EnoughColor.label)
+      .frame(maxWidth: .infinity, alignment: .leading)
   }
 
   @ViewBuilder
