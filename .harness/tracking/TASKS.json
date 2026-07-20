@@ -3022,7 +3022,7 @@
     {
       "id": "T114",
       "title": "Fix ReviewSessionView blank-screen: value-driven fullScreenCover + state-safe view-model",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [
         "T112"
       ],
