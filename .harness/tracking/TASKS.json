@@ -3111,7 +3111,7 @@
     {
       "id": "T117",
       "title": "Remove the 'New trip' button and retire the recurring new-trip flow",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
