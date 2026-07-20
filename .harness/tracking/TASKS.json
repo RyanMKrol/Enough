@@ -3053,7 +3053,7 @@
     {
       "id": "T115",
       "title": "Group Reviews deck list into per-language sections",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
