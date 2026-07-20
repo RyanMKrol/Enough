@@ -14,6 +14,8 @@ struct ReviewsTabView: View {
   @State private var ownedDeckIds: [String] = []
   @State private var destinationLabel: String = ""
   @State private var nextDueDate: Date?
+  @State private var deckToCountry: [String: CountryInfo] = [:]
+  @State private var countryGroups: [(country: CountryInfo, deckIds: [String])] = []
 
   var dueCount: Int { dueCounts.due }
   var learningCount: Int { dueCounts.learning }
@@ -178,13 +180,38 @@ struct ReviewsTabView: View {
   @ViewBuilder
   private func deckStrengthList() -> some View {
     VStack(spacing: 0) {
-      ForEach(Array(ownedDeckIds.enumerated()), id: \.element) { index, deckId in
-        if let progress = deckProgresses[deckId] {
-          deckStrengthRow(deckId: deckId, progress: progress)
+      ForEach(Array(countryGroups.enumerated()), id: \.element.country.id) { groupIndex, group in
+        let showHeader = countryGroups.count > 1
 
-          if index < ownedDeckIds.count - 1 {
-            Divider()
-              .padding(.leading, 54)
+        if showHeader {
+          VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 8) {
+              Text(group.country.flagEmoji)
+                .font(.system(size: 20))
+
+              Text(group.country.nativeLanguageName)
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(EnoughColor.secondaryText)
+
+              Spacer()
+            }
+            .padding(.horizontal, Layout.cardPad)
+            .padding(.vertical, 12)
+          }
+          .accessibilityIdentifier("country-section-\(group.country.id)")
+        }
+
+        ForEach(Array(group.deckIds.enumerated()), id: \.element) { index, deckId in
+          if let progress = deckProgresses[deckId] {
+            deckStrengthRow(deckId: deckId, progress: progress)
+
+            let isLastDeck = index == group.deckIds.count - 1
+            let isLastGroup = groupIndex == countryGroups.count - 1
+
+            if !(isLastDeck && isLastGroup) {
+              Divider()
+                .padding(.leading, 54)
+            }
           }
         }
       }
@@ -230,8 +257,10 @@ struct ReviewsTabView: View {
       sessionStartError = "Couldn't start review — try again"
     }
   }
+}
 
-  private func reload() {
+extension ReviewsTabView {
+  fileprivate func reload() {
     guard let catalog = try? services.contentStore.catalog() else { return }
     guard let trip = try? services.tripStore.activeTrip() else { return }
 
@@ -242,32 +271,36 @@ struct ReviewsTabView: View {
       dueCounts = totals
     }
 
-    let owned = (try? services.entitlementStore.ownedDeckIds(catalog: catalog)) ?? []
-    ownedDeckIds = Array(owned)
+    let ownedSet = (try? services.entitlementStore.ownedDeckIds(catalog: catalog)) ?? []
+    let ownedArray = Array(ownedSet)
+    ownedDeckIds = ownedArray
 
     var infoById: [String: DeckInfo] = [:]
+    var deckToCountryMap: [String: CountryInfo] = [:]
     for country in catalog.countries {
       for deck in country.decks {
         infoById[deck.id] = deck
+        deckToCountryMap[deck.id] = country
       }
     }
     deckInfoById = infoById
+    deckToCountry = deckToCountryMap
 
     var progresses: [String: DeckProgressService.DeckProgress] = [:]
-    for deckId in owned {
+    for deckId in ownedSet {
       if let progress = try? services.deckProgress.progress(forDeck: deckId) {
         progresses[deckId] = progress
       }
     }
     deckProgresses = progresses
 
+    rebuildCountryGroups(owned: ownedArray, catalog: catalog, trip: trip)
+
     if dueCount == 0 {
       nextDueDate = getNextDueDate()
     }
   }
-}
 
-extension ReviewsTabView {
   fileprivate func getNextDueDate() -> Date? {
     guard let catalog = try? services.contentStore.catalog() else { return nil }
     let owned = (try? services.entitlementStore.ownedDeckIds(catalog: catalog)) ?? []
@@ -291,6 +324,34 @@ extension ReviewsTabView {
     }
 
     return earliestDueDate
+  }
+
+  fileprivate func rebuildCountryGroups(
+    owned: [String],
+    catalog: ContentCatalog,
+    trip: TripProfileRecord
+  ) {
+    var groups: [(country: CountryInfo, deckIds: [String])] = []
+    var seenCountryIds = Set<String>()
+
+    let activeCountry = catalog.countries.first(where: { $0.id == trip.countryId })
+    if let active = activeCountry, owned.contains(where: { deckToCountry[$0]?.id == active.id }) {
+      let countryDecks = owned.filter { deckToCountry[$0]?.id == active.id }
+      groups.append((active, countryDecks))
+      seenCountryIds.insert(active.id)
+    }
+
+    let otherCountries = catalog.countries
+      .filter { !seenCountryIds.contains($0.id) }
+      .filter { country in owned.contains(where: { deckToCountry[$0]?.id == country.id }) }
+      .sorted { $0.name < $1.name }
+
+    for country in otherCountries {
+      let countryDecks = owned.filter { deckToCountry[$0]?.id == country.id }
+      groups.append((country, countryDecks))
+    }
+
+    countryGroups = groups
   }
 
   fileprivate static func destinationLabel(countryId: String, country: CountryInfo?) -> String {
