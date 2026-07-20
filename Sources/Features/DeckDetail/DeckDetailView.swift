@@ -114,6 +114,9 @@ struct DeckDetailView: View {
         onLearn: startLearnSession,
         onPractice: startPracticeSession
       )
+      // Lift the pinned CTAs clear of MainShellView's floating glass tab bar, which overlays
+      // this pushed screen and would otherwise occlude "Continue learning" / "Practice all".
+      .padding(.bottom, Layout.floatingTabBarClearance)
     }
     .toolbar(.hidden, for: .navigationBar)
     .accessibilityIdentifier(AXID.screenDeckDetail)
