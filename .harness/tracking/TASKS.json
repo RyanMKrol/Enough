@@ -2994,7 +2994,7 @@
     {
       "id": "T113",
       "title": "Wire up onboarding 'Browse all decks' link to present the Browse deck list",
-      "status": "pending",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
