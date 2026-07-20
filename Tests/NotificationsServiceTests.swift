@@ -79,14 +79,14 @@ final class NotificationsServiceTests: XCTestCase {
   func testRescheduleWithDueCardsAddsSingleNonRepeatingRequest() async throws {
     let center = FakeNotificationCenter()
     let service = NotificationsService(center: center)
-    var components = DateComponents()
-    components.year = 2026
-    components.month = 7
-    components.day = 20
-    components.hour = 9
-    components.minute = 30
-    components.second = 15
-    let dueDate = try XCTUnwrap(Calendar.current.date(from: components))
+    // The service only schedules for due dates strictly in the future (it guards on real `Date()`),
+    // so use a future-relative date and derive the expected components from it. This keeps the test
+    // deterministic regardless of the wall-clock time it runs at (a fixed calendar date would be a
+    // time-bomb that fails once that moment passes).
+    let dueDate = try XCTUnwrap(Calendar.current.date(byAdding: .day, value: 3, to: Date()))
+    let expected = Calendar.current.dateComponents(
+      [.year, .month, .day, .hour, .minute, .second], from: dueDate
+    )
 
     await service.rescheduleReviewNotification(dueCount: 12, nextDueDate: dueDate)
 
@@ -98,12 +98,12 @@ final class NotificationsServiceTests: XCTestCase {
 
     let trigger = try XCTUnwrap(request.trigger as? UNCalendarNotificationTrigger)
     XCTAssertFalse(trigger.repeats)
-    XCTAssertEqual(trigger.dateComponents.year, 2026)
-    XCTAssertEqual(trigger.dateComponents.month, 7)
-    XCTAssertEqual(trigger.dateComponents.day, 20)
-    XCTAssertEqual(trigger.dateComponents.hour, 9)
-    XCTAssertEqual(trigger.dateComponents.minute, 30)
-    XCTAssertEqual(trigger.dateComponents.second, 15)
+    XCTAssertEqual(trigger.dateComponents.year, expected.year)
+    XCTAssertEqual(trigger.dateComponents.month, expected.month)
+    XCTAssertEqual(trigger.dateComponents.day, expected.day)
+    XCTAssertEqual(trigger.dateComponents.hour, expected.hour)
+    XCTAssertEqual(trigger.dateComponents.minute, expected.minute)
+    XCTAssertEqual(trigger.dateComponents.second, expected.second)
   }
 
   func testRescheduleWithZeroDueCountOnlyRemoves() async {

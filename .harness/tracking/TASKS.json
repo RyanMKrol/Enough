@@ -3080,7 +3080,7 @@
     {
       "id": "T116",
       "title": "Reserve bottom space for the glass tab bar so bottom-pinned CTAs aren't occluded",
-      "status": "blocked",
+      "status": "done",
       "dependsOn": [],
       "gate": null,
       "tags": [
