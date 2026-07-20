@@ -3,6 +3,7 @@ import Foundation
 @Observable
 final class BrowseViewModel {
   private let services: AppServices
+  private let countryId: String?
   // SAFE: deinit is nonisolated by language rule and NSObjectProtocol observer tokens are
   // documented as safe to remove from any thread, so this is the standard teardown escape valve.
   private nonisolated(unsafe) var entitlementsToken: NSObjectProtocol?
@@ -16,8 +17,9 @@ final class BrowseViewModel {
   var pendingProductId: String?
   var showRestoredToast: Bool = false
 
-  init(services: AppServices) {
+  init(services: AppServices, countryId: String? = nil) {
     self.services = services
+    self.countryId = countryId
     entitlementsToken = NotificationCenter.default.addObserver(
       forName: .entitlementsChanged, object: nil, queue: .main
     ) { [weak self] _ in
@@ -36,17 +38,21 @@ final class BrowseViewModel {
   func refresh() {
     guard let catalog = try? services.contentStore.catalog() else { return }
 
-    let activeTrip = try? services.tripStore.activeTrip()
-    let activeCountryId = activeTrip.flatMap { $0 }?.countryId
-    let activeIndex = activeCountryId.flatMap { id in
-      catalog.countries.firstIndex(where: { $0.id == id })
-    }
-    if let activeIndex {
-      var ordered = catalog.countries
-      let active = ordered.remove(at: activeIndex)
-      countries = [active] + ordered
+    if let countryId {
+      countries = catalog.countries.filter { $0.id == countryId }
     } else {
-      countries = catalog.countries
+      let activeTrip = try? services.tripStore.activeTrip()
+      let activeCountryId = activeTrip.flatMap { $0 }?.countryId
+      let activeIndex = activeCountryId.flatMap { id in
+        catalog.countries.firstIndex(where: { $0.id == id })
+      }
+      if let activeIndex {
+        var ordered = catalog.countries
+        let active = ordered.remove(at: activeIndex)
+        countries = [active] + ordered
+      } else {
+        countries = catalog.countries
+      }
     }
 
     comingSoon = catalog.comingSoon

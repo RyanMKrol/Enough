@@ -11,6 +11,7 @@ struct PlanView: View {
   @State private var isPurchasing = false
   @State private var pendingNote: String?
   @State private var errorNote: String?
+  @State private var showBrowseSheet = false
 
   var body: some View {
     ScrollView {
@@ -130,16 +131,23 @@ struct PlanView: View {
   }
 
   private func browseLink(country: CountryInfo) -> some View {
-    HStack(spacing: 8) {
-      Image(systemName: "magnifyingglass")
-        .font(.system(size: 15, weight: .medium))
-        .foregroundColor(EnoughColor.linkBlue)
+    Button {
+      showBrowseSheet = true
+    } label: {
+      HStack(spacing: 8) {
+        Image(systemName: "magnifyingglass")
+          .font(.system(size: 15, weight: .medium))
+          .foregroundColor(EnoughColor.linkBlue)
 
-      Text("Browse all \(country.name) decks")
-        .font(.system(size: 15, weight: .medium))
-        .foregroundColor(EnoughColor.linkBlue)
+        Text("Browse all \(country.name) decks")
+          .font(.system(size: 15, weight: .medium))
+          .foregroundColor(EnoughColor.linkBlue)
+      }
     }
-    // Browse tab arrives in T055
+    .accessibilityIdentifier("plan-browse-link")
+    .sheet(isPresented: $showBrowseSheet) {
+      BrowseView(countryId: country.id)
+    }
   }
 
   private func footer(vm: PlanViewModel) -> some View {

@@ -10,14 +10,21 @@ private struct TrailingControlSpec {
 
 struct BrowseView: View {
   @Environment(\.services) private var services
+  @Environment(\.dismiss) private var dismiss
   @State private var viewModel: BrowseViewModel?
 
+  var countryId: String?
+
   var body: some View {
-    ZStack {
+    ZStack(alignment: .topTrailing) {
       EnoughColor.canvas.ignoresSafeArea()
 
       if let viewModel {
         content(viewModel: viewModel)
+      }
+
+      if countryId != nil {
+        dismissButton
       }
     }
     .accessibilityIdentifier(AXID.screenBrowse)
@@ -25,7 +32,7 @@ struct BrowseView: View {
       if let viewModel {
         viewModel.refresh()
       } else {
-        let model = BrowseViewModel(services: services)
+        let model = BrowseViewModel(services: services, countryId: countryId)
         model.refresh()
         viewModel = model
       }
@@ -41,6 +48,24 @@ struct BrowseView: View {
     } message: {
       Text(viewModel?.errorMessage ?? "")
     }
+  }
+
+  private var dismissButton: some View {
+    Button {
+      dismiss()
+    } label: {
+      Image(systemName: "xmark")
+        .font(.system(size: 14, weight: .semibold))
+        .foregroundStyle(Color(hex: 0x6b6b70))
+        .frame(width: 30, height: 30)
+        .background(Circle().fill(Color(hex: 0xf7f7fa)))
+        .frame(width: 44, height: 44)
+        .contentShape(Rectangle())
+    }
+    .padding(.top, 8)
+    .padding(.trailing, 12)
+    .accessibilityIdentifier("browse-sheet-done")
+    .accessibilityLabel("Done")
   }
 
   @ViewBuilder
