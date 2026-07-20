@@ -5,8 +5,7 @@ struct ReviewsTabView: View {
   @Environment(\.accentTheme) var accentTheme
   @Environment(AppState.self) private var appState
 
-  @State private var reviewSessionEngine: SessionEngine?
-  @State private var isShowingReviewSession = false
+  @State private var reviewSession: SessionEnginePresentation?
   @State private var sessionStartError: String?
   // swiftlint:disable:next large_tuple
   @State private var dueCounts: (due: Int, learning: Int, mastered: Int) = (0, 0, 0)
@@ -71,10 +70,8 @@ struct ReviewsTabView: View {
     .onChange(of: appState.pendingAction) { _, _ in
       consumePendingActionIfNeeded()
     }
-    .fullScreenCover(isPresented: $isShowingReviewSession) {
-      if let reviewSessionEngine {
-        ReviewSessionView(engine: reviewSessionEngine)
-      }
+    .fullScreenCover(item: $reviewSession) { session in
+      ReviewSessionView(engine: session.engine)
     }
     .errorAlert("Couldn't start review", message: $sessionStartError)
   }
@@ -228,8 +225,7 @@ struct ReviewsTabView: View {
 
   private func startReviewSession() {
     do {
-      reviewSessionEngine = try services.study.makeReviewSession()
-      isShowingReviewSession = true
+      reviewSession = SessionEnginePresentation(try services.study.makeReviewSession())
     } catch {
       sessionStartError = "Couldn't start review — try again"
     }

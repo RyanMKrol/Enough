@@ -26,6 +26,11 @@ struct ReviewSessionView: View {
           }
         }
     }
+    .task {
+      if viewModel == nil {
+        viewModel = ReviewSessionViewModel(engine: engine, services: services)
+      }
+    }
   }
 
   @ViewBuilder
@@ -100,9 +105,6 @@ struct ReviewSessionView: View {
       }
     } else {
       EnoughColor.canvas.ignoresSafeArea()
-        .onAppear {
-          viewModel = ReviewSessionViewModel(engine: engine, services: services)
-        }
     }
   }
 
